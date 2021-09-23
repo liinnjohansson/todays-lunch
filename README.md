@@ -5,41 +5,61 @@
 ### info om hur projektet byggs och körs
 
 ### RN-komponenter
-* .....
+
+- .....
 
 ### Expo komponenter
-* ....
 
+- ....
 
 ## Uppfyllda krav:
+
 Krav för godkänt:
-1. 
+
+1.
 2.
-3. 
-4. 
-5. 
-6. 
+3.
+4.
+5.
+6.
 
 Krav för väl godkänt:
-1. 
-2. 
-3. 
+
+1.
+2.
+3.
 4. JA
 
 # Krav för inlämningen:
+
 Krav för godkänt:
+
 1. Projektet använder minst 6 stycken RN-komponenter och minst 6 stycken Expo
-komponenter.
+   komponenter.
 2. De utvalda komponenterna ska antecknas i er README tillsammans med en lista över
-genomförda krav.
+   genomförda krav.
 3. Git & GitHub har använts
 4. Projektmappen innehåller en README.md fil - (läs ovan för mer info)
 5. Uppgiften lämnas in i tid!
 6. Muntlig presentation är genomförd
 
 Krav för väl godkänt:
+
 1. Alla punkter för godkänt är uppfyllda
 2. React Navigation används för att skapa en bättre upplevelse i appen.
 3. Ytterligare en valfri extern modul används i projektet.
 4. Prototyper för applikation tas fram innan den implementeras. Bilder på prototypen
-skall finnas i projektet vid inlämning.
+   skall finnas i projektet vid inlämning.
+
+## Installations komandom + länk till installation
+
+- Cross-platform Material Design for React Native
+  npm install react-native-paper
+  https://callstack.github.io/react-native-paper/getting-started.html
+- Veckonummer
+  npm i current-week-number
+  https://www.npmjs.com/package/current-week-number
+
+- Generera unik id string
+  npm i react-native-uuid
+  https://www.npmjs.com/package/react-native-uuid
