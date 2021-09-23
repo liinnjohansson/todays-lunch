@@ -3,7 +3,7 @@ import { BistroData, bistros } from '../data/bistroData';
 import uuid from 'react-native-uuid';
 
 //***************************************
-// Mock data will be read when application is startad from data.ts
+// Mock data will be read when application is started from data.ts
 
 //***************************************
 
@@ -28,12 +28,13 @@ export const BistroContext = createContext<ContextValue>({
 // 		return localData ? JSON.parse(localData) : bistros;
 // 	});
 
-const BistroProvider: FC = (props) => {
+const BistroProvider: FC = ({children}) => {
 	const [ storedBistros, setStoredBistros ] = useState<BistroData[]>(bistros);
 
-	useEffect(() => {
-		localStorage.setItem('storedBistros', JSON.stringify(storedBistros))
-	}, [storedBistros])
+	// TODO: Kod för local storage..??
+	// useEffect(() => {
+	// 	localStorage.setItem('storedBistros', JSON.stringify(storedBistros))
+	// }, [storedBistros])
 
 	// Check if product exist with given id, else it will be added
 	const addBistro = (bistro: BistroData) => {
@@ -74,7 +75,7 @@ const BistroProvider: FC = (props) => {
 				editBistro
 			}}
 		>
-			{props.children}
+			{children}
 		</BistroContext.Provider>
 	);
 };

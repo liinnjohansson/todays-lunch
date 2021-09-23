@@ -5,7 +5,7 @@ import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import {BistroContext} from "../contexts/BistroContext";
 import { useContext } from 'react';
-import { bistros } from "../data/bistroData";
+// import { bistros } from "../data/bistroData";
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   const { storedBistros } = useContext(BistroContext);
@@ -14,7 +14,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
       <Text style={styles.title}>Tab ooo Oneeeee</Text>
 
       <FlatList
-        data={bistros}
+        data={storedBistros}
         renderItem={({item}) => <Text style={styles.item}>{item.title}</Text>}
       />
 
