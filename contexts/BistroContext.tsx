@@ -1,4 +1,4 @@
-import { createContext, FC, useState, useEffect } from 'react';
+import React, { createContext, FC, useState, useEffect } from 'react';
 import { BistroData, bistros } from '../data/bistroData';
 import uuid from 'react-native-uuid';
 
