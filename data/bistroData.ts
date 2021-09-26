@@ -3,19 +3,22 @@ export interface BistroData {
   title: string;
   location: string;
   imageUrl: string;
-  lunchOfTheWeek: LunchOfTheWeek;
+  lunchOfTheWeek: LunchOfTheWeek[]; //defult
+  lunchOfTheWeekOffer: LunchOfTheWeek[]; //
   likedBistro: boolean;
 }
 
 interface LunchOfTheWeek {
   id: string;
-  weekNumber: number; //(borde ta år också ? Format: 202139, 202140 - eller fungernade datum format ?)
   tags: Tags;
   monday?: TodaysLunch;
   tuesday?: TodaysLunch;
   wednesday?: TodaysLunch;
   thursday?: TodaysLunch;
   friday?: TodaysLunch;
+}
+interface LunchOfTheWeek1 extends LunchOfTheWeek {
+  weekNumber: number; //(borde ta år också ? Format: 202139, 202140 - eller fungernade datum format ?)
 }
 
 interface TodaysLunch {
@@ -31,13 +34,13 @@ interface Tags {
   saladBuffet: boolean;
 }
 
-// interface Location {
+// interface Address {
 //   id: string,
-//   address: string,
+//   streetAddress: string,
 //   city: string,
 //   zipCode: number,
 //   phone: number[],
-// }
+// } //google api för att mata in address och få en kordinat
 
 export const bistros: BistroData[] = [
   {
