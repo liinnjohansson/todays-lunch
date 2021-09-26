@@ -1,15 +1,15 @@
 export interface BistroData {
-  id: string;
-  title: string;
-  location: string;
-  imageUrl: string;
-  lunchOfTheWeek: LunchOfTheWeek[]; //defult
-  lunchOfTheWeekOffer: LunchOfTheWeek[]; //
-  likedBistro: boolean;
+  id: String;
+  title: String;
+  address: Address;
+  imageUrl: String;
+  lunchOfTheWeekDefault: LunchOfTheWeekDefault;
+  lunchOfTheWeekOffer?: LunchOfTheWeekOffer[];
+  likedBistro: Boolean;
 }
 
-interface LunchOfTheWeek {
-  id: string;
+interface LunchOfTheWeekDefault {
+  id: String;
   tags: Tags;
   monday?: TodaysLunch;
   tuesday?: TodaysLunch;
@@ -17,41 +17,63 @@ interface LunchOfTheWeek {
   thursday?: TodaysLunch;
   friday?: TodaysLunch;
 }
-interface LunchOfTheWeek1 extends LunchOfTheWeek {
-  weekNumber: number; //(borde ta år också ? Format: 202139, 202140 - eller fungernade datum format ?)
-}
 
-interface TodaysLunch {
-  dishes: string[];
-  lunchStart: number;
-  lunchEnd: number;
-  priceFrom: number;
+/**
+ * Intended to work as a function that override the default menu a bistro have registered by week Number. 
+ * The overridable functions exist to minimize the administration work for Bistros.
+ */ 
+interface LunchOfTheWeekOffer extends LunchOfTheWeekDefault {
+  weekNumber: Number;
+  // year: number; // TODO: Lägg till senare ifall det behövs. Note. David sa att lägga till saker är enkelt, att ta bort och förändra är svårare!
 }
 
 interface Tags {
-  outdoorSeating: boolean;
-  coffeeIncluded: boolean;
-  saladBuffet: boolean;
+  outdoorSeating: Boolean;
+  coffeeIncluded: Boolean;
+  saladBuffet: Boolean;
 }
 
-// interface Address {
-//   id: string,
-//   streetAddress: string,
-//   city: string,
-//   zipCode: number,
-//   phone: number[],
-// } //google api för att mata in address och få en kordinat
+interface TodaysLunch {
+  dishes: String[];
+  lunchStart: Number;
+  lunchEnd: Number;
+  priceFrom: Number;
+}
+
+/**
+ * Format of interface intended to work in UI by registerd Bistro-admin-user
+ * The latitude and longitude should be fetched by API when user have filled in other address info. Before the info is saved to the server.
+ * The saved latitude and longitude info will give easy access to Bistro in the app's Map function.  
+ * Ex. API to use in mention Bistro-admin function: https://developers.google.com/maps/documentation/geocoding/overview
+ */ 
+interface Address {
+  // id: String,   //TODO: Lägg till om vi upptäcker att det behövs!
+  streetAddress: String,
+  city: String,
+  zipCode: Number,
+  contry: String,
+  phone: String[],
+  latitude: Number,
+  longitude: Number,
+}
 
 export const bistros: BistroData[] = [
   {
     id: "1",
     title: "The Company",
-    location: "Skaraborgsvägen 3c",
+    address: {
+      streetAddress: "Skaraborgsvägen 3c",
+      city: "Borås",
+      zipCode: 50630,
+      contry: "sweden",
+      phone: ["033125250"],
+      latitude: 57.72575042973964,
+      longitude: 12.938124023619977,
+    },
     imageUrl:
       "https://www.hb.se/globalassets/pagefiles/135491/studenter-pa-campus-hosten-2016-foto-ulrika-goransson-7_761x367.jpg?width=1600&quality=95&mode=min&format=webp&v=289233",
-    lunchOfTheWeek: {
+    lunchOfTheWeekDefault: {
       id: "A",
-      weekNumber: 39,
       tags: {
         outdoorSeating: false,
         coffeeIncluded: true,
@@ -128,11 +150,18 @@ export const bistros: BistroData[] = [
   {
     id: "2",
     title: "Viskan",
-    location: "Södra Strandgatan 6",
-    imageUrl: "",
-    lunchOfTheWeek: {
+    address: {
+      streetAddress: "Södra Strandgatan 6",
+      city: "Borås",
+      zipCode: 50335,
+      contry: "sweden",
+      phone: ["033102580"],
+      latitude: 57.72011024824524,
+      longitude: 12.939488649852242,
+    },
+    imageUrl: "https://cafeviskan.se/wp-content/uploads/2019/04/catering_viskan.jpg",
+    lunchOfTheWeekDefault: {
       id: "B",
-      weekNumber: 39,
       tags: {
         outdoorSeating: true,
         coffeeIncluded: true,
@@ -184,11 +213,18 @@ export const bistros: BistroData[] = [
   {
     id: "3",
     title: "Townhouse",
-    location: "Österlånggatan 35",
-    imageUrl: "",
-    lunchOfTheWeek: {
+    address: {
+      streetAddress: "Österlånggatan 35",
+      city: "Borås",
+      zipCode: 50331,
+      contry: "sweden",
+      phone: ["0333236313"],
+      latitude: 57.72126858453907,
+      longitude: 12.941070078046462,
+    },
+    imageUrl: "https://thetownhouse.se/uploads/2018/11/img_1958-o.jpg",
+    lunchOfTheWeekDefault: {
       id: "C",
-      weekNumber: 39,
       tags: {
         outdoorSeating: false,
         coffeeIncluded: true,
@@ -245,11 +281,18 @@ export const bistros: BistroData[] = [
   {
     id: "4",
     title: "Balthazar",
-    location: "Lilla Brogatan 14,",
-    imageUrl: "",
-    lunchOfTheWeek: {
+    address: {
+      streetAddress: "Lilla Brogatan 14",
+      city: "Borås",
+      zipCode: 50330,
+      contry: "sweden",
+      phone: ["0337221177"],
+      latitude: 57.72002214821148,
+      longitude: 12.938943407626931,
+    },
+    imageUrl: "https://prod-wolt-venue-images-cdn.wolt.com/5ed77be3eabef0179336d458/2d0f66c2-de07-11ea-b628-eefcf45c554c_balthazar_menu_05.jpg",
+    lunchOfTheWeekDefault: {
       id: "D",
-      weekNumber: 39,
       tags: {
         outdoorSeating: false,
         coffeeIncluded: true,
@@ -301,11 +344,18 @@ export const bistros: BistroData[] = [
   {
     id: "5",
     title: "Orangeriet",
-    location: "Teaterbron 1",
-    imageUrl: "",
-    lunchOfTheWeek: {
+    address: {
+      streetAddress: "Teaterbron 1",
+      city: "Borås",
+      zipCode: 50338,
+      contry: "sweden",
+      phone: ["033108801"],
+      latitude: 57.719282152914666,
+      longitude: 12.939873194328353,
+    },
+    imageUrl: "https://www.orangerietiboras.se/media/1061/fisksoppa_orangeriet.jpg?width=1440",
+    lunchOfTheWeekDefault: {
       id: "E",
-      weekNumber: 39,
       tags: {
         outdoorSeating: false,
         coffeeIncluded: true,
@@ -363,11 +413,18 @@ export const bistros: BistroData[] = [
   {
     id: "6",
     title: "Qui Vietnamese Street Food",
-    location: "Hötorget 1",
-    imageUrl: "",
-    lunchOfTheWeek: {
+    address: {
+      streetAddress: "Hötorget 1",
+      city: "Borås",
+      zipCode: 50332,
+      contry: "sweden",
+      phone: ["033200088"],
+      latitude: 57.72248083924043,
+      longitude: 12.940607107623883,
+    },
+    imageUrl: "https://scontent-arn2-1.xx.fbcdn.net/v/t1.6435-9/p720x720/54278617_308630833132964_6402904040484634624_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=e3f864&_nc_ohc=ILaKkG0m4MkAX8PVE2M&_nc_ht=scontent-arn2-1.xx&oh=ca3d3e0a6eb8436b7f4766071eefd22e&oe=617648D9",
+    lunchOfTheWeekDefault: {
       id: "F",
-      weekNumber: 39,
       tags: {
         outdoorSeating: false,
         coffeeIncluded: true,
@@ -419,12 +476,19 @@ export const bistros: BistroData[] = [
   {
     id: "7",
     title: "Espresso House",
-    location: "Stora Brogatan 20",
+    address: {
+      streetAddress: "Stora Brogatan 20",
+      city: "Borås",
+      zipCode: 50330,
+      contry: "sweden",
+      phone: ["0765219173"],
+      latitude: 57.72058430511784,
+      longitude: 12.939410394990757,
+    },
     imageUrl:
       "http://cdn3.cdnme.se/3927310/8-3/espresso-house-kalmar-1-sallad-sommarsallad-getostsallad-getost-chevre-bagel-lufttorkad-skinka-uteservering_5962495b9606ee53033aaca2.jpg",
-    lunchOfTheWeek: {
+    lunchOfTheWeekDefault: {
       id: "G",
-      weekNumber: 39,
       tags: {
         outdoorSeating: true,
         coffeeIncluded: false,
@@ -466,12 +530,19 @@ export const bistros: BistroData[] = [
   {
     id: "8",
     title: "Herkules Pizzeria",
-    location: "Regementsgatan 10",
+    address: {
+      streetAddress: "Regementsgatan 10",
+      city: "Borås",
+      zipCode: 50431,
+      contry: "sweden",
+      phone: ["033120750"],
+      latitude: 57.71272127496498,
+      longitude: 12.922860678736146,
+    },
     imageUrl:
       "https://cdn2.cdnme.se/978332/8-3/mobiluppladdning_5d03d150e087c311d45e5dd8.jpg",
-    lunchOfTheWeek: {
+    lunchOfTheWeekDefault: {
       id: "H",
-      weekNumber: 39,
       tags: {
         outdoorSeating: true,
         coffeeIncluded: true,
@@ -536,5 +607,69 @@ export const bistros: BistroData[] = [
       },
     },
     likedBistro: false,
+  },
+  {
+    id: "9",
+    title: "Tonys Restaurang",
+    address: {
+      streetAddress: "Hestra ringväg",
+      city: "Borås",
+      zipCode: 50470,
+      contry: "sweden",
+      phone: ["0723208519"],
+      latitude: 57.7253120130719,
+      longitude: 12.898007377354368,
+    },
+    imageUrl:
+      "https://gastrogate.com/files/32716/tonysborasomoss1.png",
+    lunchOfTheWeekDefault: {
+      id: "J",
+      tags: {
+        outdoorSeating: true,
+        coffeeIncluded: true,
+        saladBuffet: false,
+      },
+      monday: {
+        dishes: [
+          "SVENSK HÖGREVSBURGARE MED MIXAD POMMES & TRYFFELMAJONNÄS - CHÈVRE BURGER: Dressing, Sallad, Tomat, Cheddarost, Bacon, Bourbonsås.",
+        ],
+        lunchStart: 11.0,
+        lunchEnd: 14.0,
+        priceFrom: 90,
+      },
+      tuesday: {
+        dishes: [
+          "PIZZA - ITALIANO: Mozzarella, Prosciutto Crudo, Parmesan, Rucola, Solkyssta tomater, Basilikaolja",
+        ],
+        lunchStart: 11.0,
+        lunchEnd: 14.0,
+        priceFrom: 90,
+      },
+      wednesday: {
+        dishes: [
+          "SALLAD - CAESARSALLAD: Slungad romansallad i TONYS egengjorda ceasardressing, kyckling, bacon, krutonger, parmesan, tomat, rödlök.",
+        ],
+        lunchStart: 11.0,
+        lunchEnd: 14.0,
+        priceFrom: 90,
+      },
+      thursday: {
+        dishes: [
+          "PIZZA - CHEVRÉ: Lammfärs, Vitlök, Rosmarin, Rostade Valnötter, Chevréost, Honung, Ruccola.",
+        ],
+        lunchStart: 11.0,
+        lunchEnd: 14.0,
+        priceFrom: 90,
+      },
+      friday: {
+        dishes: [
+          "SALLAD - CHEVRÉSALLAD: Salladsmix, ljummen chevréost, valnötter, skivat päron, valnötter, granatäpple samt honung smaktsatt med färsk citron.",
+        ],
+        lunchStart: 11.0,
+        lunchEnd: 14.0,
+        priceFrom: 90,
+      },
+    },
+    likedBistro: true,
   },
 ];
