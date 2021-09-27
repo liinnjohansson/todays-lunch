@@ -9,7 +9,7 @@ export interface BistroData {
 }
 
 interface LunchOfTheWeekDefault {
-  id: String;
+  bistroId: String;
   tags: Tags;
   monday?: TodaysLunch;
   tuesday?: TodaysLunch;
@@ -73,7 +73,7 @@ export const bistros: BistroData[] = [
     imageUrl:
       "https://www.hb.se/globalassets/pagefiles/135491/studenter-pa-campus-hosten-2016-foto-ulrika-goransson-7_761x367.jpg?width=1600&quality=95&mode=min&format=webp&v=289233",
     lunchOfTheWeekDefault: {
-      id: "A",
+      bistroId: "1",
       tags: {
         outdoorSeating: false,
         coffeeIncluded: true,
@@ -145,6 +145,80 @@ export const bistros: BistroData[] = [
         priceFrom: 109,
       },
     },
+    lunchOfTheWeekOffer: [{
+      weekNumber: 39,
+      bistroId: "1",
+      tags: {
+        outdoorSeating: false,
+        coffeeIncluded: true,
+        saladBuffet: true,
+      },
+      monday: {
+        dishes: [
+          "Dagens kött: Oxfärsbiff med stekt lök, grönpepparsås och stekt potatis",
+          "Dagens fisk: Mandelpanerad fiskfilé med skirat smör och potatismos",
+          "Dagens gröna: Biff med stekt lök, kokt potatis och vegansk gräddsås",
+          "Alltid: Köttbullar, gräddsås, lingon, pressgurka och potatismos",
+          "Sallad: välj mellan räksallad, kycklingsallad och tofusallad",
+          "Pasta: Pasta med tonfisk i krämig purjolökssås",
+        ],
+        lunchStart: 11.3,
+        lunchEnd: 14.0,
+        priceFrom: 109,
+      },
+      tuesday: {
+        dishes: [
+          "Dagens kött: Fläsk med löksås eller bruna bönor och kokt potatis eller raggmunk och lingon",
+          "Dagens fisk: Fiskgratäng på husets vis med potatismos",
+          "Dagens gröna: Biff med stekt lök, kokt potatis och vegansk gräddsås",
+          "Alltid: Köttbullar, gräddsås, lingon, pressgurka och potatismos",
+          "Sallad: välj mellan räksallad, kycklingsallad och tofusallad",
+          "Pasta: Pasta med tonfisk i krämig purjolökssås",
+        ],
+        lunchStart: 11.3,
+        lunchEnd: 14.0,
+        priceFrom: 109,
+      },
+      wednesday: {
+        dishes: [
+          "Dagens kött: Ostgratinerad falukorvmed potatismos och tomatsås",
+          "Dagens fisk: Strömming på Freddans vis, skirat smör, gröna ärtor, lingon och potatismos",
+          "Dagens gröna: Biff med stekt lök, kokt potatis och vegansk gräddsås",
+          "Alltid: Köttbullar, gräddsås, lingon, pressgurka och potatismos",
+          "Sallad: välj mellan räksallad, kycklingsallad och tofusallad",
+          "Pasta: Pasta med tonfisk i krämig purjolökssås",
+        ],
+        lunchStart: 11.3,
+        lunchEnd: 14.0,
+        priceFrom: 109,
+      },
+      thursday: {
+        dishes: [
+          "Dagens kött: Ugnsbakad kycklingfilé med rostad potatis och mangoraja",
+          "Dagens fisk: Husets mustiga fiskgryta med räkor, aioli och kokt potatis",
+          "Dagens gröna: Biff med stekt lök, kokt potatis och vegansk gräddsås",
+          "Alltid: Köttbullar, gräddsås, lingon, pressgurka och potatismos",
+          "Sallad: välj mellan räksallad, kycklingsallad och tofusallad",
+          "Pasta: Pasta med tonfisk i krämig purjolökssås",
+        ],
+        lunchStart: 11.3,
+        lunchEnd: 14.0,
+        priceFrom: 109,
+      },
+      friday: {
+        dishes: [
+          "Dagens kött: Fläskschnitzel, Bearnaise eller rödvinssås, citron, ärtor och stekt potatis",
+          "Dagens fisk: Vitvinspocherad fiskfilé med ägg och persiljesås",
+          "Dagens gröna: Biff med stekt lök, kokt potatis och vegansk gräddsås",
+          "Alltid: Köttbullar, gräddsås, lingon, pressgurka och potatismos",
+          "Sallad: välj mellan räksallad, kycklingsallad och tofusallad",
+          "Pasta: Pasta med tonfisk i krämig purjolökssås",
+        ],
+        lunchStart: 11.3,
+        lunchEnd: 14.0,
+        priceFrom: 109,
+      },
+    }],
     likedBistro: false,
   },
   {
@@ -161,7 +235,7 @@ export const bistros: BistroData[] = [
     },
     imageUrl: "https://cafeviskan.se/wp-content/uploads/2019/04/catering_viskan.jpg",
     lunchOfTheWeekDefault: {
-      id: "B",
+      bistroId: "2",
       tags: {
         outdoorSeating: true,
         coffeeIncluded: true,
@@ -224,7 +298,7 @@ export const bistros: BistroData[] = [
     },
     imageUrl: "https://thetownhouse.se/uploads/2018/11/img_1958-o.jpg",
     lunchOfTheWeekDefault: {
-      id: "C",
+      bistroId: "3",
       tags: {
         outdoorSeating: false,
         coffeeIncluded: true,
@@ -292,7 +366,7 @@ export const bistros: BistroData[] = [
     },
     imageUrl: "https://prod-wolt-venue-images-cdn.wolt.com/5ed77be3eabef0179336d458/2d0f66c2-de07-11ea-b628-eefcf45c554c_balthazar_menu_05.jpg",
     lunchOfTheWeekDefault: {
-      id: "D",
+      bistroId: "4",
       tags: {
         outdoorSeating: false,
         coffeeIncluded: true,
@@ -355,7 +429,7 @@ export const bistros: BistroData[] = [
     },
     imageUrl: "https://www.orangerietiboras.se/media/1061/fisksoppa_orangeriet.jpg?width=1440",
     lunchOfTheWeekDefault: {
-      id: "E",
+      bistroId: "5",
       tags: {
         outdoorSeating: false,
         coffeeIncluded: true,
@@ -424,7 +498,7 @@ export const bistros: BistroData[] = [
     },
     imageUrl: "https://scontent-arn2-1.xx.fbcdn.net/v/t1.6435-9/p720x720/54278617_308630833132964_6402904040484634624_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=e3f864&_nc_ohc=ILaKkG0m4MkAX8PVE2M&_nc_ht=scontent-arn2-1.xx&oh=ca3d3e0a6eb8436b7f4766071eefd22e&oe=617648D9",
     lunchOfTheWeekDefault: {
-      id: "F",
+      bistroId: "6",
       tags: {
         outdoorSeating: false,
         coffeeIncluded: true,
@@ -488,7 +562,7 @@ export const bistros: BistroData[] = [
     imageUrl:
       "http://cdn3.cdnme.se/3927310/8-3/espresso-house-kalmar-1-sallad-sommarsallad-getostsallad-getost-chevre-bagel-lufttorkad-skinka-uteservering_5962495b9606ee53033aaca2.jpg",
     lunchOfTheWeekDefault: {
-      id: "G",
+      bistroId: "7",
       tags: {
         outdoorSeating: true,
         coffeeIncluded: false,
@@ -542,7 +616,7 @@ export const bistros: BistroData[] = [
     imageUrl:
       "https://cdn2.cdnme.se/978332/8-3/mobiluppladdning_5d03d150e087c311d45e5dd8.jpg",
     lunchOfTheWeekDefault: {
-      id: "H",
+      bistroId: "8",
       tags: {
         outdoorSeating: true,
         coffeeIncluded: true,
@@ -623,7 +697,7 @@ export const bistros: BistroData[] = [
     imageUrl:
       "https://gastrogate.com/files/32716/tonysborasomoss1.png",
     lunchOfTheWeekDefault: {
-      id: "J",
+      bistroId: "9",
       tags: {
         outdoorSeating: true,
         coffeeIncluded: true,
@@ -668,6 +742,76 @@ export const bistros: BistroData[] = [
         lunchStart: 11.0,
         lunchEnd: 14.0,
         priceFrom: 90,
+      },
+    },
+    likedBistro: true,
+  },
+  {
+    id: "10",
+    title: "Lunch Esset (Hedin)",
+    address: {
+      streetAddress: "Pickesjövägen 2",
+      city: "Borås",
+      zipCode: 50431,
+      contry: "sweden",
+      phone: ["033137137"],
+      latitude: 57.7149003242743,
+      longitude: 12.910951773015443,
+    },
+    imageUrl:
+      "",
+    lunchOfTheWeekDefault: {
+      bistroId: "10",
+      tags: {
+        outdoorSeating: false,
+        coffeeIncluded: true,
+        saladBuffet: true,
+      },
+      monday: {
+        dishes: [
+          "Fläskfilégryta med champinjoner, purjolök och cocktailtomat serveras med kokt ris.", 
+          "Lättpanerad koljafilé med rostade rödbetor, skirat smör och kapris serveras med dillslungad färskpotatis.",
+        ],
+        lunchStart: 11.0,
+        lunchEnd: 14.0,
+        priceFrom: 79,
+      },
+      tuesday: {
+        dishes: [
+          "Klassisk köttfärslimpa med champinjonsås, staktpotatis och gelé samt ångade bukettgrönsaker.",
+          "Fransk fiskgratäng med purjolök, riven ost och räkor serveras med potatismos och frästa rotfrukter."
+        ],
+        lunchStart: 11.0,
+        lunchEnd: 14.0,
+        priceFrom: 79,
+      },
+      wednesday: {
+        dishes: [
+          "Fetaostfylld kycklingfilé med gräddig oreganosås, råstekt potatis smaksatt med vitlök och tomat & löksallad.",
+          "Panerad torskfilé med skagenröra, koktpotatis och smörade morötter."
+        ],
+        lunchStart: 11.0,
+        lunchEnd: 14.0,
+        priceFrom: 79,
+      },
+      thursday: {
+        dishes: [
+          "Krämig fisk- och skaldjurssoppa samt pannkakor sylt & grädde.",
+          "Rödvinsbräserad fläskklubba med potatispuré smaksatt med tryffel serveras med bacon & lök samt friterad persilja.",
+          "Mannerströmming med brynt smör, rårörda lingon och potatismos samt gröna ärtor."
+        ],
+        lunchStart: 11.0,
+        lunchEnd: 14.0,
+        priceFrom: 79,
+      },
+      friday: {
+        dishes: [
+          "Helstekt fläskfilé Black & White (rödvinssås & bearnaisesås) serveras med rostad klyftpotatis och grillade grönsaker.",
+          "Grillad laxfilé med citronhollandaise, dillkokt potatis och gröna ärtor samt citronmarinerade räkor med örter.",
+        ],
+        lunchStart: 11.0,
+        lunchEnd: 14.0,
+        priceFrom: 79,
       },
     },
     likedBistro: true,
