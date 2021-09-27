@@ -759,7 +759,7 @@ export const bistros: BistroData[] = [
       longitude: 12.910951773015443,
     },
     imageUrl:
-      "",
+      "https://receptfavoriter.se/sites/default/files/xkycklinggratang_med_fetaost_tillbehor_1060.jpg.pagespeed.ic.CbUEukaTft.webp",
     lunchOfTheWeekDefault: {
       bistroId: "10",
       tags: {
