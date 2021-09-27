@@ -90,12 +90,14 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   box: {
+    borderRadius: 0,
     backgroundColor: "#000000c0",
   },
   text: {
     color: "#fff",
   },
   title: {
+    paddingLeft: 5,
     fontSize: 25,
   },
 });
