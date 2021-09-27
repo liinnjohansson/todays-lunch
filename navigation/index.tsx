@@ -25,7 +25,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      theme={colorScheme === 'light' ? DarkTheme : DefaultTheme}>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -61,17 +61,17 @@ function BottomTabNavigator() {
 
   return (
     <TopTab.Navigator
-    
-      style={{ paddingTop: insets.top }}
+    style={{ paddingTop: insets.top, backgroundColor: '#723A45' }}
       initialRouteName="TabOne"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarStyle: { backgroundColor: '#723A45' },
       }}>
         
       <TopTab.Screen
         name="TabOne"
         component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
+        options={({}: RootTabScreenProps<'TabOne'>) => ({
           title: 'Restauranger',
           tabBarIcon: ({ color }) => <Ionicons name="restaurant" color={color} size={24}/>
         })}
@@ -84,6 +84,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="map" color={color} />,
         }}
       />
+      
     </TopTab.Navigator>
   );
 }
