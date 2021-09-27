@@ -1,43 +1,39 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Pressable, Touchable, TouchableOpacityBase } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-
-interface TextStyle {
-  color: "gray" | "black",
-  fontWeight: "normal" | "bold",
-}
-
-
 const WeekdaySlider = () => {
-  const [textStyle, setTextStyle] = useState<TextStyle>({color: "gray", fontWeight: "normal"})
-  let useColor = textStyle.color;
-  let useFontWeight = textStyle.fontWeight;
-  const onPress = () => {
+  let monday, tuesday, wednesday, thursday, friday;
+  
+  function onPress(day: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" ) {
     console.log("Nu klickade jag!");
-    setTextStyle({color: "black", fontWeight: "bold"});
+    day == "monday"? monday=true : monday=false;
+    day == "tuesday"? tuesday=true : tuesday=false;
+    day == "wednesday"? wednesday=true : wednesday=false;
+    day == "thursday"? thursday=true : thursday=false;
+    day == "friday"? friday=true : friday=false;
   };
-
 
   return (
     <View style={styles.container}>
       <Text style={styles.textWeek}>Gäller v.12</Text>
       <View style={styles.textBox}>
-        <TouchableOpacity onPress={onPress}>
-          <Text style={{color: useColor, fontWeight: useFontWeight }}>Monday</Text>
+        <TouchableOpacity onPress={() => onPress("monday")}>
+          <Text style={(monday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Monday</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={onPress}>
-          <Text style={{color: useColor, fontWeight: useFontWeight }}>Tuesday</Text>
+        <TouchableOpacity onPress={() => onPress("tuesday")}>
+          <Text style={(tuesday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Tuesday</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={onPress}>
-          <Text style={{color: useColor, fontWeight: useFontWeight }}>Wednesday</Text>
+        <TouchableOpacity onPress={() => onPress("wednesday")}>
+          <Text style={(wednesday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Wednesday</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={onPress}>
-          <Text style={{color: useColor, fontWeight: useFontWeight }}>Thursday</Text>
+        <TouchableOpacity onPress={() => onPress("thursday")}>
+          <Text style={(thursday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Thursday</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={onPress}>
-          <Text style={{color: useColor, fontWeight: useFontWeight }}>Friday</Text>
-        </TouchableOpacity>         
+        <TouchableOpacity onPress={() => onPress("friday")}>
+          <Text style={(friday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Friday</Text>
+        </TouchableOpacity>
+                 
       </View>
     </View>
   );
@@ -50,7 +46,6 @@ const styles = StyleSheet.create({
     height: 50,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: "#FFDEDE", //TODO: delete and make backgound behind white/picture!
   },
   textWeek: {
     fontSize: 10,
@@ -62,6 +57,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   innerText: {
-    color: "black",
+    color: "gray",
+    fontWeight: "normal"
   }
 });
