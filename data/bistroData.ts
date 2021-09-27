@@ -1,15 +1,15 @@
 export interface BistroData {
-  id: String;
-  title: String;
+  id: string;
+  title: string;
   address: Address;
-  imageUrl: String;
+  imageUrl: string;
   lunchOfTheWeekDefault: LunchOfTheWeekDefault;
   lunchOfTheWeekOffer?: LunchOfTheWeekOffer[];
-  likedBistro: Boolean;
+  likedBistro: boolean;
 }
 
 interface LunchOfTheWeekDefault {
-  bistroId: String;
+  bistroId: string;
   tags: Tags;
   monday?: TodaysLunch;
   tuesday?: TodaysLunch;
@@ -19,25 +19,25 @@ interface LunchOfTheWeekDefault {
 }
 
 /**
- * Intended to work as a function that override the default menu a bistro have registered by week Number. 
+ * Intended to work as a function that override the default menu a bistro have registered by week number. 
  * The overridable functions exist to minimize the administration work for Bistros.
  */ 
 interface LunchOfTheWeekOffer extends LunchOfTheWeekDefault {
-  weekNumber: Number;
+  weekNumber: number;
   // year: number; // TODO: Lägg till senare ifall det behövs. Note. David sa att lägga till saker är enkelt, att ta bort och förändra är svårare!
 }
 
 interface Tags {
-  outdoorSeating: Boolean;
-  coffeeIncluded: Boolean;
-  saladBuffet: Boolean;
+  outdoorSeating: boolean;
+  coffeeIncluded: boolean;
+  saladBuffet: boolean;
 }
 
 interface TodaysLunch {
-  dishes: String[];
-  lunchStart: Number;
-  lunchEnd: Number;
-  priceFrom: Number;
+  dishes: string[];
+  lunchStart: number;
+  lunchEnd: number;
+  priceFrom: number;
 }
 
 /**
@@ -47,14 +47,14 @@ interface TodaysLunch {
  * Ex. API to use in mention Bistro-admin function: https://developers.google.com/maps/documentation/geocoding/overview
  */ 
 interface Address {
-  // id: String,   //TODO: Lägg till om vi upptäcker att det behövs!
-  streetAddress: String,
-  city: String,
-  zipCode: Number,
-  contry: String,
-  phone: String[],
-  latitude: Number,
-  longitude: Number,
+  // id: string,   //TODO: Lägg till om vi upptäcker att det behövs!
+  streetAddress: string,
+  city: string,
+  zipCode: number,
+  country: string,
+  phone: string[],
+  latitude: number,
+  longitude: number,
 }
 
 export const bistros: BistroData[] = [
@@ -65,7 +65,7 @@ export const bistros: BistroData[] = [
       streetAddress: "Skaraborgsvägen 3c",
       city: "Borås",
       zipCode: 50630,
-      contry: "sweden",
+      country: "sweden",
       phone: ["033125250"],
       latitude: 57.72575042973964,
       longitude: 12.938124023619977,
@@ -228,7 +228,7 @@ export const bistros: BistroData[] = [
       streetAddress: "Södra Strandgatan 6",
       city: "Borås",
       zipCode: 50335,
-      contry: "sweden",
+      country: "sweden",
       phone: ["033102580"],
       latitude: 57.72011024824524,
       longitude: 12.939488649852242,
@@ -291,7 +291,7 @@ export const bistros: BistroData[] = [
       streetAddress: "Österlånggatan 35",
       city: "Borås",
       zipCode: 50331,
-      contry: "sweden",
+      country: "sweden",
       phone: ["0333236313"],
       latitude: 57.72126858453907,
       longitude: 12.941070078046462,
@@ -359,7 +359,7 @@ export const bistros: BistroData[] = [
       streetAddress: "Lilla Brogatan 14",
       city: "Borås",
       zipCode: 50330,
-      contry: "sweden",
+      country: "sweden",
       phone: ["0337221177"],
       latitude: 57.72002214821148,
       longitude: 12.938943407626931,
@@ -422,7 +422,7 @@ export const bistros: BistroData[] = [
       streetAddress: "Teaterbron 1",
       city: "Borås",
       zipCode: 50338,
-      contry: "sweden",
+      country: "sweden",
       phone: ["033108801"],
       latitude: 57.719282152914666,
       longitude: 12.939873194328353,
@@ -491,7 +491,7 @@ export const bistros: BistroData[] = [
       streetAddress: "Hötorget 1",
       city: "Borås",
       zipCode: 50332,
-      contry: "sweden",
+      country: "sweden",
       phone: ["033200088"],
       latitude: 57.72248083924043,
       longitude: 12.940607107623883,
@@ -554,7 +554,7 @@ export const bistros: BistroData[] = [
       streetAddress: "Stora Brogatan 20",
       city: "Borås",
       zipCode: 50330,
-      contry: "sweden",
+      country: "sweden",
       phone: ["0765219173"],
       latitude: 57.72058430511784,
       longitude: 12.939410394990757,
@@ -608,7 +608,7 @@ export const bistros: BistroData[] = [
       streetAddress: "Regementsgatan 10",
       city: "Borås",
       zipCode: 50431,
-      contry: "sweden",
+      country: "sweden",
       phone: ["033120750"],
       latitude: 57.71272127496498,
       longitude: 12.922860678736146,
@@ -689,7 +689,7 @@ export const bistros: BistroData[] = [
       streetAddress: "Hestra ringväg",
       city: "Borås",
       zipCode: 50470,
-      contry: "sweden",
+      country: "sweden",
       phone: ["0723208519"],
       latitude: 57.7253120130719,
       longitude: 12.898007377354368,
@@ -753,7 +753,7 @@ export const bistros: BistroData[] = [
       streetAddress: "Pickesjövägen 2",
       city: "Borås",
       zipCode: 50431,
-      contry: "sweden",
+      country: "sweden",
       phone: ["033137137"],
       latitude: 57.7149003242743,
       longitude: 12.910951773015443,
