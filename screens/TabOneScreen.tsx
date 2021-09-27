@@ -1,32 +1,32 @@
 import * as React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, ScrollView, StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import {BistroContext} from "../contexts/BistroContext";
 import { useContext } from 'react';
+import BistroCard from '../components/BistroCard';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   const { storedBistros } = useContext(BistroContext);
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>Tab ooo Oneeeee</Text>
       <FlatList
         data={storedBistros}
-        renderItem={({item}) => <Text style={styles.item}>{item.title}</Text>}
+        renderItem={({item}) => <BistroCard bistro={item} weekday="wednesday"/>}
       />
-
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
-    </View>
+      {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <EditScreenInfo path="/screens/TabOneScreen.tsx" /> */}
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
   title: {
     fontSize: 20,
