@@ -10,7 +10,7 @@ import BistroCard from '../components/BistroCard';
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   const { storedBistros } = useContext(BistroContext);
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.title}>Tab ooo Oneeeee</Text>
       <FlatList
         data={storedBistros}
@@ -18,7 +18,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
       />
       {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="/screens/TabOneScreen.tsx" /> */}
-    </ScrollView>
+    </View>
   );
 }
 
