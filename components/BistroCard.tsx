@@ -10,17 +10,16 @@ interface Props {
 }
 
 const BistroCard = ({ bistro, weekday }: Props) => {
-  
   const image = { uri: `${bistro.imageUrl}` };
   const title = bistro.title;
-  let lunchStart:  String | undefined;
-  let lunchEnd:  String | undefined;
+  let lunchStart: String | undefined;
+  let lunchEnd: String | undefined;
   let priceFrom: Number | undefined;
 
   // TODO: Write code that check if weeknumer exist in the server thath correspond to requested week on app screen
   // Mock data for this case are written for bistro: The Company
   // This code maybe cut to its own file, and reused ?
-  
+
   switch (weekday) {
     case "monday": {
       lunchStart = bistro.lunchOfTheWeekDefault.monday?.lunchStart?.toFixed(2);
@@ -32,26 +31,28 @@ const BistroCard = ({ bistro, weekday }: Props) => {
       lunchEnd = bistro.lunchOfTheWeekDefault.tuesday?.lunchEnd?.toFixed(2);
       priceFrom = bistro.lunchOfTheWeekDefault.tuesday?.priceFrom;
     }
-    case "wednesday": { 
-      lunchStart = bistro.lunchOfTheWeekDefault.wednesday?.lunchStart?.toFixed(2);
+    case "wednesday": {
+      lunchStart =
+        bistro.lunchOfTheWeekDefault.wednesday?.lunchStart?.toFixed(2);
       lunchEnd = bistro.lunchOfTheWeekDefault.wednesday?.lunchEnd?.toFixed(2);
       priceFrom = bistro.lunchOfTheWeekDefault.wednesday?.priceFrom;
     }
     case "thursday": {
-      lunchStart = bistro.lunchOfTheWeekDefault.thursday?.lunchStart?.toFixed(2);
+      lunchStart =
+        bistro.lunchOfTheWeekDefault.thursday?.lunchStart?.toFixed(2);
       lunchEnd = bistro.lunchOfTheWeekDefault.thursday?.lunchEnd?.toFixed(2);
       priceFrom = bistro.lunchOfTheWeekDefault.thursday?.priceFrom;
     }
-    case "friday": { 
+    case "friday": {
       lunchStart = bistro.lunchOfTheWeekDefault.friday?.lunchStart?.toFixed(2);
       lunchEnd = bistro.lunchOfTheWeekDefault.friday?.lunchEnd?.toFixed(2);
       priceFrom = bistro.lunchOfTheWeekDefault.friday?.priceFrom;
     }
-    case "": { 
+    case "": {
       // do nothing / or should just not be added on the app
     }
   }
-  
+
   const onPress = () => console.log("Nu klickade jag!");
   const onLongPress = () => console.log("Nuuu klickade jag läääänge");
   return (
@@ -65,8 +66,7 @@ const BistroCard = ({ bistro, weekday }: Props) => {
           </Card.Actions>
           <Card.Content>
             <Paragraph style={styles.text}>
-              Dagens lunch: från{" "}
-              {priceFrom}:-
+              Dagens lunch: från {priceFrom}:-
             </Paragraph>
             <Paragraph style={styles.text}>
               {lunchStart} - {lunchEnd}
