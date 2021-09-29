@@ -19,19 +19,19 @@ const WeekdaySlider = () => {
       <Text style={styles.textWeek}>Gäller v.12</Text>
       <View style={styles.textBox}>
         <TouchableOpacity onPress={() => onPress("monday")}>
-          <Text style={(monday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Monday</Text>
+          <Text style={(monday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Måndag</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => onPress("tuesday")}>
-          <Text style={(tuesday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Tuesday</Text>
+          <Text style={(tuesday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Tisdag</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => onPress("wednesday")}>
-          <Text style={(wednesday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Wednesday</Text>
+          <Text style={(wednesday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Onsdag</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => onPress("thursday")}>
-          <Text style={(thursday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Thursday</Text>
+          <Text style={(thursday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Torsdag</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => onPress("friday")}>
-          <Text style={(friday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Friday</Text>
+          <Text style={(friday? {color: "black", fontWeight: "bold"} : {color: "gray", fontWeight: "normal" })}>Fredag</Text>
         </TouchableOpacity>
                  
       </View>
@@ -44,6 +44,7 @@ export default WeekdaySlider;
 const styles = StyleSheet.create({
   container: {
     height: 50,
+    paddingTop: 5,
     paddingLeft: 10,
     paddingRight: 10,
   },
