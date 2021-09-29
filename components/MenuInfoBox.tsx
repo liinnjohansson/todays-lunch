@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function MenuInfoBox({ bistro }: Props) {
-  const map = () => console.log("Navigera till kartan"); //TODO: Behöver kunna navigera till kartan, istället för logg.
+  const map = () => console.log("Navigera till kartan"); //Radera när navigationen fungerar
   return (
     <View style={styles.container}>
       <Card style={styles.box}>
@@ -22,8 +22,10 @@ export default function MenuInfoBox({ bistro }: Props) {
             color="#fff"
             style={styles.icon}
           />
+          {/* TODO: Behöver kunna navigera till kartan, istället för logg. */}
           <TouchableOpacity onPress={map}>
             <Paragraph style={styles.distanceContainer}>
+              {/* TODO: Behöver kunna hämta antalet minuter och avstånd från kartan */}
               <Paragraph style={[styles.text, styles.time]}>15min </Paragraph>
               <Paragraph style={styles.text}>(2,2km)</Paragraph>
             </Paragraph>
@@ -34,10 +36,14 @@ export default function MenuInfoBox({ bistro }: Props) {
             {bistro?.address.streetAddress}, {bistro?.address.zipCode}{" "}
             {bistro?.address.city}
           </Paragraph>
-          <Paragraph onPress={() => PhoneDialer({bistro})} style={styles.text}>
+          <Paragraph
+            onPress={() => PhoneDialer({ bistro })}
+            style={styles.text}
+          >
             {bistro?.address.phone}
           </Paragraph>
-          <Paragraph style={styles.text}>Rating?</Paragraph>
+          {/* TODO: Implementera rating, om vi vill ha det? */}
+          <Paragraph style={styles.text}>Rating</Paragraph>
         </Card.Content>
       </Card>
     </View>
