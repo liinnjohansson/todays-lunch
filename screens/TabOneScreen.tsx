@@ -6,11 +6,15 @@ import { RootTabScreenProps } from '../types';
 import {BistroContext} from "../contexts/BistroContext";
 import { useContext } from 'react';
 import BistroCard from '../components/BistroCard';
+import WeekdaySlider from '../components/WeekdaySlider';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   const { storedBistros } = useContext(BistroContext);
   return (
     <View style={styles.container}>
+      <WeekdaySlider/>
+      {/* <Text style={styles.title}>Tab ooo Oneeeee</Text> */}
+      
       <FlatList
         data={storedBistros}
         renderItem={({item}) => <BistroCard bistro={item} weekday="wednesday"/>}
