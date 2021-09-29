@@ -11,7 +11,6 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
   const { storedBistros } = useContext(BistroContext);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}></Text>
       <FlatList
         data={storedBistros}
         renderItem={({item}) => <BistroCard bistro={item} weekday="wednesday"/>}
