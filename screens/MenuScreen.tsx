@@ -16,7 +16,7 @@ export default function MenuScreen( bistro: BistroData, { navigation }: RootTabS
     <View style={styles.container}>
       <ImageBackground
         style={styles.background}
-        source={require("../images/sandwalls-plats-blur.png")}
+        source={require("../images/sandwalls-plats.jpg")}
       >
         <MenuSheet bistro={selectedBistro}/>
         <MenuInfoBox bistro={selectedBistro}/>
