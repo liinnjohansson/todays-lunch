@@ -18,6 +18,4 @@ function PhoneDialer({ bistro }: Props) {
   Linking.openURL(phoneNumber);
 }
 
-export {
-    PhoneDialer
-}
+export { PhoneDialer };
