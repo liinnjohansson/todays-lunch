@@ -5,9 +5,11 @@ import MenuSheet from "../components/MenuSheet";
 import { View } from "../components/Themed";
 import { BistroContext } from "../contexts/BistroContext";
 import { BistroData } from "../data/bistroData";
-import { RootTabScreenProps } from "../types";
+import BistroStackNavigator from "../navigation/BistroStackNavigator";
+import { MapStackScreenProps } from "../navigation/MapStackNavigator";
 
-export default function MenuScreen( bistro: BistroData, { navigation }: RootTabScreenProps<"Menu">) {
+export default function MenuScreen( bistro: BistroData, { navigation, route }: MapStackScreenProps<'Menu'>) {
+  // TODO: Svara på navigation route.param.id och generera sida därifrån !!
     const id = '1';
     const { storedBistros } = useContext(BistroContext);
     const selectedBistro = storedBistros.find((bistro) => bistro.id === id);

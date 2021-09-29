@@ -11,7 +11,9 @@ type MapStackParamList = {
   Menu: { id: number };
 };
 
-export type MapStackScreenProps<Screen extends keyof MapStackParamList> =
+type ScreenName = keyof MapStackParamList;
+
+export type MapStackScreenProps<Screen extends ScreenName> =
   NativeStackScreenProps<MapStackParamList, Screen>;
 
 const Stack = createNativeStackNavigator<MapStackParamList>();

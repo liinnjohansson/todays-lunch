@@ -1,20 +1,33 @@
-import * as React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
-import { View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
-import {BistroContext} from "../contexts/BistroContext";
-import { useContext } from 'react';
-import BistroCard from '../components/BistroCard';
-import WeekdaySlider from '../components/WeekdaySlider';
+import * as React from "react";
+import { Button, FlatList, StyleSheet } from "react-native";
+import { View } from "../components/Themed";
+import { BistroContext } from "../contexts/BistroContext";
+import { useContext } from "react";
+import BistroCard from "../components/BistroCard";
+import WeekdaySlider from "../components/WeekdaySlider";
+import { BistroStackScreenProps } from "../navigation/BistroStackNavigator";
+import { CompositeScreenProps } from "@react-navigation/native";
+import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
+import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 
-export default function BistroScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+type Props = CompositeScreenProps<
+  TabScreenProps<"Bistro">,
+  RootStackScreenProps
+>;
+
+export default function BistroScreen({
+  navigation,
+}: BistroStackScreenProps<"Bistro">) {
   const { storedBistros } = useContext(BistroContext);
   return (
     <View style={styles.container}>
-      <WeekdaySlider/>
+      <WeekdaySlider />
+      {/* TODO: Skicka in Navigation till BistroCard - hur ? */}
       <FlatList
         data={storedBistros}
-        renderItem={({item}) => <BistroCard bistro={item} weekday="wednesday"/>}
+        renderItem={({ item }) => (
+          <BistroCard bistro={item} weekday="wednesday" />
+        )}
       />
     </View>
   );
@@ -26,12 +39,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   separator: {
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    width: "80%",
   },
   item: {
     padding: 10,

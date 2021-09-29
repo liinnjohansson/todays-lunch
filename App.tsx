@@ -5,7 +5,7 @@ import BistroProvider from './contexts/BistroContext';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
+import Navigation from './navigation/Navigation';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();

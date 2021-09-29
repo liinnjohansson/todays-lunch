@@ -8,7 +8,9 @@ type BistroStackParamList = {
   Menu: {id: number};
 };
 
-export type BistroStackScreenProps<Screen extends keyof BistroStackParamList> =
+type ScreenName = keyof BistroStackParamList;
+
+export type BistroStackScreenProps<Screen extends ScreenName> =
 NativeStackScreenProps<BistroStackParamList, Screen>;
 
 const Stack = createNativeStackNavigator<BistroStackParamList>();

@@ -9,6 +9,8 @@ interface Props {
   weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "";
 }
 
+//TODO: Lägg till prop för onPress som hanterar navigation i Screen sidan
+
 const BistroCard = ({ bistro, weekday }: Props) => {
   const image = { uri: `${bistro.imageUrl}` };
   const title = bistro.title;
