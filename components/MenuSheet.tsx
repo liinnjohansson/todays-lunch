@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     backgroundColor: "#fff",
-    width: 260,
+    width: 320,
     opacity: 0.95,
     padding: 20,
     justifyContent: "space-between",
