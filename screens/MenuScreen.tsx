@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useContext } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
+import MenuInfoBox from "../components/MenuInfoBox";
 import MenuSheet from "../components/MenuSheet";
 import { View } from "../components/Themed";
 import { BistroContext } from "../contexts/BistroContext";
@@ -15,9 +16,10 @@ export default function MenuScreen( bistro: BistroData, { navigation }: RootTabS
     <View style={styles.container}>
       <ImageBackground
         style={styles.background}
-        source={require("../images/sandwalls-plats.jpg")}
+        source={require("../images/sandwalls-plats-blur.png")}
       >
         <MenuSheet bistro={selectedBistro}/>
+        <MenuInfoBox bistro={selectedBistro}/>
       </ImageBackground>
     </View>
   );
@@ -26,14 +28,10 @@ export default function MenuScreen( bistro: BistroData, { navigation }: RootTabS
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
   background: {
     flex: 1,
     resizeMode: "cover",
     width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
   }
 });
