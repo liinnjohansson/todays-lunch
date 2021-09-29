@@ -14,6 +14,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
     <View style={styles.container}>
       <WeekdaySlider/>
       {/* <Text style={styles.title}>Tab ooo Oneeeee</Text> */}
+      
       <FlatList
         data={storedBistros}
         renderItem={({item}) => <BistroCard bistro={item} weekday="wednesday"/>}
