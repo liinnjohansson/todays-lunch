@@ -10,11 +10,7 @@ import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
 // Taben bahövs...för route.params inom denna fil
 type Props = CompositeScreenProps<TabScreenProps<"Map">, RootStackScreenProps>;
 
-export default function MapScreen({ navigation, route }: Props) {
-  // TODO: In later issue: Check the navigation code weekday/weeknumer if used in function below for rendering right data
-  // const weekday = route.params.weekday
-  // const weekNumber = route.params.weekNumber
-
+export default function MapScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
       <Text>Map Screen</Text>

@@ -15,12 +15,11 @@ type Props = CompositeScreenProps<
   RootStackScreenProps
 >;
 
-export default function BistroScreen({ navigation, route }: Props) {
+export default function BistroScreen({ navigation }: Props) {
   const { storedBistros } = useContext(BistroContext);
 
-  // TODO: In later issue: Check the navigation code weekday/weeknumer if used in function below for rendering right data
-  const weekday = "monday"; //route.params.weekday
-  const weekNumber = 12; //route.params.weekNumber
+  const weekday = "monday";
+  const weekNumber = 12;
   return (
     <View style={styles.container}>
       <WeekdaySlider />
