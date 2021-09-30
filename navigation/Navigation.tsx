@@ -6,7 +6,7 @@ import {
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
 import LinkingConfiguration from "./LinkingConfiguration";
-import RootNavigator from "./RootStackNavigator";
+import RootStackNavigator from "./RootStackNavigator";
 
 export default function Navigation({
   colorScheme,
@@ -18,7 +18,7 @@ export default function Navigation({
       linking={LinkingConfiguration}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      <RootNavigator />
+      <RootStackNavigator />
     </NavigationContainer>
   );
 }

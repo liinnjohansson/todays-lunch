@@ -1,18 +1,12 @@
 import * as React from "react";
 import {
   createMaterialTopTabNavigator,
-  MaterialTopTabBarProps,
   MaterialTopTabScreenProps,
 } from "@react-navigation/material-top-tabs";
 import BistroScreen from "../screens/BistroScreen";
 import MapScreen from "../screens/MapScreen";
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
-import { useColorScheme } from "react-native";
-import Colors from "../constants/Colors";
-import Navigation from "./Navigation";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTheme } from "react-native-paper";
 
 export type TabParamList = {
   Bistro: undefined;
@@ -26,11 +20,16 @@ const Tab = createMaterialTopTabNavigator<TabParamList>();
 
 export default function TabBistroMapNavigator() {
   const insets = useSafeAreaInsets();
-  const colorScheme = useColorScheme();
+  const { colors } = useTheme();
+
   return (
     <Tab.Navigator
       style={{ paddingTop: insets.top, backgroundColor: "#723A45" }}
       initialRouteName="Bistro"
+      screenOptions={{
+        tabBarActiveTintColor: colors.text,
+        tabBarStyle: { backgroundColor: "#723A45" },
+      }}
     >
       <Tab.Screen
         name="Bistro"
