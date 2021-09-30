@@ -16,19 +16,19 @@ export default function MenuInfoBox({ bistro }: Props) {
     <View style={styles.container}>
       <Card style={styles.box}>
         <Card.Actions>
-          <FontAwesome
-            name="map-marker"
-            size={30}
-            color="#fff"
-            style={styles.icon}
-          />
           {/* TODO: Behöver kunna navigera till kartan, istället för logg. */}
           <TouchableOpacity onPress={map}>
-            <Paragraph style={styles.distanceContainer}>
+            <View style={styles.distanceContainer}>
+              <FontAwesome
+                name="map-marker"
+                size={30}
+                color="#fff"
+                style={styles.icon}
+              />
               {/* TODO: Behöver kunna hämta antalet minuter och avstånd från kartan */}
               <Paragraph style={[styles.text, styles.time]}>15min </Paragraph>
               <Paragraph style={styles.text}>(2,2km)</Paragraph>
-            </Paragraph>
+            </View>
           </TouchableOpacity>
         </Card.Actions>
         <Card.Content>
@@ -36,14 +36,11 @@ export default function MenuInfoBox({ bistro }: Props) {
             {bistro?.address.streetAddress}, {bistro?.address.zipCode}{" "}
             {bistro?.address.city}
           </Paragraph>
-          <Paragraph
-            onPress={() => PhoneDialer({ bistro })}
-            style={styles.text}
-          >
-            {bistro?.address.phone}
-          </Paragraph>
-          {/* TODO: Implementera rating, om vi vill ha det? */}
-          <Paragraph style={styles.text}>Rating</Paragraph>
+          <TouchableOpacity onPress={() => PhoneDialer({ bistro })}>
+            <Paragraph style={[styles.text, styles.phone]}>
+              {bistro?.address.phone}
+            </Paragraph>
+          </TouchableOpacity>
         </Card.Content>
       </Card>
     </View>
@@ -52,7 +49,7 @@ export default function MenuInfoBox({ bistro }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-      flex:1,
+    flex: 1,
     justifyContent: "flex-end",
   },
   box: {
@@ -64,12 +61,18 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   distanceContainer: {
-    paddingLeft: 15,
+    paddingLeft: 9,
+    paddingTop: 8,
+    flexDirection: "row",
+    alignItems: "center",
   },
   time: {
     fontWeight: "bold",
   },
   icon: {
-    paddingLeft: 9,
+    paddingRight: 9,
+  },
+  phone: {
+    textDecorationLine: "underline",
   },
 });
