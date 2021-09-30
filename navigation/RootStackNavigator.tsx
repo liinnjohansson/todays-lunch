@@ -12,7 +12,6 @@ import * as React from "react";
 import { ColorSchemeName } from "react-native";
 import MenuScreen from "../screens/MenuScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import LinkingConfiguration from "./LinkingConfiguration";
 import TabBistroMapNavigator, { TabParamList } from "./TabBistroMapNavigator";
 
 declare global {
@@ -21,7 +20,7 @@ declare global {
   }
 }
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Root: NavigatorScreenParams<TabParamList> | undefined;
   Menu: { title: string; id: string };
   NotFound: undefined;
@@ -34,12 +33,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Root"
-        component={TabBistroMapNavigator}
-        // options={{ headerShown: false }}
-      />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Root" component={TabBistroMapNavigator} />
       <Stack.Screen
         name="Menu"
         component={MenuScreen}
