@@ -3,7 +3,7 @@ export const mapStyle = [{
     "elementType": "geometry",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
@@ -20,7 +20,7 @@ export const mapStyle = [{
     "elementType": "labels.icon",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   },
@@ -28,7 +28,7 @@ export const mapStyle = [{
     "featureType": "transit",
     "stylers": [
       {
-        "visibility": "off"
+        "visibility": "on"
       }
     ]
   }]

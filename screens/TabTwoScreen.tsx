@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
+//Provider_google måste finnas för att stödja ios enheter
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import { mapStyle } from '../data/mapStyle';
 
