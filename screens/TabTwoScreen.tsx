@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
-import MapView from 'react-native-maps';
 import { View } from '../components/Themed';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+import { mapStyle } from '../data/mapStyle';
 
 export default function TabTwoScreen() {
   return (
@@ -12,7 +13,10 @@ export default function TabTwoScreen() {
         longitude: 12.9414395,
         latitudeDelta: 0.0022,
         longitudeDelta: 0.0021,
-      }}/>
+        
+      }}
+      provider={PROVIDER_GOOGLE}
+      customMapStyle={mapStyle}/>
     </View>
   );
 }
