@@ -26,10 +26,12 @@ export default function TabTwoScreen(bistro: BistroData) {
       >
         {storedBistros.map((bistro) => (
           <Marker
+            key={bistro.id}
             coordinate={{
               latitude: bistro.address.latitude,
               longitude: bistro.address.longitude,
             }}
+            image={require('../images/icons/marker.png')}
           ></Marker>
         ))}
       </MapView>
