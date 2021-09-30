@@ -1,32 +1,44 @@
 import * as React from "react";
-import { Button, FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import { View } from "../components/Themed";
 import { BistroContext } from "../contexts/BistroContext";
 import { useContext } from "react";
 import BistroCard from "../components/BistroCard";
 import WeekdaySlider from "../components/WeekdaySlider";
-import { BistroStackScreenProps } from "../navigation/BistroStackNavigator";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
 import { RootStackScreenProps } from "../navigation/RootStackNavigator";
+import { TouchableRipple } from "react-native-paper";
 
 type Props = CompositeScreenProps<
   TabScreenProps<"Bistro">,
   RootStackScreenProps
 >;
 
-export default function BistroScreen({
-  navigation,
-}: BistroStackScreenProps<"Bistro">) {
+export default function BistroScreen({ navigation, route }: Props) {
   const { storedBistros } = useContext(BistroContext);
+
+  // TODO: In later issue: Check the navigation code weekday/weeknumer if used in function below for rendering right data
+  const weekday = "monday"; //route.params.weekday
+  const weekNumber = 12; //route.params.weekNumber
   return (
     <View style={styles.container}>
       <WeekdaySlider />
-      {/* TODO: Skicka in Navigation till BistroCard - hur ? */}
       <FlatList
         data={storedBistros}
         renderItem={({ item }) => (
-          <BistroCard bistro={item} weekday="wednesday" />
+          <TouchableRipple
+            onPress={() =>
+              navigation.navigate("Menu", {
+                id: item.id,
+                title: item.title,
+                weekday: weekday,
+                weekNumber: weekNumber,
+              })
+            }
+          >
+            <BistroCard bistro={item} weekday={weekday} />
+          </TouchableRipple>
         )}
       />
     </View>

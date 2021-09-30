@@ -16,7 +16,12 @@ declare global {
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<TabParamList> | undefined;
-  Menu: { title: string; id: string };
+  Menu: {
+    title: string;
+    id: string;
+    weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "";
+    weekNumber: number;
+  };
   NotFound: undefined;
 };
 

@@ -9,8 +9,16 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "react-native-paper";
 
 export type TabParamList = {
-  Bistro: undefined;
-  Map: undefined;
+  // TODO: Check if parameters are right / working with the rest of the code !
+  // This as now mens that to render the screen bistro/map you have to pas this parameters
+  Bistro: {
+    weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
+    weekNumber: number;
+  };
+  Map: {
+    weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
+    weekNumber: number;
+  };
 };
 
 export type TabScreenProps<Screen extends keyof TabParamList> =

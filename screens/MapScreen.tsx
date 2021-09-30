@@ -6,17 +6,28 @@ import { MapStackScreenProps } from "../navigation/MapStackNavigator";
 import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
 
-// CompositScreenProp används för att nvigera till vilken sida som helst från denna sida, 
-// Taben bahövs...för route.params inom denna fil 
+// CompositScreenProp används för att nvigera till vilken sida som helst från denna sida,
+// Taben bahövs...för route.params inom denna fil
 type Props = CompositeScreenProps<TabScreenProps<"Map">, RootStackScreenProps>;
 
-export default function MapScreen({ navigation }: Props) {
+export default function MapScreen({ navigation, route }: Props) {
+  // TODO: In later issue: Check the navigation code weekday/weeknumer if used in function below for rendering right data
+  // const weekday = route.params.weekday
+  // const weekNumber = route.params.weekNumber
+
   return (
     <View style={styles.container}>
       <Text>Map Screen</Text>
       <Button
-        title="Go to Menu for by id"
-        onPress={() => navigation.navigate("Menu", { id: "1", title: "hej" })}
+        title="Go to Menu"
+        onPress={() =>
+          navigation.navigate("Menu", {
+            id: "1",
+            title: "bistro namn",
+            weekday: "friday",
+            weekNumber: 12,
+          })
+        }
       />
     </View>
   );
