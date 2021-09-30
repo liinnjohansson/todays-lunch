@@ -1,12 +1,14 @@
 import * as React from "react";
 import { Dimensions, StyleSheet } from "react-native";
-import { View } from "../components/Themed";
 //Provider_google måste finnas för att stödja ios enheter
-import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE, Marker, Callout } from "react-native-maps";
 import { mapStyle } from "../data/mapStyle";
 import { BistroData } from "../data/bistroData";
 import { BistroContext } from "../contexts/BistroContext";
 import { useContext } from "react";
+import {
+ Text, View
+} from "react-native";
 
 export default function TabTwoScreen(bistro: BistroData) {
   const { storedBistros } = useContext(BistroContext);
@@ -32,7 +34,10 @@ export default function TabTwoScreen(bistro: BistroData) {
               longitude: bistro.address.longitude,
             }}
             image={require('../images/icons/marker.png')}
-          ></Marker>
+            title={bistro.title}
+            description={bistro.address.streetAddress}
+          >
+          </Marker>
         ))}
       </MapView>
     </View>
