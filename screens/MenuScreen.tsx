@@ -8,18 +8,24 @@ import { BistroContext } from "../contexts/BistroContext";
 import { BistroData } from "../data/bistroData";
 import { RootTabScreenProps } from "../types";
 
-export default function MenuScreen( bistro: BistroData, { navigation }: RootTabScreenProps<"Menu">) {
-    const id = '1';
-    const { storedBistros } = useContext(BistroContext);
-    const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
+export default function MenuScreen(
+  bistro: BistroData,
+  { navigation }: RootTabScreenProps<"Menu">
+) {
+  const id = "1";
+  const { storedBistros } = useContext(BistroContext);
+  const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
+
+  if (!selectedBistro) return null;
+
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.background}
         source={require("../images/sandwalls-plats.jpg")}
       >
-        <MenuSheet bistro={selectedBistro}/>
-        <MenuInfoBox bistro={selectedBistro}/>
+        <MenuSheet bistro={selectedBistro} />
+        <MenuInfoBox bistro={selectedBistro} />
       </ImageBackground>
     </View>
   );
@@ -33,5 +39,5 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
     width: "100%",
-  }
+  },
 });

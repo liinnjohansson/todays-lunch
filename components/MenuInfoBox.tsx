@@ -7,7 +7,7 @@ import { BistroData } from "../data/bistroData";
 import { PhoneDialer } from "./PhoneDialer";
 
 interface Props {
-  bistro?: BistroData;
+  bistro: BistroData;
 }
 
 export default function MenuInfoBox({ bistro }: Props) {
@@ -33,12 +33,12 @@ export default function MenuInfoBox({ bistro }: Props) {
         </Card.Actions>
         <Card.Content>
           <Paragraph style={styles.text}>
-            {bistro?.address.streetAddress}, {bistro?.address.zipCode}{" "}
-            {bistro?.address.city}
+            {bistro.address.streetAddress}, {bistro.address.zipCode}{" "}
+            {bistro.address.city}
           </Paragraph>
           <TouchableOpacity onPress={() => PhoneDialer({ bistro })}>
             <Paragraph style={[styles.text, styles.phone]}>
-              {bistro?.address.phone}
+              {bistro.address.phone}
             </Paragraph>
           </TouchableOpacity>
         </Card.Content>
