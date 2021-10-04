@@ -71,13 +71,13 @@ const BistroCard = ({ bistro, weekday }: Props) => {
         <View style={styles.tagsAndLikeContainer}>
           <View style={styles.tags}>
             {bistro.lunchOfTheWeekDefault.tags.coffeeIncluded ? (
-              <OfferTag infoText="Kaffe ingår" />
+              <OfferTag displayText="Kaffe ingår" />
             ) : null}
             {bistro.lunchOfTheWeekDefault.tags.saladBuffet ? (
-              <OfferTag infoText="Salladsbuffé" />
+              <OfferTag displayText="Salladsbuffé" />
             ) : null}
             {bistro.lunchOfTheWeekDefault.tags.outdoorSeating ? (
-              <OfferTag infoText="Uteservering" />
+              <OfferTag displayText="Uteservering" />
             ) : null}
           </View>
           <View style={styles.likeButton}>

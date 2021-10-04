@@ -3,13 +3,13 @@ import { Surface, Text } from "react-native-paper";
 import { StyleSheet } from "react-native";
 
 interface Props {
-  infoText: string;
+  displayText: string;
 }
 
-const OfferTag = ({ infoText }: Props) => {
+const OfferTag = ({ displayText }: Props) => {
   return (
     <Surface style={styles.tag}>
-      <Text style={styles.infoText}>{infoText}</Text>
+      <Text style={styles.displayText}>{displayText}</Text>
     </Surface>
   );
 };
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 2,
     borderTopEndRadius: 2,
   },
-  infoText: {
+  displayText: {
     color: "#fff",
   },
 });
