@@ -68,8 +68,8 @@ const BistroCard = ({ bistro, weekday }: Props) => {
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
         <View style={styles.likeButton}>
-      <LikeButton />
-      </View>
+          <LikeButton bistro={bistro} />
+        </View>
         <Card style={styles.box}>
           <Card.Actions>
             <TouchableOpacity onPress={onPress} onLongPress={onLongPress}>
