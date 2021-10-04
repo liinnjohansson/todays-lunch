@@ -13,7 +13,7 @@ export default function Map() {
   const [selectedId, setSelectedId] = useState<string>()
   const { storedBistros } = useContext(BistroContext);
   const marker = require('../images/icons/marker.png');
-  const selectedMarker = require('../images/icons/pressed-marker.png')
+  const selectedMarker = require('../images/icons/pressed-bistro-marker.png')
 
   return (
     <View>
