@@ -2,18 +2,22 @@ import * as React from "react";
 import { Dimensions, StyleSheet } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { mapStyle } from "../data/mapStyle";
-import { BistroData } from "../data/bistroData";
 import { BistroContext } from "../contexts/BistroContext";
 import { useContext, useState } from "react";
+import * as Location from 'expo-location';
 import {
 View, Image
 } from "react-native";
+import Permission from "./Permission";
 
 export default function Map() {
   const [selectedId, setSelectedId] = useState<string>()
   const { storedBistros } = useContext(BistroContext);
   const marker = require('../images/icons/marker.png');
   const selectedMarker = require('../images/icons/pressed-bistro-marker.png')
+  
+  const [location, setLocation] = useState();
+  const [errorMsg, setErrorMsg] = useState();
 
   return (
     <View>
@@ -28,6 +32,7 @@ export default function Map() {
           longitudeDelta: 0.0021,
         }}
       >
+              <Permission/>
         {storedBistros.map((bistro, i) => (
           <Marker
             key={bistro.id}

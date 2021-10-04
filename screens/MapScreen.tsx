@@ -22,18 +22,4 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-  },
 });
