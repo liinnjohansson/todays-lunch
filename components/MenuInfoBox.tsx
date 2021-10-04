@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "flex-end",
+    width: "100%",
   },
   box: {
     borderRadius: 0,
