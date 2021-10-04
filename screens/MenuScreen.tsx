@@ -5,13 +5,15 @@ import MenuInfoBox from "../components/MenuInfoBox";
 import MenuSheet from "../components/MenuSheet";
 import { View } from "../components/Themed";
 import { BistroContext } from "../contexts/BistroContext";
-import { BistroData } from "../data/bistroData";
-import { RootTabScreenProps } from "../types";
+import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 
-export default function MenuScreen( bistro: BistroData, { navigation }: RootTabScreenProps<"Menu">) {
-    const id = '1';
-    const { storedBistros } = useContext(BistroContext);
-    const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
+export default function MenuScreen({
+  navigation,
+  route,
+}: RootStackScreenProps<"Menu">) {
+  const id = route.params.id.toString();
+  const { storedBistros } = useContext(BistroContext);
+  const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -33,5 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
     width: "100%",
-  }
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });

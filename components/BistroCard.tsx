@@ -1,5 +1,11 @@
+import { CompositeScreenProps } from "@react-navigation/native";
 import React from "react";
-import { ImageBackground, StyleSheet, View } from "react-native";
+import {
+  ImageBackground,
+  PressableProps,
+  StyleSheet,
+  View,
+} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Title, Paragraph } from "react-native-paper";
 import { BistroData } from "../data/bistroData";
@@ -9,6 +15,8 @@ interface Props {
   bistro: BistroData;
   weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "";
 }
+
+//TODO: Lägg till prop för onPress som hanterar navigation i Screen sidan
 
 const BistroCard = ({ bistro, weekday }: Props) => {
   const image = { uri: `${bistro.imageUrl}` };
