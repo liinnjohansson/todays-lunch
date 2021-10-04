@@ -2,7 +2,6 @@ import { CompositeScreenProps } from "@react-navigation/native";
 import * as React from "react";
 import { Button, Text, StyleSheet } from "react-native";
 import { View } from "../components/Themed";
-import { MapStackScreenProps } from "../navigation/MapStackNavigator";
 import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
 

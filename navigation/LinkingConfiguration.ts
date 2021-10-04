@@ -4,34 +4,34 @@
  * https://reactnavigation.org/docs/configuring-links
  */
 
-import { LinkingOptions } from '@react-navigation/native';
-import * as Linking from 'expo-linking';
-import { RootStackParamList } from './RootStackNavigator';
+// import { LinkingOptions } from '@react-navigation/native';
+// import * as Linking from 'expo-linking';
+// import { RootStackParamList } from './RootStackNavigator';
 
 
 
-const linking: LinkingOptions<RootStackParamList> = {
-  prefixes: [Linking.makeUrl("/")],
-  config: {
-    screens: {
-      Root: {
-        screens: {
-          Bistro: {
-            screens: {
-              BistroScreen: "Bistro",
-            },
-          },
-          Map: {
-            screens: {
-              MapScreen: "Map",
-            },
-          },
-        },
-      },
-      Menu: "Menu",
-      NotFound: "*",
-    },
-  },
-};
+// const linking: LinkingOptions<RootStackParamList> = {
+//   prefixes: [Linking.makeUrl("/")],
+//   config: {
+//     screens: {
+//       Root: {
+//         screens: {
+//           Bistro: {
+//             screens: {
+//               BistroScreen: "Bistro",
+//             },
+//           },
+//           Map: {
+//             screens: {
+//               MapScreen: "Map",
+//             },
+//           },
+//         },
+//       },
+//       Menu: "Menu",
+//       NotFound: "*",
+//     },
+//   },
+// };
 
-export default linking;
+// export default linking;

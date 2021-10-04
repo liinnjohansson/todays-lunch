@@ -4,13 +4,12 @@ import { ImageBackground, StyleSheet } from "react-native";
 import MenuSheet from "../components/MenuSheet";
 import { View } from "../components/Themed";
 import { BistroContext } from "../contexts/BistroContext";
-import { BistroData } from "../data/bistroData";
-import { MapStackScreenProps } from "../navigation/MapStackNavigator";
+import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 
 export default function MenuScreen({
   navigation,
   route,
-}: MapStackScreenProps<"Menu">) {
+}: RootStackScreenProps<"Menu">) {
   const id = route.params.id.toString();
   const { storedBistros } = useContext(BistroContext);
   const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
