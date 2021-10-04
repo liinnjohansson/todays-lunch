@@ -9,6 +9,7 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Title, Paragraph } from "react-native-paper";
 import { BistroData } from "../data/bistroData";
+import LikeButton from "./LikeButton";
 
 interface Props {
   bistro: BistroData;
@@ -66,6 +67,9 @@ const BistroCard = ({ bistro, weekday }: Props) => {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+        <View style={styles.likeButton}>
+      <LikeButton />
+      </View>
         <Card style={styles.box}>
           <Card.Actions>
             <TouchableOpacity onPress={onPress} onLongPress={onLongPress}>
@@ -96,6 +100,10 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: "flex-end",
+  },
+  likeButton: {
+    flex: 1,
+    alignItems: "flex-end",
   },
   box: {
     borderRadius: 0,
