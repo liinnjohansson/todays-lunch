@@ -9,6 +9,7 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Title, Paragraph } from "react-native-paper";
 import { BistroData } from "../data/bistroData";
+import OfferTag from "./OfferTag";
 import LikeButton from "./LikeButton";
 
 interface Props {
@@ -67,8 +68,21 @@ const BistroCard = ({ bistro, weekday }: Props) => {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <View style={styles.likeButton}>
-          <LikeButton bistro={bistro} />
+        <View style={styles.tagsAndLikeContainer}>
+          <View style={styles.tags}>
+            {bistro.lunchOfTheWeekDefault.tags.coffeeIncluded ? (
+              <OfferTag displayText="Kaffe ingår" />
+            ) : null}
+            {bistro.lunchOfTheWeekDefault.tags.saladBuffet ? (
+              <OfferTag displayText="Salladsbuffé" />
+            ) : null}
+            {bistro.lunchOfTheWeekDefault.tags.outdoorSeating ? (
+              <OfferTag displayText="Uteservering" />
+            ) : null}
+          </View>
+          <View style={styles.likeButton}>
+            <LikeButton bistro={bistro} />
+          </View>
         </View>
         <Card style={styles.box}>
           <Card.Actions>
@@ -101,9 +115,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
   },
+  tagsAndLikeContainer: {
+    flex: 1,
+    flexDirection: "row",
+  },
   likeButton: {
     flex: 1,
     alignItems: "flex-end",
+  },
+  tags: {
+    flex: 1,
+    alignItems: "flex-start",
+    marginTop: 20,
   },
   box: {
     borderRadius: 0,
