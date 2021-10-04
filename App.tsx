@@ -3,8 +3,9 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import BistroProvider from './contexts/BistroContext';
 import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
 import AnimatedSplashScreen from './screens/SplashScreen';
+import Navigation from './navigation/Navigation';
+
 
 export default function App() {
   const colorScheme = useColorScheme();

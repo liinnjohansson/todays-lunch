@@ -5,7 +5,6 @@ export interface BistroData {
   imageUrl: string;
   lunchOfTheWeekDefault: LunchOfTheWeekDefault;
   lunchOfTheWeekOffer?: LunchOfTheWeekOffer[];
-  likedBistro: boolean;
 }
 
 interface LunchOfTheWeekDefault {
@@ -219,7 +218,6 @@ export const bistros: BistroData[] = [
         priceFrom: 109,
       },
     }],
-    likedBistro: false,
   },
   {
     id: "2",
@@ -282,7 +280,6 @@ export const bistros: BistroData[] = [
         priceFrom: 109,
       },
     },
-    likedBistro: false,
   },
   {
     id: "3",
@@ -350,7 +347,6 @@ export const bistros: BistroData[] = [
         priceFrom: 125,
       },
     },
-    likedBistro: false,
   },
   {
     id: "4",
@@ -413,7 +409,6 @@ export const bistros: BistroData[] = [
         priceFrom: 139,
       },
     },
-    likedBistro: false,
   },
   {
     id: "5",
@@ -482,7 +477,6 @@ export const bistros: BistroData[] = [
         priceFrom: 105,
       },
     },
-    likedBistro: false,
   },
   {
     id: "6",
@@ -545,7 +539,6 @@ export const bistros: BistroData[] = [
         priceFrom: 105,
       },
     },
-    likedBistro: false,
   },
   {
     id: "7",
@@ -599,7 +592,6 @@ export const bistros: BistroData[] = [
         priceFrom: 85,
       },
     },
-    likedBistro: true,
   },
   {
     id: "8",
@@ -680,7 +672,6 @@ export const bistros: BistroData[] = [
         priceFrom: 98,
       },
     },
-    likedBistro: false,
   },
   {
     id: "9",
@@ -744,7 +735,6 @@ export const bistros: BistroData[] = [
         priceFrom: 90,
       },
     },
-    likedBistro: true,
   },
   {
     id: "10",
@@ -814,6 +804,5 @@ export const bistros: BistroData[] = [
         priceFrom: 79,
       },
     },
-    likedBistro: true,
   },
 ];

@@ -1,16 +1,19 @@
 import * as React from "react";
 import { useContext } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
+import MenuInfoBox from "../components/MenuInfoBox";
 import MenuSheet from "../components/MenuSheet";
 import { View } from "../components/Themed";
 import { BistroContext } from "../contexts/BistroContext";
-import { BistroData } from "../data/bistroData";
-import { RootTabScreenProps } from "../types";
+import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 
-export default function MenuScreen( bistro: BistroData, { navigation }: RootTabScreenProps<"Menu">) {
-    const id = '1';
-    const { storedBistros } = useContext(BistroContext);
-    const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
+export default function MenuScreen({
+  navigation,
+  route,
+}: RootStackScreenProps<"Menu">) {
+  const id = route.params.id.toString();
+  const { storedBistros } = useContext(BistroContext);
+  const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -18,6 +21,7 @@ export default function MenuScreen( bistro: BistroData, { navigation }: RootTabS
         source={require("../images/sandwalls-plats.jpg")}
       >
         <MenuSheet bistro={selectedBistro}/>
+        <MenuInfoBox bistro={selectedBistro}/>
       </ImageBackground>
     </View>
   );
@@ -26,8 +30,6 @@ export default function MenuScreen( bistro: BistroData, { navigation }: RootTabS
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
   background: {
     flex: 1,
@@ -35,5 +37,5 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-  }
+  },
 });

@@ -1,13 +1,23 @@
+import { CompositeScreenProps } from "@react-navigation/native";
 import React from "react";
-import { ImageBackground, StyleSheet, View } from "react-native";
+import {
+  ImageBackground,
+  PressableProps,
+  StyleSheet,
+  View,
+} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Title, Paragraph } from "react-native-paper";
 import { BistroData } from "../data/bistroData";
+import OfferTag from "./OfferTag";
+import LikeButton from "./LikeButton";
 
 interface Props {
   bistro: BistroData;
   weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "";
 }
+
+//TODO: Lägg till prop för onPress som hanterar navigation i Screen sidan
 
 const BistroCard = ({ bistro, weekday }: Props) => {
   const image = { uri: `${bistro.imageUrl}` };
@@ -58,6 +68,22 @@ const BistroCard = ({ bistro, weekday }: Props) => {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+        <View style={styles.tagsAndLikeContainer}>
+          <View style={styles.tags}>
+            {bistro.lunchOfTheWeekDefault.tags.coffeeIncluded ? (
+              <OfferTag displayText="Kaffe ingår" />
+            ) : null}
+            {bistro.lunchOfTheWeekDefault.tags.saladBuffet ? (
+              <OfferTag displayText="Salladsbuffé" />
+            ) : null}
+            {bistro.lunchOfTheWeekDefault.tags.outdoorSeating ? (
+              <OfferTag displayText="Uteservering" />
+            ) : null}
+          </View>
+          <View style={styles.likeButton}>
+            <LikeButton bistro={bistro} />
+          </View>
+        </View>
         <Card style={styles.box}>
           <Card.Actions>
             <TouchableOpacity onPress={onPress} onLongPress={onLongPress}>
@@ -88,6 +114,19 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: "flex-end",
+  },
+  tagsAndLikeContainer: {
+    flex: 1,
+    flexDirection: "row",
+  },
+  likeButton: {
+    flex: 1,
+    alignItems: "flex-end",
+  },
+  tags: {
+    flex: 1,
+    alignItems: "flex-start",
+    marginTop: 20,
   },
   box: {
     borderRadius: 0,
