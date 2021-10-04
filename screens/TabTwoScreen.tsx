@@ -1,25 +1,19 @@
-import * as React from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
-import MapView from 'react-native-maps';
-import { View } from '../components/Themed';
+import * as React from "react";
+import { View, StyleSheet } from "react-native";
+import Map from '../components/Map';
 
 export default function TabTwoScreen() {
-  return (
-    <View>
-      <MapView style={styles.map} 
-      initialRegion={{
-        latitude: 57.7206788,
-        longitude: 12.9414395,
-        latitudeDelta: 0.0022,
-        longitudeDelta: 0.0021,
-      }}/>
-    </View>
-  );
-}
+  return(
+  <View style={styles.container}>
+    <Map/>
+  </View>
+  )}
 
-const styles = StyleSheet.create({
-  map: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
-});
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      // alignItems: 'center',
+      // justifyContent: 'center',
+    }
+ });
+
