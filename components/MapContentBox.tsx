@@ -17,7 +17,7 @@ export default function MapContentBox({ bistro }: Props) {
     <View style={styles.container}>
       <Card style={styles.box}>
         <Card.Actions>
-          {/* TODO: Behöver kunna navigera till Bistro, istället för logg. */}
+          {/* TODO: Gör ikon till knapp */}
           <Entypo
             name="cross"
             size={30}
@@ -28,7 +28,7 @@ export default function MapContentBox({ bistro }: Props) {
         </Card.Actions>
         <Card.Content>
           <View style={styles.distanceContainer}>
-            <Title style={styles.text}>{bistro?.title}</Title>
+            <Title style={styles.text}>Bistro titel</Title>
             {bistro && <LikeButton bistro={bistro} />}
           </View>
           <View style={styles.distanceContainer}>
@@ -48,6 +48,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   box: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     borderRadius: 0,
     backgroundColor: "#000000c0",
     paddingTop: 8,
