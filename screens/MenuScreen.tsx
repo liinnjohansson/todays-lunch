@@ -19,7 +19,6 @@ export default function MenuScreen({
         style={styles.background}
         source={require("../images/sandwalls-plats.jpg")}
       >
-        {/* TODO: Om iget matchende id hittas, selectedBistro är null ? - vilken skärm / meddelande visas då ?*/}
         <MenuSheet bistro={selectedBistro} />
       </ImageBackground>
     </View>
