@@ -4,19 +4,29 @@ import React, {
   useState,
   useEffect,
   useReducer,
+  useContext,
 } from "react";
 import { BistroData, bistros } from "../data/bistroData";
 import bistroReducer, { BistroAction } from "../reducers/bistroReducer";
+import openBistrosReducer, {
+  OpenBistrosAction,
+} from "../reducers/openBistrosReducer";
 
 //***************************************
 // Mock data will be read when application is started from data.ts
 
 //***************************************
+interface getOpenBistro {
+  weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday",
+  weekNumber: number
+}
 
 interface ContextValue {
   storedBistros: BistroData[];
+  openBistros: BistroData[];
   likedBistros: BistroData[];
   dispatch: React.Dispatch<BistroAction>;
+  updateStateOpenBistros: (data: getOpenBistro) => void;
   toggleLikedBistros: (bistro: BistroData) => void;
   addLikedBistro: (bistro: BistroData) => void;
   removeLikedBistro: (bistro: BistroData) => void;
@@ -24,8 +34,10 @@ interface ContextValue {
 
 export const BistroContext = createContext<ContextValue>({
   storedBistros: [],
+  openBistros: [],
   likedBistros: [],
-  dispatch: () => {},
+  dispatch: () => [],
+  updateStateOpenBistros: () => {},
   toggleLikedBistros: () => {},
   addLikedBistro: () => {},
   removeLikedBistro: () => {},
@@ -40,13 +52,30 @@ export const BistroContext = createContext<ContextValue>({
 
 const BistroProvider: FC = ({ children }) => {
   const [storedBistros, dispatch] = useReducer(bistroReducer, bistros);
-  // TODO: Ersätt raden över med useReducer....
+  const [openBistros, setOpenBistros] = useState<BistroData[]>([]);
   const [likedBistros, setLikedBistros] = useState<BistroData[]>([]);
 
   // TODO: Kod för local storage..??
   // useEffect(() => {
   // 	localStorage.setItem('storedBistros', JSON.stringify(storedBistros))
   // }, [storedBistros])
+
+  const updateStateOpenBistros(data: getOpenBistro) => {
+        
+    const returnList: BistroData[] = [];
+
+    storedBistros.forEach(bistro => {
+      const lunchOfTheWeekOffer = bistro.lunchOfTheWeekOffer?.find(
+        (lunch) => lunch.weekNumber == data.weekNumber
+      );
+      if (lunchOfTheWeekOffer) {
+        lunchOfTheWeekOffer[data.weekday]? returnList.push(bistro) : {};
+      } else {
+        bistro.lunchOfTheWeekDefault[data.weekday]? returnList.push(bistro) : {};
+      }
+    });
+    setOpenBistros(returnList);
+  };
 
   const toggleLikedBistros = (bistro: BistroData) => {
     if (likedBistros.includes(bistro)) {
@@ -72,7 +101,9 @@ const BistroProvider: FC = ({ children }) => {
       value={{
         dispatch,
         storedBistros: storedBistros,
+        openBistros: openBistros,
         likedBistros: likedBistros,
+        updateStateOpenBistros,
         toggleLikedBistros,
         addLikedBistro,
         removeLikedBistro,
@@ -83,4 +114,5 @@ const BistroProvider: FC = ({ children }) => {
   );
 };
 
+export const useBistro = () => useContext(BistroContext);
 export default BistroProvider;
