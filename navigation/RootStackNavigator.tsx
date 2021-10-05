@@ -8,11 +8,11 @@ import MenuScreen from "../screens/MenuScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import TabBistroMapNavigator, { TabParamList } from "./TabBistroMapNavigator";
 
-// declare global {
-//   namespace ReactNavigation {
-//     interface RootParamList extends RootStackParamList {}
-//   }
-// }
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
 
 // export type RootStackParamList = {
 //   Root: NavigatorScreenParams<TabParamList> | undefined;
@@ -28,7 +28,7 @@ import TabBistroMapNavigator, { TabParamList } from "./TabBistroMapNavigator";
 //skapad för andra skärmar som vill veta vad
 // export type RootStackScreenProps = NativeStackScreenProps<RootStackParamList>;
 
-interface RootStackParamList extends ParamListBase {
+export interface RootStackParamList extends ParamListBase {
   Root: NavigatorScreenParams<TabParamList> | undefined;
   Menu: {
     title: string;

@@ -1,14 +1,19 @@
-import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import * as React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import { RootStackScreenProps } from '../types';
+import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 
-export default function NotFoundScreen({ navigation }: RootStackScreenProps<'NotFound'>) {
+export default function NotFoundScreen({ navigation }: RootStackScreenProps<"NotFound">) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>This screen doesn't exist.</Text>
-      <TouchableOpacity onPress={() => navigation.replace('Root')} style={styles.link}>
-        <Text style={styles.linkText}>Go to home screen!</Text>
+      <Text style={styles.title}>
+        Oops! Restaurangen du söker är inte registrerad hos oss.
+      </Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Root")}
+        style={styles.link}
+      >
+        <Text style={styles.linkText}>Gå tillbaka till startsidan</Text>
       </TouchableOpacity>
     </View>
   );
@@ -17,14 +22,16 @@ export default function NotFoundScreen({ navigation }: RootStackScreenProps<'Not
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#723A45",
+    alignItems: "center",
+    justifyContent: "center",
     padding: 20,
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#fff",
   },
   link: {
     marginTop: 15,
@@ -32,6 +39,7 @@ const styles = StyleSheet.create({
   },
   linkText: {
     fontSize: 14,
-    color: '#2e78b7',
+    color: "#fff",
+    textDecorationLine: "underline",
   },
 });

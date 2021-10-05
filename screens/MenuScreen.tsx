@@ -1,4 +1,6 @@
+import { CompositeScreenProps } from "@react-navigation/native";
 import * as React from "react";
+import { useEffect } from "react";
 import { useContext } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
 import MenuInfoBox from "../components/MenuInfoBox";
@@ -7,14 +9,20 @@ import { View } from "../components/Themed";
 import { BistroContext } from "../contexts/BistroContext";
 import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 
-export default function MenuScreen({
-  navigation,
-  route,
-}: RootStackScreenProps<"Menu">) {
+type Props = CompositeScreenProps<
+  RootStackScreenProps<"Menu">,
+  RootStackScreenProps
+>;
+
+export default function MenuScreen({ navigation, route }: Props) {
   const id = route.params.id.toString();
   const { storedBistros } = useContext(BistroContext);
   const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
   
+  useEffect(() => {
+    if (!selectedBistro) navigation.navigate("NotFound");
+  });
+
   if (!selectedBistro) return null;
 
   return (
