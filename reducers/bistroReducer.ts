@@ -23,7 +23,7 @@ interface SortBistrosByDayAction {
 
 export type BistroAction = AddBistroAction | EditBistroAction | RemoveBistroAction | SortBistrosByDayAction;
 
-function bistroReducer(state: BistroData[], action: BistroAction) {
+function bistroReducer(state: BistroData[], action: BistroAction) : BistroData[] {
 
   switch (action.type) {
       case "add-bistro": {
@@ -33,7 +33,8 @@ function bistroReducer(state: BistroData[], action: BistroAction) {
           const index = state.findIndex((item) => item.id === bistro.id);
           if (index === -1) {
             const newBistro: BistroData = { ...bistro, id: uuid.v4().toString() }
-            return nextBistro.push(newBistro);
+            nextBistro.push(newBistro);
+            return nextBistro;
           } else {
             return editBistro(state, bistro, index);
           }
