@@ -17,8 +17,6 @@ interface Props {
   weekNumber: number;
 }
 
-//TODO: Lägg till prop för onPress som hanterar navigation i Screen sidan
-
 const BistroCard = ({ bistro, weekday, weekNumber }: Props) => {
   const image = { uri: `${bistro.imageUrl}` };
   const title = bistro.title;
@@ -26,23 +24,18 @@ const BistroCard = ({ bistro, weekday, weekNumber }: Props) => {
   let lunchEnd: String | undefined;
   let priceFrom: Number | undefined;
 
-  // TODO: Write code that check if weeknumer exist in the server thath correspond to requested week on app screen
-  // Mock data for this case are written for bistro: The Company
-  // This code maybe cut to its own file, and reused ?
-
-  if (
-    bistro.lunchOfTheWeekOffer?.find((lunch) => lunch.weekNumber == weekNumber)
-  ) {
-    lunchStart = bistro.lunchOfTheWeekOffer[weekday]?.lunchStart?.toFixed(2);
-    lunchEnd = bistro.lunchOfTheWeekOffer[weekday]?.lunchEnd?.toFixed(2);
-    priceFrom = bistro.lunchOfTheWeekOffer[weekday]?.priceFrom;
+  const lunchOfTheWeekOffer = bistro.lunchOfTheWeekOffer?.find(
+    (lunch) => lunch.weekNumber == weekNumber
+  );
+  if (lunchOfTheWeekOffer) {
+    lunchStart = lunchOfTheWeekOffer[weekday]?.lunchStart.toFixed(2);
+    lunchEnd = lunchOfTheWeekOffer[weekday]?.lunchEnd?.toFixed(2);
+    priceFrom = lunchOfTheWeekOffer[weekday]?.priceFrom;
   } else {
     lunchStart = bistro.lunchOfTheWeekDefault[weekday]?.lunchStart?.toFixed(2);
     lunchEnd = bistro.lunchOfTheWeekDefault[weekday]?.lunchEnd?.toFixed(2);
     priceFrom = bistro.lunchOfTheWeekDefault[weekday]?.priceFrom;
   }
-
-  // skicka tillbaka ett lunch objekt
 
   const onPress = () => console.log("Nu klickade jag!");
   const onLongPress = () => console.log("Nuuu klickade jag läääänge");

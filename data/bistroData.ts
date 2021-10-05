@@ -4,7 +4,7 @@ export interface BistroData {
   address: Address;
   imageUrl: string;
   lunchOfTheWeekDefault: LunchOfTheWeekDefault;
-  lunchOfTheWeekOffer?: LunchOfTheWeekOffer[];
+  lunchOfTheWeekOffer: LunchOfTheWeekOffer[] | [];
 }
 
 interface LunchOfTheWeekDefault {
@@ -280,6 +280,7 @@ export const bistros: BistroData[] = [
         priceFrom: 109,
       },
     },
+    lunchOfTheWeekOffer: []
   },
   {
     id: "3",
@@ -347,6 +348,7 @@ export const bistros: BistroData[] = [
         priceFrom: 125,
       },
     },
+    lunchOfTheWeekOffer: []
   },
   {
     id: "4",
@@ -409,6 +411,7 @@ export const bistros: BistroData[] = [
         priceFrom: 139,
       },
     },
+    lunchOfTheWeekOffer: []
   },
   {
     id: "5",
@@ -477,6 +480,7 @@ export const bistros: BistroData[] = [
         priceFrom: 105,
       },
     },
+    lunchOfTheWeekOffer: []
   },
   {
     id: "6",
@@ -539,6 +543,7 @@ export const bistros: BistroData[] = [
         priceFrom: 105,
       },
     },
+    lunchOfTheWeekOffer: []
   },
   {
     id: "7",
@@ -561,12 +566,13 @@ export const bistros: BistroData[] = [
         coffeeIncluded: false,
         saladBuffet: false,
       },
-      monday: {
-        dishes: ["Sallad med avokado."],
-        lunchStart: 11.3,
-        lunchEnd: 14.0,
-        priceFrom: 85,
-      },
+      // PRETEND THATH THIS BISTRO IS CLOSED AND DONT SHOWN ON MONDAYS IN APP
+      // monday: {
+      //   dishes: ["Sallad med avokado."],
+      //   lunchStart: 11.3,
+      //   lunchEnd: 14.0,
+      //   priceFrom: 85,
+      // },
       tuesday: {
         dishes: ["Varma mackor."],
         lunchStart: 11.3,
@@ -592,6 +598,7 @@ export const bistros: BistroData[] = [
         priceFrom: 85,
       },
     },
+    lunchOfTheWeekOffer: []
   },
   {
     id: "8",
@@ -672,6 +679,7 @@ export const bistros: BistroData[] = [
         priceFrom: 98,
       },
     },
+    lunchOfTheWeekOffer: []
   },
   {
     id: "9",
@@ -735,6 +743,7 @@ export const bistros: BistroData[] = [
         priceFrom: 90,
       },
     },
+    lunchOfTheWeekOffer: []
   },
   {
     id: "10",
@@ -804,5 +813,6 @@ export const bistros: BistroData[] = [
         priceFrom: 79,
       },
     },
+    lunchOfTheWeekOffer: []
   },
 ];

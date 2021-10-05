@@ -13,15 +13,15 @@ interface RemoveBistroAction {
   type: "remove-bistro";
   payload: BistroData;
 }
-interface SortBistrosByDayAction {
-  type: "sort-bistros-by-day";
-  payload: {
-    weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
-    weekNumber: number;
- };
-}
+// interface GetOpenBistrosAction {
+//   type: "get-open-bistros";
+//   payload: {
+//     weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
+//     weekNumber: number;
+//  };
+// }
 
-export type BistroAction = AddBistroAction | EditBistroAction | RemoveBistroAction | SortBistrosByDayAction;
+export type BistroAction = AddBistroAction | EditBistroAction | RemoveBistroAction;
 
 function bistroReducer(state: BistroData[], action: BistroAction) : BistroData[] {
 
@@ -49,17 +49,24 @@ function bistroReducer(state: BistroData[], action: BistroAction) : BistroData[]
         nextBistro.filter((item) => item.id !== bistro.id)
         return nextBistro;
       }
-      case "sort-bistros-by-day": {
-        const nextBistro = [...state];
-        const weekday = action.payload.weekday;
-        const weekNumber = action.payload.weekNumber;
+      // case "get-open-bistros": {
+      //   const nextBistro = [...state];
+      //   const returnList: BistroData[] = [];
+      //   const weekday = action.payload.weekday;
+      //   const weekNumber = action.payload.weekNumber;
 
-        // räkna ut vilken datat som ska hämtas
-        // skicka tillbaka i smart format till komponenter
-        // * ex. skapa nytt interface för objekt ?
-
-        return nextBistro;
-      }
+      //   nextBistro.forEach(bistro => {
+      //     const lunchOfTheWeekOffer = bistro.lunchOfTheWeekOffer?.find(
+      //       (lunch) => lunch.weekNumber == weekNumber
+      //     );
+      //     if (lunchOfTheWeekOffer) {
+      //       lunchOfTheWeekOffer[weekday]? returnList.push(bistro) : {};
+      //     } else {
+      //       bistro.lunchOfTheWeekDefault[weekday]? returnList.push(bistro) : {};
+      //     }
+      //   });
+      //   return returnList;
+      // }
       default: {
           exhaustiveCheck(action);
           return state;
