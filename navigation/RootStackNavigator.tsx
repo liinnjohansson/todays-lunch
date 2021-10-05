@@ -4,6 +4,7 @@ import {
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 import * as React from "react";
+import MapScreen from "../screens/MapScreen";
 import MenuScreen from "../screens/MenuScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import TabBistroMapNavigator, { TabParamList } from "./TabBistroMapNavigator";
@@ -28,7 +29,7 @@ import TabBistroMapNavigator, { TabParamList } from "./TabBistroMapNavigator";
 //skapad för andra skärmar som vill veta vad
 // export type RootStackScreenProps = NativeStackScreenProps<RootStackParamList>;
 
-interface RootStackParamList extends ParamListBase {
+type RootStackParamList = {
   Root: NavigatorScreenParams<TabParamList> | undefined;
   Menu: {
     title: string;
@@ -36,13 +37,17 @@ interface RootStackParamList extends ParamListBase {
     weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "";
     weekNumber: number;
   };
+  MenuMap: undefined;
   NotFound: undefined;
-}
+};
 
-// Type declared fot other screens to know the type of RootStackParamList
-export type RootStackScreenProps<
-  Screen extends keyof RootStackParamList = string
-> = NativeStackScreenProps<RootStackParamList, Screen>;
+// Type declared for other screens to know thetype of RootStackParamList
+export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, Screen>;
+
+// för att nå map fr menu screen bla.
+export type RootStackAllScreenProps =
+  NativeStackScreenProps<RootStackParamList>;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -55,6 +60,7 @@ export default function RootStackNavigator() {
         component={MenuScreen}
         options={({ route }) => ({ title: route.params.title })}
       />
+      <Stack.Screen name="MenuMap" component={MapScreen} />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}

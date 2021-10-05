@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useContext } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
+import { Button } from "react-native-elements/dist/buttons/Button";
 import MenuInfoBox from "../components/MenuInfoBox";
 import MenuSheet from "../components/MenuSheet";
 import { View } from "../components/Themed";
@@ -20,8 +21,13 @@ export default function MenuScreen({
         style={styles.background}
         source={require("../images/sandwalls-plats.jpg")}
       >
-        <MenuSheet bistro={selectedBistro}/>
-        <MenuInfoBox bistro={selectedBistro}/>
+        <MenuSheet bistro={selectedBistro} />
+        <MenuInfoBox bistro={selectedBistro} />
+        <Button
+          title={"gå till karta"}
+          // onPress={() => navigation.navigate("Root", { screen: "Map" })}
+          onPress={() => navigation.push("MenuMap")}
+        />
       </ImageBackground>
     </View>
   );

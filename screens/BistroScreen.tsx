@@ -7,12 +7,12 @@ import BistroCard from "../components/BistroCard";
 import WeekdaySlider from "../components/WeekdaySlider";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
-import { RootStackScreenProps } from "../navigation/RootStackNavigator";
+import { RootStackAllScreenProps } from "../navigation/RootStackNavigator";
 import { TouchableRipple } from "react-native-paper";
 
 type Props = CompositeScreenProps<
   TabScreenProps<"Bistro">,
-  RootStackScreenProps
+  RootStackAllScreenProps
 >;
 
 export default function BistroScreen({ navigation }: Props) {
