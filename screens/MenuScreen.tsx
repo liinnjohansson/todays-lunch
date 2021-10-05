@@ -18,7 +18,7 @@ export default function MenuScreen({ navigation, route }: Props) {
   const id = route.params.id.toString();
   const { storedBistros } = useContext(BistroContext);
   const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
-
+  
   useEffect(() => {
     if (!selectedBistro) navigation.navigate("NotFound");
   });
