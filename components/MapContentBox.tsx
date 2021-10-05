@@ -1,6 +1,6 @@
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacityBase, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Paragraph, Title } from "react-native-paper";
 import { BistroData } from "../data/bistroData";
@@ -12,60 +12,52 @@ interface Props {
 }
 
 export default function MapContentBox({ bistro }: Props) {
-  const close = () => console.log("stäng"); //Radera när fungerar
-  const transport = () => console.log("val av transport"); //Radera när fungerar
+  const close = () => console.log("stäng"); //TODO: Koppla
+  const transport = () => console.log("val av transport"); //TODO: Koppla
   return (
     <View style={styles.container}>
       <Card style={styles.box}>
         <Card.Actions style={styles.action}>
-          {/* TODO: Gör ikon till knapp */}
+          {/* TODO: Vald transport blir svart, andra grå när klickad + updt. transport tid */}
           <MaterialIcons
             name="directions-car"
             size={26}
             color="#000"
-            style={styles.icon}
             onPress={transport}
           />
           <MaterialIcons
             name="directions-train"
             size={26}
             color="#000"
-            style={styles.icon}
             onPress={transport}
           />
           <MaterialIcons
             name="directions-walk"
             size={26}
             color="#000"
-            style={styles.icon}
             onPress={transport}
           />
           <MaterialIcons
             name="directions-bike"
             size={26}
             color="#000"
-            style={styles.icon}
             onPress={transport}
           />
         </Card.Actions>
         <Card.Content style={styles.content}>
-          <View>
-            <View style={styles.distanceContainer}>
+          <View style={styles.contentChild}>
+            <View style={styles.distance}>
               <Title style={styles.text}>Bistro titel</Title>
               {bistro && <LikeButton bistro={bistro} />}
             </View>
-            <View style={styles.distanceContainer}>
+            <View style={styles.distance}>
               <Paragraph style={[styles.text, styles.time]}>15min </Paragraph>
               <Paragraph style={styles.text}>(2,2km)</Paragraph>
             </View>
           </View>
-          <MaterialIcons
-            name="close"
-            size={30}
-            color="#fff"
-            style={styles.icon}
-            onPress={close}
-          />
+          <TouchableOpacity onPress={close} style={styles.contentChild}>
+            <MaterialIcons name="close" size={30} color="#fff" />
+          </TouchableOpacity>
         </Card.Content>
       </Card>
     </View>
@@ -83,10 +75,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     borderRadius: 0,
     backgroundColor: "#000000c0",
-    paddingTop: 8,
   },
   action: {
-    // paddingTop: 0,
     marginTop: 0,
     backgroundColor: "#fff",
     justifyContent: "space-evenly",
@@ -95,19 +85,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  text: {
-    color: "#fff",
-  },
-  distanceContainer: {
-    paddingLeft: 9,
+  contentChild: {
+    paddingRight: 9,
     paddingTop: 8,
+  },
+  distance: {
+    marginBottom: 8,
     flexDirection: "row",
     alignItems: "center",
   },
+  text: {
+    color: "#fff",
+  },
   time: {
     fontWeight: "bold",
-  },
-  icon: {
-    paddingRight: 9,
   },
 });
