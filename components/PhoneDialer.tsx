@@ -2,7 +2,7 @@ import { Linking, Platform } from "react-native";
 import { BistroData } from "../data/bistroData";
 
 interface Props {
-  bistro?: BistroData;
+  bistro: BistroData;
 }
 
 function PhoneDialer({ bistro }: Props) {
