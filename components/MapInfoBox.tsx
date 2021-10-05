@@ -1,14 +1,13 @@
-import { Entypo, MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, TouchableOpacityBase, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Paragraph, Title } from "react-native-paper";
 import { BistroData } from "../data/bistroData";
 import LikeButton from "./LikeButton";
 
 interface Props {
-  id: string;
-  bistro?: BistroData;
+  bistro: BistroData;
 }
 
 export default function MapInfoBox({ bistro }: Props) {
@@ -47,8 +46,8 @@ export default function MapInfoBox({ bistro }: Props) {
         <Card.Content style={styles.content}>
           <View style={styles.contentChild}>
             <View style={styles.distance}>
-              <Title style={styles.text}>Bistro titel</Title>
-              {bistro && <LikeButton bistro={bistro} />}
+              <Title style={styles.text}>{bistro.title}</Title>
+              <LikeButton bistro={bistro} />
             </View>
             <View style={styles.distance}>
               <Paragraph style={[styles.text, styles.time]}>15min </Paragraph>
@@ -84,10 +83,10 @@ const styles = StyleSheet.create({
   content: {
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingRight: 4,
   },
   contentChild: {
-    paddingRight: 9,
-    paddingTop: 8,
+    paddingTop: 4,
   },
   distance: {
     marginBottom: 8,

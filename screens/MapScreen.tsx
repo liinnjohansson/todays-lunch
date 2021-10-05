@@ -3,6 +3,7 @@ import * as React from "react";
 import { Button, Text, StyleSheet } from "react-native";
 import MapInfoBox from "../components/MapInfoBox";
 import { View } from "../components/Themed";
+import { BistroContext } from "../contexts/BistroContext";
 import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
 
@@ -10,7 +11,10 @@ import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
 // Taben bahövs...för route.params inom denna fil
 type Props = CompositeScreenProps<TabScreenProps<"Map">, RootStackScreenProps>;
 
-export default function MapScreen({ navigation }: Props) {
+export default function MapScreen({ navigation, route }: Props) {
+  const id = "1";
+  const { storedBistros } = React.useContext(BistroContext);
+  const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
   return (
     <View style={styles.container}>
       <Text>Map Screen</Text>
@@ -25,7 +29,7 @@ export default function MapScreen({ navigation }: Props) {
           })
         }
       />
-      <MapInfoBox id={"2"} />
+      {selectedBistro && <MapInfoBox bistro={selectedBistro} />}
     </View>
   );
 }
