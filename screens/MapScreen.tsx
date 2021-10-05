@@ -1,7 +1,7 @@
 import { CompositeScreenProps } from "@react-navigation/native";
 import * as React from "react";
 import { Button, Text, StyleSheet } from "react-native";
-import MapContentBox from "../components/MapContentBox";
+import MapInfoBox from "../components/MapInfoBox";
 import { View } from "../components/Themed";
 import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
@@ -25,7 +25,7 @@ export default function MapScreen({ navigation }: Props) {
           })
         }
       />
-      <MapContentBox id={"2"} />
+      <MapInfoBox id={"2"} />
     </View>
   );
 }

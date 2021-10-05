@@ -11,7 +11,7 @@ interface Props {
   bistro?: BistroData;
 }
 
-export default function MapContentBox({ bistro }: Props) {
+export default function MapInfoBox({ bistro }: Props) {
   const close = () => console.log("stäng"); //TODO: Koppla
   const transport = () => console.log("val av transport"); //TODO: Koppla
   return (
