@@ -29,10 +29,10 @@ export default function Map() {
             setErrorMsg('Permission to access location was denied');
             return;
           }
-          let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.Low});
+          let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.High});
           setUserLocation(location.coords);
-          location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.High});
-          setUserLocation(location.coords);
+          // location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.High});
+          // setUserLocation(location.coords);
         })();
       }, []);
 
