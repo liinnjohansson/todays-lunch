@@ -14,12 +14,6 @@ interface GeoLocation {
   latitude: number,
 }
 
-interface MarkerLocation {
-  longitude: number,
-  latitude: number,
-
-}
-
 export default function Map() {
   const [selectedId, setSelectedId] = useState<string>()
   const { storedBistros } = useContext(BistroContext);
@@ -27,9 +21,6 @@ export default function Map() {
   const selectedMarkerImage = require('../images/icons/pressed-bistro-marker.png')
   const [userLocation, setUserLocation] = useState<GeoLocation>();
   const [errorMsg, setErrorMsg] = useState<string>();  
-  const [selectedMarker, setSelectedMarker] = useState<MarkerLocation>();
-
-  //subscription 
 
     useEffect(() => {
         (async () => {
@@ -76,13 +67,9 @@ export default function Map() {
             }}
             title={bistro.title}
             description={bistro.address.streetAddress}
-            onPress={() =>  {
-              setSelectedMarker({
-                latitude: bistro.address.latitude,
-                longitude: bistro.address.longitude,
-              }); 
+            onPress={() =>  
               setSelectedId(bistro.id)
-            }}
+            }
           > 
           <Image source={selectedId === bistro.id ? selectedMarkerImage : marker}
           />             
