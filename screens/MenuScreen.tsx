@@ -14,14 +14,17 @@ export default function MenuScreen({
   const id = route.params.id.toString();
   const { storedBistros } = useContext(BistroContext);
   const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
+  
+  if (!selectedBistro) return null;
+
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.background}
         source={require("../images/sandwalls-plats.jpg")}
       >
-        <MenuSheet bistro={selectedBistro}/>
-        <MenuInfoBox bistro={selectedBistro}/>
+        <MenuSheet bistro={selectedBistro} />
+        <MenuInfoBox bistro={selectedBistro} />
       </ImageBackground>
     </View>
   );

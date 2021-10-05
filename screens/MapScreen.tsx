@@ -10,7 +10,10 @@ import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
 // Taben bahövs...för route.params inom denna fil
 type Props = CompositeScreenProps<TabScreenProps<"Map">, RootStackScreenProps>;
 
-export default function MapScreen({ navigation }: Props) {
+export default function MapScreen({ navigation, route }: Props) {
+  const id = "1";
+  const { storedBistros } = React.useContext(BistroContext);
+  const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
   return (
     <View style={styles.container}>
           <Map/>

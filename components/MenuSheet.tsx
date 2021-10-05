@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { BistroData } from "../data/bistroData";
 
 interface Props {
-  bistro?: BistroData;
+  bistro: BistroData;
 }
 
 export default function MenuSheet({ bistro }: Props) {
@@ -11,13 +11,13 @@ export default function MenuSheet({ bistro }: Props) {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View>
-          <Text style={[styles.font, styles.bistro]}>{bistro?.title}</Text>
+          <Text style={[styles.font, styles.bistro]}>{bistro.title}</Text>
           <Text style={[styles.font, styles.timeAndPrice]}>
             Serveras mellan:{" "}
-            {bistro?.lunchOfTheWeekDefault.monday?.lunchStart.toFixed(2)} -{" "}
-            {bistro?.lunchOfTheWeekDefault.monday?.lunchEnd.toFixed(2)}
+            {bistro.lunchOfTheWeekDefault.monday?.lunchStart.toFixed(2)} -{" "}
+            {bistro.lunchOfTheWeekDefault.monday?.lunchEnd.toFixed(2)}
           </Text>
-          {bistro?.lunchOfTheWeekDefault.monday?.dishes.map((dish, index) => {
+          {bistro.lunchOfTheWeekDefault.monday?.dishes.map((dish, index) => {
             return (
               <Text style={[styles.font, styles.course]} key={index}>
                 {dish}
@@ -27,7 +27,7 @@ export default function MenuSheet({ bistro }: Props) {
         </View>
         <View>
           <Text style={[styles.font, styles.timeAndPrice]}>
-            Från {bistro?.lunchOfTheWeekDefault.monday?.priceFrom}:-
+            Från {bistro.lunchOfTheWeekDefault.monday?.priceFrom}:-
           </Text>
         </View>
       </ScrollView>
