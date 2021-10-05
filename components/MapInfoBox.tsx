@@ -77,6 +77,8 @@ const styles = StyleSheet.create({
   },
   action: {
     marginTop: 0,
+    paddingRight: 0,
+    paddingLeft: 0,
     backgroundColor: "#fff",
     justifyContent: "space-evenly",
   },
