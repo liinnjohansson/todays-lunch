@@ -53,7 +53,9 @@ function bistroReducer(state: BistroData[], action: BistroAction) {
         const weekday = action.payload.weekday;
         const weekNumber = action.payload.weekNumber;
 
-        
+        // räkna ut vilken datat som ska hämtas
+        // skicka tillbaka i smart format till komponenter
+        // * ex. skapa nytt interface för objekt ?
 
         return nextBistro;
       }
