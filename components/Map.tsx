@@ -44,8 +44,8 @@ function Map() {
         strokeColor="red"
         mode="WALKING"
         onReady={(result) => {
-          console.log(`Distance: ${result.distance} km`);
-          console.log(`Duration: ${result.duration} min.`);
+          console.log(`Avstånd: ${result.distance} km`);
+          console.log(`Tid: ${result.duration} min.`);
         }}
       />
       <Marker
