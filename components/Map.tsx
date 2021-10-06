@@ -15,9 +15,9 @@ function Map() {
   const selectedMarkerImage = require("../images/icons/pressed-bistro-marker.png");
   const { userLocation } = useContext(MapContext);
   const GOOGLE_MAPS_APIKEY = "AIzaSyBvSXOW7pC6kk7InV59oBFOCQ8WZiBUTz0";
-  const [lat, setLat] = useState<number>()
+  const [lat, setLat] = useState<number>();
   const [long, setLong] = useState<number>();
-  
+
   return (
     <MapView
       provider={PROVIDER_GOOGLE}
@@ -68,8 +68,12 @@ function Map() {
           }}
           title={bistro.title}
           description={bistro.address.streetAddress}
-          onPress={() => {{
-            setSelectedId(bistro.id), setLat(bistro.address.latitude), setLong(bistro.address.longitude)};
+          onPress={() => {
+            {
+              setSelectedId(bistro.id),
+                setLat(bistro.address.latitude),
+                setLong(bistro.address.longitude);
+            }
           }}
         >
           <Image
@@ -79,7 +83,7 @@ function Map() {
       ))}
     </MapView>
   );
-};
+}
 
 export default Map;
 
