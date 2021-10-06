@@ -145,7 +145,7 @@ export const bistros: BistroData[] = [
       },
     },
     lunchOfTheWeekOffer: [{
-      weekNumber: 39,
+      weekNumber: 40,
       bistroId: "1",
       tags: {
         outdoorSeating: false,
@@ -204,19 +204,20 @@ export const bistros: BistroData[] = [
         lunchEnd: 14.0,
         priceFrom: 109,
       },
-      friday: {
-        dishes: [
-          "Dagens kött: Fläskschnitzel, Bearnaise eller rödvinssås, citron, ärtor och stekt potatis",
-          "Dagens fisk: Vitvinspocherad fiskfilé med ägg och persiljesås",
-          "Dagens gröna: Biff med stekt lök, kokt potatis och vegansk gräddsås",
-          "Alltid: Köttbullar, gräddsås, lingon, pressgurka och potatismos",
-          "Sallad: välj mellan räksallad, kycklingsallad och tofusallad",
-          "Pasta: Pasta med tonfisk i krämig purjolökssås",
-        ],
-        lunchStart: 11.3,
-        lunchEnd: 14.0,
-        priceFrom: 109,
-      },
+      // PRETEND THAT ON V.40 TheCompany IS CLOSED ON FRIDAY
+      // friday: {
+      //   dishes: [
+      //     "Dagens kött: Fläskschnitzel, Bearnaise eller rödvinssås, citron, ärtor och stekt potatis",
+      //     "Dagens fisk: Vitvinspocherad fiskfilé med ägg och persiljesås",
+      //     "Dagens gröna: Biff med stekt lök, kokt potatis och vegansk gräddsås",
+      //     "Alltid: Köttbullar, gräddsås, lingon, pressgurka och potatismos",
+      //     "Sallad: välj mellan räksallad, kycklingsallad och tofusallad",
+      //     "Pasta: Pasta med tonfisk i krämig purjolökssås",
+      //   ],
+      //   lunchStart: 11.3,
+      //   lunchEnd: 14.0,
+      //   priceFrom: 109,
+      // },
     }],
   },
   {
@@ -255,14 +256,15 @@ export const bistros: BistroData[] = [
         lunchEnd: 14.0,
         priceFrom: 109,
       },
-      wednesday: {
-        dishes: [
-          "Lågtempererad fläskfilé serveras med citronmarinerade rotfrukter samt örtsås",
-        ],
-        lunchStart: 11.0,
-        lunchEnd: 14.0,
-        priceFrom: 109,
-      },
+      //PRETEND THATH THIS BISTOR IS CLOSED ON WEDNESDAY
+      // wednesday: {
+      //   dishes: [
+      //     "Lågtempererad fläskfilé serveras med citronmarinerade rotfrukter samt örtsås",
+      //   ],
+      //   lunchStart: 11.0,
+      //   lunchEnd: 14.0,
+      //   priceFrom: 109,
+      // },
       thursday: {
         dishes: [
           "Grekiska nötfärsbiffar med fetaost serveras med rostad broccoli, olivbakad potatis och tzatziki",

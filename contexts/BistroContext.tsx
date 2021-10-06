@@ -2,7 +2,6 @@ import React, {
   createContext,
   FC,
   useState,
-  useEffect,
   useReducer,
   useContext,
 } from "react";
@@ -10,11 +9,18 @@ import { BistroData, bistros } from "../data/bistroData";
 import bistroReducer, { BistroAction } from "../reducers/bistroReducer";
 
 //***************************************
-// Mock data will be read when application is started from data.ts
+// Mock data will be read when application is started from bistroData.ts
 
 //***************************************
+export type Weekday =
+  | "monday"
+  | "tuesday"
+  | "wednesday"
+  | "thursday"
+  | "friday";
+
 export interface OpenBistro {
-  weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
+  weekday: Weekday;
   weekNumber: number;
 }
 
@@ -40,36 +46,21 @@ export const BistroContext = createContext<ContextValue>({
   removeLikedBistro: () => {},
 });
 
-// TODO: Kod för localstorage, behövs det i denna app ?
-// const BistroProvider: FC = (props) => {
-// 	const [ storedBistros, setStoredBistros ] = useState<BistroData[]>(() => {
-// 		const localData = localStorage.getItem('storedBistros');
-// 		return localData ? JSON.parse(localData) : bistros;
-// 	});
-
 const BistroProvider: FC = ({ children }) => {
   const [storedBistros, dispatch] = useReducer(bistroReducer, bistros);
   const [openBistros, setOpenBistros] = useState<BistroData[]>([]);
   const [likedBistros, setLikedBistros] = useState<BistroData[]>([]);
 
-  // TODO: Kod för local storage..??
-  // useEffect(() => {
-  // 	localStorage.setItem('storedBistros', JSON.stringify(storedBistros))
-  // }, [storedBistros])
-
   const updateStateOpenBistros = (data: OpenBistro) => {
     const returnList: BistroData[] = [];
-
     storedBistros.forEach((bistro) => {
       const lunchOfTheWeekOffer = bistro.lunchOfTheWeekOffer?.find(
         (lunch) => lunch.weekNumber == data.weekNumber
       );
       if (lunchOfTheWeekOffer) {
-        lunchOfTheWeekOffer[data.weekday] ? returnList.push(bistro) : {};
+        lunchOfTheWeekOffer[data.weekday] && returnList.push(bistro);
       } else {
-        bistro.lunchOfTheWeekDefault[data.weekday]
-          ? returnList.push(bistro)
-          : {};
+        bistro.lunchOfTheWeekDefault[data.weekday] && returnList.push(bistro);
       }
     });
     setOpenBistros(returnList);

@@ -9,7 +9,6 @@ import { CompositeScreenProps } from "@react-navigation/native";
 import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
 import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 import { TouchableRipple } from "react-native-paper";
-import { BistroData } from "../data/bistroData";
 
 type Props = CompositeScreenProps<
   TabScreenProps<"Bistro">,
@@ -17,15 +16,19 @@ type Props = CompositeScreenProps<
 >;
 
 export default function BistroScreen({ navigation }: Props) {
-  const weekday = "monday";
-  const weekNumber = 39; //the number for The Company offer menu
+  const weekday = "monday"; // espresso house is "closed" on monday and Viskan on wednesday
+  let currentWeekNumber = require("current-week-number");
+  const weekNumber = currentWeekNumber(); //Do you want to test? v.40 is the number for The Company offer menu (closed on offerWeek Friday)
 
   const { openBistros, updateStateOpenBistros } = useContext(BistroContext);
-  updateStateOpenBistros({ weekday: weekday, weekNumber: weekNumber });
+
+  React.useEffect(() => {
+    updateStateOpenBistros({ weekday: weekday, weekNumber: weekNumber });
+  }, []);
 
   return (
     <View style={styles.container}>
-      <WeekdaySlider />
+      <WeekdaySlider onChange={updateStateOpenBistros} />
       <FlatList
         data={openBistros}
         renderItem={({ item }) => (
