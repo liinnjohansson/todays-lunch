@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
   },
   font: {
     color: "#000",
-    fontFamily: "Roboto",
   },
   bistro: {
     fontWeight: "bold",
