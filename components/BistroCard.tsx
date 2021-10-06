@@ -14,53 +14,28 @@ import LikeButton from "./LikeButton";
 
 interface Props {
   bistro: BistroData;
-  weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "";
+  weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
+  weekNumber: number;
 }
 
-//TODO: Lägg till prop för onPress som hanterar navigation i Screen sidan
-
-const BistroCard = ({ bistro, weekday }: Props) => {
+const BistroCard = ({ bistro, weekday, weekNumber }: Props) => {
   const image = { uri: `${bistro.imageUrl}` };
   const title = bistro.title;
   let lunchStart: String | undefined;
   let lunchEnd: String | undefined;
   let priceFrom: Number | undefined;
 
-  // TODO: Write code that check if weeknumer exist in the server thath correspond to requested week on app screen
-  // Mock data for this case are written for bistro: The Company
-  // This code maybe cut to its own file, and reused ?
-
-  switch (weekday) {
-    case "monday": {
-      lunchStart = bistro.lunchOfTheWeekDefault.monday?.lunchStart?.toFixed(2);
-      lunchEnd = bistro.lunchOfTheWeekDefault.monday?.lunchEnd?.toFixed(2);
-      priceFrom = bistro.lunchOfTheWeekDefault.monday?.priceFrom;
-    }
-    case "tuesday": {
-      lunchStart = bistro.lunchOfTheWeekDefault.tuesday?.lunchStart?.toFixed(2);
-      lunchEnd = bistro.lunchOfTheWeekDefault.tuesday?.lunchEnd?.toFixed(2);
-      priceFrom = bistro.lunchOfTheWeekDefault.tuesday?.priceFrom;
-    }
-    case "wednesday": {
-      lunchStart =
-        bistro.lunchOfTheWeekDefault.wednesday?.lunchStart?.toFixed(2);
-      lunchEnd = bistro.lunchOfTheWeekDefault.wednesday?.lunchEnd?.toFixed(2);
-      priceFrom = bistro.lunchOfTheWeekDefault.wednesday?.priceFrom;
-    }
-    case "thursday": {
-      lunchStart =
-        bistro.lunchOfTheWeekDefault.thursday?.lunchStart?.toFixed(2);
-      lunchEnd = bistro.lunchOfTheWeekDefault.thursday?.lunchEnd?.toFixed(2);
-      priceFrom = bistro.lunchOfTheWeekDefault.thursday?.priceFrom;
-    }
-    case "friday": {
-      lunchStart = bistro.lunchOfTheWeekDefault.friday?.lunchStart?.toFixed(2);
-      lunchEnd = bistro.lunchOfTheWeekDefault.friday?.lunchEnd?.toFixed(2);
-      priceFrom = bistro.lunchOfTheWeekDefault.friday?.priceFrom;
-    }
-    case "": {
-      // do nothing / or should just not be added on the app
-    }
+  const lunchOfTheWeekOffer = bistro.lunchOfTheWeekOffer?.find(
+    (lunch) => lunch.weekNumber == weekNumber
+  );
+  if (lunchOfTheWeekOffer) {
+    lunchStart = lunchOfTheWeekOffer[weekday]?.lunchStart.toFixed(2);
+    lunchEnd = lunchOfTheWeekOffer[weekday]?.lunchEnd?.toFixed(2);
+    priceFrom = lunchOfTheWeekOffer[weekday]?.priceFrom;
+  } else {
+    lunchStart = bistro.lunchOfTheWeekDefault[weekday]?.lunchStart?.toFixed(2);
+    lunchEnd = bistro.lunchOfTheWeekDefault[weekday]?.lunchEnd?.toFixed(2);
+    priceFrom = bistro.lunchOfTheWeekDefault[weekday]?.priceFrom;
   }
 
   const onPress = () => console.log("Nu klickade jag!");
