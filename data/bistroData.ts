@@ -568,19 +568,19 @@ export const bistros: BistroData[] = [
         coffeeIncluded: false,
         saladBuffet: false,
       },
-      // PRETEND THATH THIS BISTRO IS CLOSED AND DONT SHOWN ON MONDAYS IN APP
-      // monday: {
-      //   dishes: ["Sallad med avokado."],
-      //   lunchStart: 11.3,
-      //   lunchEnd: 14.0,
-      //   priceFrom: 85,
-      // },
-      tuesday: {
-        dishes: ["Varma mackor."],
+      monday: {
+        dishes: ["Sallad med avokado."],
         lunchStart: 11.3,
         lunchEnd: 14.0,
         priceFrom: 85,
       },
+      // PRETEND THATH THIS BISTRO IS CLOSED AND DONT SHOWN ON APP
+      // tuesday: {
+      //   dishes: ["Varma mackor."],
+      //   lunchStart: 11.3,
+      //   lunchEnd: 14.0,
+      //   priceFrom: 85,
+      // },
       wednesday: {
         dishes: ["Paj."],
         lunchStart: 11.3,
