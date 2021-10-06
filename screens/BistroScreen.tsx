@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { View } from "../components/Themed";
-import { BistroContext, useBistro } from "../contexts/BistroContext";
+import { BistroContext } from "../contexts/BistroContext";
 import { useContext } from "react";
 import BistroCard from "../components/BistroCard";
 import WeekdaySlider from "../components/WeekdaySlider";
@@ -17,14 +17,11 @@ type Props = CompositeScreenProps<
 >;
 
 export default function BistroScreen({ navigation }: Props) {
-  // const { storedBistros } = useContext(BistroContext);  // OLD import of disply items
   const weekday = "monday";
   const weekNumber = 39; //the number for The Company offer menu
-  // const { storedBistros, dispatch } = useBistro();
-  const { openBistros, setOpenBistros } = useContext({
-    weekday: weekday,
-    weekNumber: weekNumber,
-  });
+
+  const { openBistros, updateStateOpenBistros } = useContext(BistroContext);
+  updateStateOpenBistros({ weekday: weekday, weekNumber: weekNumber });
 
   return (
     <View style={styles.container}>
