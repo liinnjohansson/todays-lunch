@@ -3,38 +3,18 @@ import { Dimensions, StyleSheet } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { mapStyle } from "../data/mapStyle";
 import { BistroContext } from "../contexts/BistroContext";
-import { useContext, useEffect, useState } from "react";
-import * as Location from 'expo-location';
+import { useContext, useState } from "react";
 import {
 View, Image
 } from "react-native";
+import { MapContext } from "../contexts/MapContext";
 
-interface GeoLocation {
-  longitude: number,
-  latitude: number,
-}
-
-export default function Map() {
+function Map() {
   const [selectedId, setSelectedId] = useState<string>()
   const { storedBistros } = useContext(BistroContext);
   const marker = require('../images/icons/marker.png');
   const selectedMarkerImage = require('../images/icons/pressed-bistro-marker.png')
-  const [userLocation, setUserLocation] = useState<GeoLocation>();
-  const [errorMsg, setErrorMsg] = useState<string>();  
-
-    useEffect(() => {
-        (async () => {
-          const { status } = await Location.requestForegroundPermissionsAsync();
-          if (status !== 'granted') {
-            setErrorMsg('Permission to access location was denied');
-            return;
-          }
-          let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.Low});
-          setUserLocation(location.coords);
-          location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.High});
-          setUserLocation(location.coords);
-        })();
-      }, []);
+  const { userLocation} = useContext(MapContext); 
 
   return (
     <View>
@@ -44,7 +24,7 @@ export default function Map() {
         style={styles.map}
         initialRegion={{
           latitude: userLocation?.latitude || 57.7206788,
-          longitude: userLocation?.longitude || 57.7206788,
+          longitude:  userLocation?.longitude|| 57.7206788,
           latitudeDelta: 0.0022,
           longitudeDelta: 0.0021,
         }}
@@ -79,6 +59,8 @@ export default function Map() {
     </View>
   );
 }
+
+export default Map;
 
 const styles = StyleSheet.create({
   map: {

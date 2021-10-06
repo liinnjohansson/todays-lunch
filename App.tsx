@@ -5,6 +5,7 @@ import BistroProvider from './contexts/BistroContext';
 import useColorScheme from './hooks/useColorScheme';
 import AnimatedSplashScreen from './screens/SplashScreen';
 import Navigation from './navigation/Navigation';
+import MapProvider from './contexts/MapContext';
 
 
 export default function App() {
@@ -13,10 +14,12 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <BistroProvider>
+          <MapProvider>
         <AnimatedSplashScreen>
         <Navigation colorScheme={colorScheme} />
         </AnimatedSplashScreen>
         <StatusBar />
+        </MapProvider>
       </BistroProvider>
       </SafeAreaProvider>
     );
