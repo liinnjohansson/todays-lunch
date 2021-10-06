@@ -2,12 +2,12 @@ import { CompositeScreenProps } from "@react-navigation/native";
 import * as React from "react";
 import { Button, Text, StyleSheet } from "react-native";
 import { View } from "../components/Themed";
-import { RootStackScreenProps } from "../navigation/RootStackNavigator";
+import { RootStackAllScreenProps } from "../navigation/RootStackNavigator";
 import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
 
 // CompositScreenProp används för att nvigera till vilken sida som helst från denna sida,
 // Taben bahövs...för route.params inom denna fil
-type Props = CompositeScreenProps<TabScreenProps<"Map">, RootStackScreenProps>;
+type Props = CompositeScreenProps<TabScreenProps<"MapTab">, RootStackAllScreenProps>;
 
 export default function MapScreen({ navigation }: Props) {
   return (

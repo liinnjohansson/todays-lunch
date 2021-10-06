@@ -1,3 +1,4 @@
+import { CompositeScreenProps } from "@react-navigation/native";
 import * as React from "react";
 import { useContext } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
@@ -6,12 +7,13 @@ import MenuInfoBox from "../components/MenuInfoBox";
 import MenuSheet from "../components/MenuSheet";
 import { View } from "../components/Themed";
 import { BistroContext } from "../contexts/BistroContext";
-import { RootStackScreenProps } from "../navigation/RootStackNavigator";
+import { MapStackScreenProps } from "../navigation/MapStackNavigator";
+import { RootStackAllScreenProps, RootStackScreenProps } from "../navigation/RootStackNavigator";
+import { TabAllScreenProps } from "../navigation/TabBistroMapNavigator";
 
-export default function MenuScreen({
-  navigation,
-  route,
-}: RootStackScreenProps<"Menu">) {
+type Props = CompositeScreenProps<MapStackScreenProps<"Menu">, TabAllScreenProps>;
+
+export default function MenuScreen({ navigation, route }: Props) {
   const id = route.params.id.toString();
   const { storedBistros } = useContext(BistroContext);
   const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
@@ -25,8 +27,8 @@ export default function MenuScreen({
         <MenuInfoBox bistro={selectedBistro} />
         <Button
           title={"gå till karta"}
-          // onPress={() => navigation.navigate("Root", { screen: "Map" })}
-          onPress={() => navigation.push("MenuMap")}
+          onPress={() => navigation.navigate("MapTab")}
+          // onPress={() => navigation.navigate("")}
         />
       </ImageBackground>
     </View>

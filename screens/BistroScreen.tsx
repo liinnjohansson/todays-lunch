@@ -11,7 +11,7 @@ import { RootStackAllScreenProps } from "../navigation/RootStackNavigator";
 import { TouchableRipple } from "react-native-paper";
 
 type Props = CompositeScreenProps<
-  TabScreenProps<"Bistro">,
+  TabScreenProps<"BistroTab">,
   RootStackAllScreenProps
 >;
 

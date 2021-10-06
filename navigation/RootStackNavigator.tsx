@@ -60,7 +60,6 @@ export default function RootStackNavigator() {
         component={MenuScreen}
         options={({ route }) => ({ title: route.params.title })}
       />
-      <Stack.Screen name="MenuMap" component={MapScreen} />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
