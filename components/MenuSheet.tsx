@@ -4,30 +4,52 @@ import { BistroData } from "../data/bistroData";
 
 interface Props {
   bistro: BistroData;
+  weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
+  weekNumber: number;
 }
 
-export default function MenuSheet({ bistro }: Props) {
+export default function MenuSheet({ bistro, weekday, weekNumber }: Props) {
+  const title = bistro.title;
+  let dishes: string[] | undefined;
+  let lunchStart: String | undefined;
+  let lunchEnd: String | undefined;
+  let priceFrom: Number | undefined;
+
+  const lunchOfTheWeekOffer = bistro.lunchOfTheWeekOffer?.find(
+    (lunch) => lunch.weekNumber == weekNumber
+  );
+  if (lunchOfTheWeekOffer) {
+    dishes = lunchOfTheWeekOffer[weekday]?.dishes;
+    lunchStart = lunchOfTheWeekOffer[weekday]?.lunchStart.toFixed(2);
+    lunchEnd = lunchOfTheWeekOffer[weekday]?.lunchEnd?.toFixed(2);
+    priceFrom = lunchOfTheWeekOffer[weekday]?.priceFrom;
+  } else {
+    dishes = bistro.lunchOfTheWeekDefault[weekday]?.dishes;
+    lunchStart = bistro.lunchOfTheWeekDefault[weekday]?.lunchStart?.toFixed(2);
+    lunchEnd = bistro.lunchOfTheWeekDefault[weekday]?.lunchEnd?.toFixed(2);
+    priceFrom = bistro.lunchOfTheWeekDefault[weekday]?.priceFrom;
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View>
-          <Text style={[styles.font, styles.bistro]}>{bistro.title}</Text>
+          <Text style={[styles.font, styles.bistro]}>{title}</Text>
           <Text style={[styles.font, styles.timeAndPrice]}>
-            Serveras mellan:{" "}
-            {bistro.lunchOfTheWeekDefault.monday?.lunchStart.toFixed(2)} -{" "}
-            {bistro.lunchOfTheWeekDefault.monday?.lunchEnd.toFixed(2)}
+            Serveras mellan: {lunchStart} - {lunchEnd}
           </Text>
-          {bistro.lunchOfTheWeekDefault.monday?.dishes.map((dish, index) => {
-            return (
-              <Text style={[styles.font, styles.course]} key={index}>
-                {dish}
-              </Text>
-            );
-          })}
+          {dishes &&
+            dishes.map((dish, index) => {
+              return (
+                <Text style={[styles.font, styles.course]} key={index}>
+                  {dish}
+                </Text>
+              );
+            })}
         </View>
         <View>
           <Text style={[styles.font, styles.timeAndPrice]}>
-            Från {bistro.lunchOfTheWeekDefault.monday?.priceFrom}:-
+            Från {priceFrom}:-
           </Text>
         </View>
       </ScrollView>

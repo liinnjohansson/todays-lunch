@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { View } from "../components/Themed";
-import { BistroContext } from "../contexts/BistroContext";
+import { BistroContext, Weekday, WeekInfo } from "../contexts/BistroContext";
 import { useContext } from "react";
 import BistroCard from "../components/BistroCard";
 import WeekdaySlider from "../components/WeekdaySlider";
@@ -16,19 +16,26 @@ type Props = CompositeScreenProps<
 >;
 
 export default function BistroScreen({ navigation }: Props) {
-  const weekday = "monday"; // espresso house is "closed" on tuesday and Viskan on wednesday
+  // const weekday = "monday"; // espresso house is "closed" on tuesday and Viskan on wednesday
   let currentWeekNumber = require("current-week-number");
-  const weekNumber = currentWeekNumber(); //Do you want to test? v.40 is the number for The Company offer menu (closed on offerWeek Friday)
+  const [selectedDay, setSelectedDay] = React.useState<WeekInfo>({
+    weekday: "monday",
+    weekNumber: currentWeekNumber(),
+  });
+  // const weekNumber = currentWeekNumber(); //Do you want to test? v.40 is the number for The Company offer menu (closed on offerWeek Friday)
 
   const { openBistros, updateStateOpenBistros } = useContext(BistroContext);
 
   React.useEffect(() => {
-    updateStateOpenBistros({ weekday: weekday, weekNumber: weekNumber });
+    updateStateOpenBistros({
+      weekday: selectedDay.weekday,
+      weekNumber: selectedDay.weekNumber,
+    });
   }, []);
 
   return (
     <View style={styles.container}>
-      <WeekdaySlider onChange={updateStateOpenBistros} />
+      <WeekdaySlider onChange={(updateStateOpenBistros, setSelectedDay)} />
       <FlatList
         data={openBistros}
         renderItem={({ item }) => (

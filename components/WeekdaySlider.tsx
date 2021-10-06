@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { OpenBistro, Weekday } from "../contexts/BistroContext";
+import { WeekInfo, Weekday } from "../contexts/BistroContext";
 
 interface Props {
-  onChange: (data: OpenBistro) => void;
+  onChange: (data: WeekInfo) => void;
 }
 
 const WeekdaySlider = ({ onChange }: Props) => {
