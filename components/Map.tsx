@@ -7,7 +7,6 @@ import { useContext, useState } from "react";
 import { Image } from "react-native";
 import { MapContext } from "../contexts/MapContext";
 import MapViewDirections from "react-native-maps-directions";
-import { BistroData, bistros } from "../data/bistroData";
 
 function Map() {
   const [selectedId, setSelectedId] = useState<string>();
