@@ -8,17 +8,14 @@ import React, {
 } from "react";
 import { BistroData, bistros } from "../data/bistroData";
 import bistroReducer, { BistroAction } from "../reducers/bistroReducer";
-import openBistrosReducer, {
-  OpenBistrosAction,
-} from "../reducers/openBistrosReducer";
 
 //***************************************
 // Mock data will be read when application is started from data.ts
 
 //***************************************
-interface getOpenBistro {
-  weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday",
-  weekNumber: number
+export interface OpenBistro {
+  weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
+  weekNumber: number;
 }
 
 interface ContextValue {
@@ -26,7 +23,7 @@ interface ContextValue {
   openBistros: BistroData[];
   likedBistros: BistroData[];
   dispatch: React.Dispatch<BistroAction>;
-  updateStateOpenBistros: (data: getOpenBistro) => void;
+  updateStateOpenBistros: (data: OpenBistro) => void;
   toggleLikedBistros: (bistro: BistroData) => void;
   addLikedBistro: (bistro: BistroData) => void;
   removeLikedBistro: (bistro: BistroData) => void;
@@ -60,18 +57,19 @@ const BistroProvider: FC = ({ children }) => {
   // 	localStorage.setItem('storedBistros', JSON.stringify(storedBistros))
   // }, [storedBistros])
 
-  const updateStateOpenBistros(data: getOpenBistro) => {
-        
+  const updateStateOpenBistros = (data: OpenBistro) => {
     const returnList: BistroData[] = [];
 
-    storedBistros.forEach(bistro => {
+    storedBistros.forEach((bistro) => {
       const lunchOfTheWeekOffer = bistro.lunchOfTheWeekOffer?.find(
         (lunch) => lunch.weekNumber == data.weekNumber
       );
       if (lunchOfTheWeekOffer) {
-        lunchOfTheWeekOffer[data.weekday]? returnList.push(bistro) : {};
+        lunchOfTheWeekOffer[data.weekday] ? returnList.push(bistro) : {};
       } else {
-        bistro.lunchOfTheWeekDefault[data.weekday]? returnList.push(bistro) : {};
+        bistro.lunchOfTheWeekDefault[data.weekday]
+          ? returnList.push(bistro)
+          : {};
       }
     });
     setOpenBistros(returnList);

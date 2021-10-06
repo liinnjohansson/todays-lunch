@@ -13,13 +13,6 @@ interface RemoveBistroAction {
   type: "remove-bistro";
   payload: BistroData;
 }
-// interface GetOpenBistrosAction {
-//   type: "get-open-bistros";
-//   payload: {
-//     weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
-//     weekNumber: number;
-//  };
-// }
 
 export type BistroAction = AddBistroAction | EditBistroAction | RemoveBistroAction;
 
@@ -49,24 +42,6 @@ function bistroReducer(state: BistroData[], action: BistroAction) : BistroData[]
         nextBistro.filter((item) => item.id !== bistro.id)
         return nextBistro;
       }
-      // case "get-open-bistros": {
-      //   const nextBistro = [...state];
-      //   const returnList: BistroData[] = [];
-      //   const weekday = action.payload.weekday;
-      //   const weekNumber = action.payload.weekNumber;
-
-      //   nextBistro.forEach(bistro => {
-      //     const lunchOfTheWeekOffer = bistro.lunchOfTheWeekOffer?.find(
-      //       (lunch) => lunch.weekNumber == weekNumber
-      //     );
-      //     if (lunchOfTheWeekOffer) {
-      //       lunchOfTheWeekOffer[weekday]? returnList.push(bistro) : {};
-      //     } else {
-      //       bistro.lunchOfTheWeekDefault[weekday]? returnList.push(bistro) : {};
-      //     }
-      //   });
-      //   return returnList;
-      // }
       default: {
           exhaustiveCheck(action);
           return state;
