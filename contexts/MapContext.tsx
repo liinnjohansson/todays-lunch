@@ -5,17 +5,13 @@ import * as Location from 'expo-location';
    longitude: number,
    latitude: number,
  }
-
 interface ContextValue {
     userLocation?: GeoLocation;
-    // mapLocation?: GeoLocation;
     setUserLocation: (location: GeoLocation) => void;
-    // setMapLocation: (location: GeoLocation) => void;
 }
 
 export const MapContext = createContext<ContextValue>({
     setUserLocation: () => {},
-    // setMapLocation: () => {},
 })
 
 const MapProvider: FC = ({ children }) => {
@@ -39,9 +35,7 @@ useEffect(() => {
         <MapContext.Provider
         value={{
             userLocation,
-            // mapLocation,
             setUserLocation,
-            // setMapLocation,
     }}
 > 
 {children}
