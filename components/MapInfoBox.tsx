@@ -54,6 +54,9 @@ export default function MapInfoBox({ bistro, onChangeTransport, mapTransport }: 
               <Title style={styles.text}>{bistro.title}</Title>
               <LikeButton bistro={bistro} />
             </View>
+            <View>
+            <Paragraph style={styles.text}>{bistro.address.streetAddress}</Paragraph>
+            </View>
             <View style={styles.distance}>
               {mapTransport && <Paragraph style={[styles.text, styles.time]}>{mapTransport.duration.toFixed()} min </Paragraph>}
               {mapTransport && <Paragraph style={styles.text}>({mapTransport.distance.toFixed(2)} km)</Paragraph>}
