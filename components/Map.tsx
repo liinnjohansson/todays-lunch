@@ -9,10 +9,10 @@ import { MapContext } from "../contexts/MapContext";
 import MapViewDirections from "react-native-maps-directions";
 import { BistroData } from "../data/bistroData";
 
-export type TransportMode = "DRIVING" | "BICYCLING" | "WALKING" |"TRANSIT";
+export type TransportMode = "DRIVING" | "BICYCLING" | "WALKING" | "TRANSIT";
 export interface MapMode {
-  distance: number,
-  duration: number,
+  distance: number;
+  duration: number;
 }
 interface Props {
   onChangeBistro: (bistro: BistroData) => void;
@@ -20,7 +20,7 @@ interface Props {
   transportMode: TransportMode;
 }
 
-const Map = ({onChangeBistro, onChangeMode, transportMode}: Props) => {
+const Map = ({ onChangeBistro, onChangeMode, transportMode }: Props) => {
   const [selectedId, setSelectedId] = useState<string>();
   const { storedBistros } = useContext(BistroContext);
   const marker = require("../images/icons/marker.png");
@@ -33,10 +33,10 @@ const Map = ({onChangeBistro, onChangeMode, transportMode}: Props) => {
   const pressedMarker = (bistro: BistroData) => {
     onChangeBistro(bistro);
   };
-  
+
   const transportResult = (mode: MapMode) => {
     onChangeMode(mode);
-  }
+  };
 
   return (
     <MapView
@@ -65,9 +65,10 @@ const Map = ({onChangeBistro, onChangeMode, transportMode}: Props) => {
         strokeColor="#F8607E"
         mode={transportMode}
         onReady={(result) => {
-          console.log(`Avstånd: ${result.distance} km`);
-          console.log(`Tid: ${result.duration} min.`);
-          let mode: MapMode = {distance: result.distance, duration: result.duration}
+          let mode: MapMode = {
+            distance: result.distance,
+            duration: result.duration,
+          };
           onChangeMode(mode);
         }}
       />
@@ -96,7 +97,7 @@ const Map = ({onChangeBistro, onChangeMode, transportMode}: Props) => {
               setSelectedId(bistro.id),
                 setLat(bistro.address.latitude),
                 setLong(bistro.address.longitude);
-                pressedMarker(bistro);
+              pressedMarker(bistro);
             }
           }}
         >
@@ -107,7 +108,7 @@ const Map = ({onChangeBistro, onChangeMode, transportMode}: Props) => {
       ))}
     </MapView>
   );
-}
+};
 
 export default Map;
 

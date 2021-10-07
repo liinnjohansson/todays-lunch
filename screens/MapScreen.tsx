@@ -9,8 +9,7 @@ import MapInfoBox from "../components/MapInfoBox";
 import { BistroContext } from "../contexts/BistroContext";
 import { useContext, useState } from "react";
 import { BistroData } from "../data/bistroData";
-import { MapMode } from "../components/Map"
-
+import { MapMode } from "../components/Map";
 
 type Props = CompositeScreenProps<TabScreenProps<"Map">, RootStackScreenProps>;
 
@@ -23,24 +22,31 @@ export default function MapScreen({ navigation, route }: Props) {
 
   const changeBistro = (bistro: BistroData) => {
     setId(bistro.id);
-    console.log("chengeBistro");
   };
   const changeMode = (transportMode: TransportMode) => {
     setMode(transportMode);
-    console.log("changeMode")
   };
 
   const changeTimeResult = (result: MapMode) => {
     setMapMode(result);
-    console.log("changeTimeResult");
-  }
+  };
 
   return (
     <View style={styles.container}>
       <View>
-      <Map onChangeBistro={changeBistro} onChangeMode={changeTimeResult} transportMode={mode}/>
+        <Map
+          onChangeBistro={changeBistro}
+          onChangeMode={changeTimeResult}
+          transportMode={mode}
+        />
       </View>
-      {selectedBistro && <MapInfoBox bistro={selectedBistro} mapTransport={mapMode} onChangeTransport={changeMode}/>}
+      {selectedBistro && (
+        <MapInfoBox
+          bistro={selectedBistro}
+          mapTransport={mapMode}
+          onChangeTransport={changeMode}
+        />
+      )}
     </View>
   );
 }
