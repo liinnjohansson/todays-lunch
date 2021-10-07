@@ -4,59 +4,85 @@ import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { mapStyle } from "../data/mapStyle";
 import { BistroContext } from "../contexts/BistroContext";
 import { useContext, useState } from "react";
-import {
-View, Image
-} from "react-native";
+import { Image } from "react-native";
 import { MapContext } from "../contexts/MapContext";
+import MapViewDirections from "react-native-maps-directions";
 
 function Map() {
-  const [selectedId, setSelectedId] = useState<string>()
+  const [selectedId, setSelectedId] = useState<string>();
   const { storedBistros } = useContext(BistroContext);
-  const marker = require('../images/icons/marker.png');
-  const selectedMarkerImage = require('../images/icons/pressed-bistro-marker.png')
-  const { userLocation} = useContext(MapContext); 
+  const marker = require("../images/icons/marker.png");
+  const selectedMarkerImage = require("../images/icons/pressed-bistro-marker.png");
+  const { userLocation } = useContext(MapContext);
+  const GOOGLE_MAPS_APIKEY = "AIzaSyBvSXOW7pC6kk7InV59oBFOCQ8WZiBUTz0";
+  const [lat, setLat] = useState<number>();
+  const [long, setLong] = useState<number>();
 
   return (
-    <View>
-      <MapView
-        provider={PROVIDER_GOOGLE}
-        customMapStyle={mapStyle}
-        style={styles.map}
-        initialRegion={{
-          latitude: userLocation?.latitude || 57.7206788,
-          longitude:  userLocation?.longitude|| 57.7206788,
-          latitudeDelta: 0.0022,
-          longitudeDelta: 0.0021,
+    <MapView
+      provider={PROVIDER_GOOGLE}
+      customMapStyle={mapStyle}
+      style={styles.map}
+      initialRegion={{
+        latitude: userLocation?.latitude || 57.719723,
+        longitude: userLocation?.longitude || 12.941051,
+        latitudeDelta: 0.0022,
+        longitudeDelta: 0.0021,
+      }}
+    >
+      <MapViewDirections
+        lineDashPattern={[0]}
+        origin={{
+          latitude: userLocation?.latitude || 57.719723,
+          longitude: userLocation?.longitude || 12.941051,
         }}
-      >
-        <Marker
+        destination={{
+          latitude: lat || 0,
+          longitude: long || 0,
+        }}
+        apikey={GOOGLE_MAPS_APIKEY}
+        strokeWidth={3}
+        strokeColor="#F8607E"
+        mode="WALKING"
+        onReady={(result) => {
+          console.log(`Avstånd: ${result.distance} km`);
+          console.log(`Tid: ${result.duration} min.`);
+        }}
+      />
+      <Marker
         coordinate={{
           latitude: userLocation?.latitude || 57.7206788,
           longitude: userLocation?.longitude || 57.7206788,
-             }}>
-               <Image
-               style={styles.image}
-               source={require('../images/icons/cat.png')}    /> 
-          </Marker>
-        {storedBistros.map((bistro) => (
-          <Marker
-            key={bistro.id}
-            coordinate={{
-              latitude: bistro.address.latitude,
-              longitude: bistro.address.longitude,
-            }}
-            title={bistro.title}
-            description={bistro.address.streetAddress}
-            onPress={() =>  
-              setSelectedId(bistro.id)
+        }}
+      >
+        <Image
+          style={styles.image}
+          source={require("../images/icons/cat.png")}
+        />
+      </Marker>
+      {storedBistros.map((bistro) => (
+        <Marker
+          key={bistro.id}
+          coordinate={{
+            latitude: bistro.address.latitude || 57.7206788,
+            longitude: bistro.address.longitude || 57.7206788,
+          }}
+          title={bistro.title}
+          description={bistro.address.streetAddress}
+          onPress={() => {
+            {
+              setSelectedId(bistro.id),
+                setLat(bistro.address.latitude),
+                setLong(bistro.address.longitude);
             }
-          > 
-          <Image source={selectedId === bistro.id ? selectedMarkerImage : marker}
-          />             
-          </Marker>
-        ))}
-      </MapView>
-    </View>
+          }}
+        >
+          <Image
+            source={selectedId === bistro.id ? selectedMarkerImage : marker}
+          />
+        </Marker>
+      ))}
+    </MapView>
   );
 }
 
@@ -69,6 +95,6 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 50,
-    height: 100
-  }
+    height: 100,
+  },
 });
