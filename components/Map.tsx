@@ -24,20 +24,21 @@ function Map() {
       customMapStyle={mapStyle}
       style={styles.map}
       initialRegion={{
-        latitude: userLocation?.latitude || 12.938943407626931,
-        longitude: userLocation?.longitude || 12.938943407626931,
+        latitude: userLocation?.latitude || 57.719723,
+        longitude: userLocation?.longitude || 12.941051,
         latitudeDelta: 0.0022,
         longitudeDelta: 0.0021,
       }}
     >
       <MapViewDirections
+        lineDashPattern={[0]}
         origin={{
-          latitude: userLocation?.latitude || 57.72002214821148,
-          longitude: userLocation?.longitude || 12.938943407626931,
+          latitude: userLocation?.latitude || 57.719723,
+          longitude: userLocation?.longitude || 12.941051,
         }}
         destination={{
-          latitude: lat || 57.72002214821148,
-          longitude: long || 57.72002214821148,
+          latitude: lat || 57.719723,
+          longitude: long || 12.941051,
         }}
         apikey={GOOGLE_MAPS_APIKEY}
         strokeWidth={3}
