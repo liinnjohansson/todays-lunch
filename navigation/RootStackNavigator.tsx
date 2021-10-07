@@ -56,6 +56,7 @@ export default function RootStackNavigator() {
         headerTintColor: colors.text,
         headerTitleAlign: "center",
         headerStyle: { backgroundColor: "#723A45" },
+        headerBackTitleVisible: false
       }}
     >
       <Stack.Screen
