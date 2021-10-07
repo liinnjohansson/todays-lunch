@@ -5,14 +5,19 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Paragraph, Title } from "react-native-paper";
 import { BistroData } from "../data/bistroData";
 import LikeButton from "./LikeButton";
+import { MapMode, TransportMode } from "./Map";
 
 interface Props {
   bistro: BistroData;
+  mapTransport: MapMode | undefined;
+  onChangeTransport: (mode: TransportMode) => void;
 }
 
-export default function MapInfoBox({ bistro }: Props) {
+export default function MapInfoBox({ bistro, onChangeTransport, mapTransport }: Props) {
   const close = () => console.log("stäng"); //TODO: Koppla
-  const transport = () => console.log("val av transport"); //TODO: Koppla
+  const transport = (mode: TransportMode) => {
+    onChangeTransport(mode);
+  };
   return (
     <View style={styles.container}>
       <Card style={styles.box}>
@@ -22,25 +27,25 @@ export default function MapInfoBox({ bistro }: Props) {
             name="directions-car"
             size={26}
             color="#000"
-            onPress={transport}
+            onPress={() => transport('DRIVING')}
           />
           <MaterialIcons
             name="directions-train"
             size={26}
             color="#000"
-            onPress={transport}
+            onPress={() => transport('TRANSIT')}
           />
           <MaterialIcons
             name="directions-walk"
             size={26}
             color="#000"
-            onPress={transport}
+            onPress={() => transport('WALKING')}
           />
           <MaterialIcons
             name="directions-bike"
             size={26}
             color="#000"
-            onPress={transport}
+            onPress={() => transport('BICYCLING')}
           />
         </Card.Actions>
         <Card.Content style={styles.content}>
@@ -50,13 +55,13 @@ export default function MapInfoBox({ bistro }: Props) {
               <LikeButton bistro={bistro} />
             </View>
             <View style={styles.distance}>
-              <Paragraph style={[styles.text, styles.time]}>15min </Paragraph>
-              <Paragraph style={styles.text}>(2,2km)</Paragraph>
+              {mapTransport && <Paragraph style={[styles.text, styles.time]}>{mapTransport.duration.toFixed()} min </Paragraph>}
+              {mapTransport && <Paragraph style={styles.text}>({mapTransport.distance.toFixed(2)} km)</Paragraph>}
             </View>
           </View>
-          <TouchableOpacity onPress={close} style={styles.contentChild}>
+          {/* <TouchableOpacity onPress={close} style={styles.contentChild}>
             <MaterialIcons name="close" size={30} color="#fff" />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </Card.Content>
       </Card>
     </View>
@@ -65,8 +70,8 @@ export default function MapInfoBox({ bistro }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "flex-end",
+    position: "absolute",
+    bottom: 0,
     width: "100%",
   },
   box: {
