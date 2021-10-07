@@ -34,8 +34,7 @@ export default function MenuInfoBox({ bistro, navigation }: Props) {
                 style={styles.icon}
               />
               {/* TODO: Behöver kunna hämta antalet minuter och avstånd från kartan */}
-              <Paragraph style={[styles.text, styles.time]}>15min </Paragraph>
-              <Paragraph style={styles.text}>(2,2km)</Paragraph>
+              <Paragraph style={[styles.text, styles.time]}>Gå till karta </Paragraph>
             </View>
           </TouchableOpacity>
         </Card.Actions>
