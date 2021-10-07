@@ -16,10 +16,7 @@ type Props = CompositeScreenProps<
 >;
 
 export default function BistroScreen({ navigation }: Props) {
-  // const weekday = "tuesday"; // espresso house is "closed" on tuesday and Viskan on wednesday
   let currentWeekNumber = require("current-week-number");
-  // const weekNumber = currentWeekNumber(); //Do you want to test? v.40 is the number for The Company offer menu (closed on offerWeek Friday)
-
   const { openBistros, updateStateOpenBistros } = useContext(BistroContext);
   const [weekInfo, setWeekInfo] = React.useState<WeekInfo>({
     weekday: "tuesday",
@@ -27,15 +24,17 @@ export default function BistroScreen({ navigation }: Props) {
   });
 
   React.useEffect(() => {
-    updateStateOpenBistros({
-      weekday: weekInfo.weekday,
-      weekNumber: weekInfo.weekNumber,
-    });
+    updateStateOpenBistros(weekInfo);
   }, []);
+
+  const actionChange = (data: WeekInfo) => {
+    updateStateOpenBistros(data);
+    setWeekInfo(data);
+  };
 
   return (
     <View style={styles.container}>
-      <WeekdaySlider onChange={updateStateOpenBistros} />
+      <WeekdaySlider onChange={actionChange} />
       <FlatList
         data={openBistros}
         renderItem={({ item }) => (
