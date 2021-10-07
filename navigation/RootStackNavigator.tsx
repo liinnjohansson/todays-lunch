@@ -34,7 +34,7 @@ export interface RootStackParamList extends ParamListBase {
   Menu: {
     title: string;
     id: string;
-    weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "";
+    weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
     weekNumber: number;
   };
   NotFound: undefined;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { View } from "../components/Themed";
-import { BistroContext } from "../contexts/BistroContext";
+import { BistroContext, Weekday, WeekInfo } from "../contexts/BistroContext";
 import { useContext } from "react";
 import BistroCard from "../components/BistroCard";
 import WeekdaySlider from "../components/WeekdaySlider";
@@ -16,19 +16,25 @@ type Props = CompositeScreenProps<
 >;
 
 export default function BistroScreen({ navigation }: Props) {
-  const weekday = "monday"; // espresso house is "closed" on tuesday and Viskan on wednesday
   let currentWeekNumber = require("current-week-number");
-  const weekNumber = currentWeekNumber(); //Do you want to test? v.40 is the number for The Company offer menu (closed on offerWeek Friday)
-
   const { openBistros, updateStateOpenBistros } = useContext(BistroContext);
+  const [weekInfo, setWeekInfo] = React.useState<WeekInfo>({
+    weekday: "tuesday",
+    weekNumber: currentWeekNumber(),
+  });
 
   React.useEffect(() => {
-    updateStateOpenBistros({ weekday: weekday, weekNumber: weekNumber });
+    updateStateOpenBistros(weekInfo);
   }, []);
+
+  const actionChange = (data: WeekInfo) => {
+    updateStateOpenBistros(data);
+    setWeekInfo(data);
+  };
 
   return (
     <View style={styles.container}>
-      <WeekdaySlider onChange={updateStateOpenBistros} />
+      <WeekdaySlider onChange={actionChange} />
       <FlatList
         data={openBistros}
         renderItem={({ item }) => (
@@ -37,15 +43,15 @@ export default function BistroScreen({ navigation }: Props) {
               navigation.navigate("Menu", {
                 id: item.id,
                 title: item.title,
-                weekday: weekday,
-                weekNumber: weekNumber,
+                weekday: weekInfo.weekday,
+                weekNumber: weekInfo.weekNumber,
               })
             }
           >
             <BistroCard
               bistro={item}
-              weekday={weekday}
-              weekNumber={weekNumber}
+              weekday={weekInfo.weekday}
+              weekNumber={weekInfo.weekNumber}
             />
           </TouchableRipple>
         )}
