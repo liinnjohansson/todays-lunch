@@ -40,7 +40,7 @@ export default function MapScreen({ navigation, route }: Props) {
       <View>
       <Map onChangeBistro={changeBistro} onChangeMode={changeTimeResult} transportMode={mode}/>
       </View>
-      {selectedBistro && <MapInfoBox bistro={selectedBistro} onChangeTransport={changeMode}/>}
+      {selectedBistro && <MapInfoBox bistro={selectedBistro} mapTransport={mapMode} onChangeTransport={changeMode}/>}
     </View>
   );
 }

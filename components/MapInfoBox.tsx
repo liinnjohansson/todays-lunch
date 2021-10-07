@@ -5,14 +5,15 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Paragraph, Title } from "react-native-paper";
 import { BistroData } from "../data/bistroData";
 import LikeButton from "./LikeButton";
-import { TransportMode } from "./Map";
+import { MapMode, TransportMode } from "./Map";
 
 interface Props {
   bistro: BistroData;
+  mapTransport: MapMode | undefined;
   onChangeTransport: (mode: TransportMode) => void;
 }
 
-export default function MapInfoBox({ bistro, onChangeTransport }: Props) {
+export default function MapInfoBox({ bistro, onChangeTransport, mapTransport }: Props) {
   const close = () => console.log("stäng"); //TODO: Koppla
   const transport = (mode: TransportMode) => {
     onChangeTransport(mode);
@@ -54,13 +55,13 @@ export default function MapInfoBox({ bistro, onChangeTransport }: Props) {
               <LikeButton bistro={bistro} />
             </View>
             <View style={styles.distance}>
-              <Paragraph style={[styles.text, styles.time]}>15min </Paragraph>
-              <Paragraph style={styles.text}>(2,2km)</Paragraph>
+              {mapTransport && <Paragraph style={[styles.text, styles.time]}>{mapTransport.duration.toFixed(2)} min </Paragraph>}
+              {mapTransport && <Paragraph style={styles.text}>({mapTransport.distance.toFixed(2)} km)</Paragraph>}
             </View>
           </View>
-          <TouchableOpacity onPress={close} style={styles.contentChild}>
+          {/* <TouchableOpacity onPress={close} style={styles.contentChild}>
             <MaterialIcons name="close" size={30} color="#fff" />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </Card.Content>
       </Card>
     </View>
