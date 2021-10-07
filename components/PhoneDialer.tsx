@@ -1,4 +1,5 @@
-import { Linking, Platform } from "react-native";
+import { Platform } from "react-native";
+import * as Linking from "expo-linking"
 import { BistroData } from "../data/bistroData";
 
 interface Props {
