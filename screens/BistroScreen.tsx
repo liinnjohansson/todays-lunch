@@ -16,16 +16,20 @@ type Props = CompositeScreenProps<
 >;
 
 export default function BistroScreen({ navigation }: Props) {
-  const weekday = "tuesday"; // espresso house is "closed" on tuesday and Viskan on wednesday
+  // const weekday = "tuesday"; // espresso house is "closed" on tuesday and Viskan on wednesday
   let currentWeekNumber = require("current-week-number");
-  const weekNumber = currentWeekNumber(); //Do you want to test? v.40 is the number for The Company offer menu (closed on offerWeek Friday)
+  // const weekNumber = currentWeekNumber(); //Do you want to test? v.40 is the number for The Company offer menu (closed on offerWeek Friday)
 
   const { openBistros, updateStateOpenBistros } = useContext(BistroContext);
+  const [weekInfo, setWeekInfo] = React.useState<WeekInfo>({
+    weekday: "tuesday",
+    weekNumber: currentWeekNumber(),
+  });
 
   React.useEffect(() => {
     updateStateOpenBistros({
-      weekday: weekday,
-      weekNumber: weekNumber,
+      weekday: weekInfo.weekday,
+      weekNumber: weekInfo.weekNumber,
     });
   }, []);
 
@@ -40,15 +44,15 @@ export default function BistroScreen({ navigation }: Props) {
               navigation.navigate("Menu", {
                 id: item.id,
                 title: item.title,
-                weekday: weekday,
-                weekNumber: weekNumber,
+                weekday: weekInfo.weekday,
+                weekNumber: weekInfo.weekNumber,
               })
             }
           >
             <BistroCard
               bistro={item}
-              weekday={weekday}
-              weekNumber={weekNumber}
+              weekday={weekInfo.weekday}
+              weekNumber={weekInfo.weekNumber}
             />
           </TouchableRipple>
         )}
