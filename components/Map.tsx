@@ -37,8 +37,8 @@ function Map() {
           longitude: userLocation?.longitude || 12.941051,
         }}
         destination={{
-          latitude: lat || 57.719723,
-          longitude: long || 12.941051,
+          latitude: lat || 0,
+          longitude: long || 0,
         }}
         apikey={GOOGLE_MAPS_APIKEY}
         strokeWidth={3}
