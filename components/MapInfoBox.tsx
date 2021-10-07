@@ -5,14 +5,18 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Paragraph, Title } from "react-native-paper";
 import { BistroData } from "../data/bistroData";
 import LikeButton from "./LikeButton";
+import { TransportMode } from "./Map";
 
 interface Props {
   bistro: BistroData;
+  onChangeTransport: (mode: TransportMode) => void;
 }
 
-export default function MapInfoBox({ bistro }: Props) {
+export default function MapInfoBox({ bistro, onChangeTransport }: Props) {
   const close = () => console.log("stäng"); //TODO: Koppla
-  const transport = () => console.log("val av transport"); //TODO: Koppla
+  const transport = (mode: TransportMode) => {
+    onChangeTransport(mode);
+  };
   return (
     <View style={styles.container}>
       <Card style={styles.box}>
@@ -22,25 +26,25 @@ export default function MapInfoBox({ bistro }: Props) {
             name="directions-car"
             size={26}
             color="#000"
-            onPress={transport}
+            onPress={() => transport('DRIVING')}
           />
           <MaterialIcons
             name="directions-train"
             size={26}
             color="#000"
-            onPress={transport}
+            onPress={() => transport('TRANSIT')}
           />
           <MaterialIcons
             name="directions-walk"
             size={26}
             color="#000"
-            onPress={transport}
+            onPress={() => transport('WALKING')}
           />
           <MaterialIcons
             name="directions-bike"
             size={26}
             color="#000"
-            onPress={transport}
+            onPress={() => transport('BICYCLING')}
           />
         </Card.Actions>
         <Card.Content style={styles.content}>
@@ -65,8 +69,8 @@ export default function MapInfoBox({ bistro }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "flex-end",
+    position: "absolute",
+    bottom: 0,
     width: "100%",
   },
   box: {

@@ -7,8 +7,20 @@ import { useContext, useState } from "react";
 import { Image } from "react-native";
 import { MapContext } from "../contexts/MapContext";
 import MapViewDirections from "react-native-maps-directions";
+import { BistroData } from "../data/bistroData";
 
-function Map() {
+export type TransportMode = "DRIVING" | "BICYCLING" | "WALKING" |"TRANSIT";
+export interface MapMode {
+  distance: number,
+  duration: number,
+}
+interface Props {
+  onChangeBistro: (bistro: BistroData) => void;
+  onChangeMode: (mode: MapMode) => void;
+  transportMode: TransportMode;
+}
+
+const Map = ({onChangeBistro, onChangeMode, transportMode}: Props) => {
   const [selectedId, setSelectedId] = useState<string>();
   const { storedBistros } = useContext(BistroContext);
   const marker = require("../images/icons/marker.png");
@@ -17,6 +29,14 @@ function Map() {
   const GOOGLE_MAPS_APIKEY = "AIzaSyBvSXOW7pC6kk7InV59oBFOCQ8WZiBUTz0";
   const [lat, setLat] = useState<number>();
   const [long, setLong] = useState<number>();
+
+  const pressedMarker = (bistro: BistroData) => {
+    onChangeBistro(bistro);
+  };
+  
+  const transportResult = (mode: MapMode) => {
+    onChangeMode(mode);
+  }
 
   return (
     <MapView
@@ -43,10 +63,12 @@ function Map() {
         apikey={GOOGLE_MAPS_APIKEY}
         strokeWidth={3}
         strokeColor="#F8607E"
-        mode="WALKING"
+        mode={transportMode}
         onReady={(result) => {
           console.log(`Avstånd: ${result.distance} km`);
           console.log(`Tid: ${result.duration} min.`);
+          let mode: MapMode = {distance: result.distance, duration: result.duration}
+          onChangeMode(mode);
         }}
       />
       <Marker
@@ -74,6 +96,7 @@ function Map() {
               setSelectedId(bistro.id),
                 setLat(bistro.address.latitude),
                 setLong(bistro.address.longitude);
+                pressedMarker(bistro);
             }
           }}
         >
@@ -89,11 +112,6 @@ function Map() {
 export default Map;
 
 const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-  },
   map: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height,
