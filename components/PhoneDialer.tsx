@@ -7,7 +7,7 @@ interface Props {
 
 function PhoneDialer({ bistro }: Props) {
   let phoneNumber = "";
-  const bistroPhoneNumber = bistro?.address.phone.toString();
+  const bistroPhoneNumber = bistro.address.phone.toString();
 
   if (Platform.OS === "android") {
     phoneNumber = `tel:${bistroPhoneNumber}`;
