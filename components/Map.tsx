@@ -42,7 +42,7 @@ function Map() {
         }}
         apikey={GOOGLE_MAPS_APIKEY}
         strokeWidth={3}
-        strokeColor="red"
+        strokeColor="#F8607E"
         mode="WALKING"
         onReady={(result) => {
           console.log(`Avstånd: ${result.distance} km`);
