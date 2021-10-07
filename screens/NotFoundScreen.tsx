@@ -22,7 +22,7 @@ export default function NotFoundScreen({ navigation }: RootStackScreenProps<"Not
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#723A45",
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    color: "#fff",
+    color: "#723A45",
   },
   link: {
     marginTop: 15,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   linkText: {
     fontSize: 14,
-    color: "#fff",
+    color: "#F8607E",
     textDecorationLine: "underline",
   },
 });
