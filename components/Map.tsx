@@ -90,8 +90,6 @@ const Map = ({ onChangeBistro, onChangeMode, transportMode }: Props) => {
             latitude: bistro.address.latitude || 57.7206788,
             longitude: bistro.address.longitude || 57.7206788,
           }}
-          title={bistro.title}
-          description={bistro.address.streetAddress}
           onPress={() => {
             {
               setSelectedId(bistro.id),
