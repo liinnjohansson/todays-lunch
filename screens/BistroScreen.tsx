@@ -1,7 +1,6 @@
 import * as React from "react";
-import { FlatList, StyleSheet } from "react-native";
-import { View } from "../components/Themed";
-import { BistroContext, Weekday, WeekInfo } from "../contexts/BistroContext";
+import { FlatList, StyleSheet, View } from "react-native";
+import { BistroContext, WeekInfo } from "../contexts/BistroContext";
 import { useContext } from "react";
 import BistroCard from "../components/BistroCard";
 import WeekdaySlider from "../components/WeekdaySlider";

@@ -1,8 +1,7 @@
 import { CompositeScreenProps } from "@react-navigation/native";
 import * as React from "react";
 import Map, { TransportMode } from "../components/Map";
-import { StyleSheet } from "react-native";
-import { View } from "../components/Themed";
+import { StyleSheet, View } from "react-native";
 import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 import { TabScreenProps } from "../navigation/TabBistroMapNavigator";
 import MapInfoBox from "../components/MapInfoBox";

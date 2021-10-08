@@ -5,6 +5,7 @@ import {
 } from "@react-navigation/native-stack";
 import * as React from "react";
 import { useTheme } from "react-native-paper";
+import { Weekday } from "../contexts/BistroContext";
 import MenuScreen from "../screens/MenuScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import TabBistroMapNavigator, { TabParamList } from "./TabBistroMapNavigator";
@@ -20,7 +21,7 @@ export interface RootStackParamList extends ParamListBase {
   Menu: {
     title: string;
     id: string;
-    weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
+    weekday: Weekday;
     weekNumber: number;
   };
   NotFound: undefined;
@@ -38,7 +39,7 @@ export default function RootStackNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTintColor: colors.text,
+        headerTintColor: "#fff",
         headerTitleAlign: "center",
         headerStyle: { backgroundColor: "#723A45" },
         headerBackTitleVisible: false,
