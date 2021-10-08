@@ -12,7 +12,7 @@ const LikeButton = ({ bistro }: Props) => {
 
   return (
     <IconButton
-      icon={likedBistros.includes(bistro) ? "heart" : "heart-outline"}
+      icon={likedBistros.includes(bistro.id) ? "heart" : "heart-outline"}
       color={"#F8607E"}
       size={27}
       onPress={() => toggleLikedBistros(bistro)}

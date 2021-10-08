@@ -1,9 +1,11 @@
+import * as SecureStore from "expo-secure-store";
 import React, {
   createContext,
   FC,
-  useState,
-  useReducer,
   useContext,
+  useEffect,
+  useReducer,
+  useState,
 } from "react";
 import { BistroData, bistros } from "../data/bistroData";
 import bistroReducer, { BistroAction } from "../reducers/bistroReducer";
@@ -27,7 +29,7 @@ export interface WeekInfo {
 interface ContextValue {
   storedBistros: BistroData[];
   openBistros: BistroData[];
-  likedBistros: BistroData[];
+  likedBistros: string[];
   dispatch: React.Dispatch<BistroAction>;
   updateStateOpenBistros: (data: WeekInfo) => void;
   toggleLikedBistros: (bistro: BistroData) => void;
@@ -49,7 +51,8 @@ export const BistroContext = createContext<ContextValue>({
 const BistroProvider: FC = ({ children }) => {
   const [storedBistros, dispatch] = useReducer(bistroReducer, bistros);
   const [openBistros, setOpenBistros] = useState<BistroData[]>([]);
-  const [likedBistros, setLikedBistros] = useState<BistroData[]>([]);
+  const [likedBistros, setLikedBistros] = useState<string[]>([]);
+  const [key, setKey] = useState<string>("likedBistros");
 
   const updateStateOpenBistros = (data: WeekInfo) => {
     const returnList: BistroData[] = [];
@@ -67,7 +70,7 @@ const BistroProvider: FC = ({ children }) => {
   };
 
   const toggleLikedBistros = (bistro: BistroData) => {
-    if (likedBistros.includes(bistro)) {
+    if (likedBistros.includes(bistro.id)) {
       removeLikedBistro(bistro);
     } else {
       addLikedBistro(bistro);
@@ -75,15 +78,33 @@ const BistroProvider: FC = ({ children }) => {
   };
 
   const addLikedBistro = (bistro: BistroData) => {
-    setLikedBistros([...likedBistros, bistro]);
+    const copy = [...likedBistros];
+    const likedBistrosToSave = [...copy, bistro.id];
+    setLikedBistros(likedBistrosToSave);
+    SecureStore.setItemAsync(key, likedBistrosToSave.toString());
   };
 
   const removeLikedBistro = (bistro: BistroData) => {
+    SecureStore.deleteItemAsync(key);
     const updatedLikedBistrosList = likedBistros.filter(
-      (item) => item.id !== bistro.id
+      (item) => item !== bistro.id
     );
     setLikedBistros(updatedLikedBistrosList);
+    SecureStore.setItemAsync(
+      key,
+      updatedLikedBistrosList.toString()
+    );
   };
+
+  useEffect(() => {
+    const getLikedBistrosFromStorage = async () => {
+      let result = await SecureStore.getItemAsync(key);
+      if (result) {
+        setLikedBistros(result.split(","));
+      }
+    };
+    getLikedBistrosFromStorage();
+  }, []);
 
   return (
     <BistroContext.Provider
