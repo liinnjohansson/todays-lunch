@@ -21,7 +21,7 @@ export type Weekday =
   | "thursday"
   | "friday";
 
-export interface OpenBistro {
+export interface WeekInfo {
   weekday: Weekday;
   weekNumber: number;
 }
@@ -31,7 +31,7 @@ interface ContextValue {
   openBistros: BistroData[];
   likedBistros: string[];
   dispatch: React.Dispatch<BistroAction>;
-  updateStateOpenBistros: (data: OpenBistro) => void;
+  updateStateOpenBistros: (data: WeekInfo) => void;
   toggleLikedBistros: (bistro: BistroData) => void;
   addLikedBistro: (bistro: BistroData) => void;
   removeLikedBistro: (bistro: BistroData) => void;
@@ -54,7 +54,7 @@ const BistroProvider: FC = ({ children }) => {
   const [likedBistros, setLikedBistros] = useState<string[]>([]);
   const [key, setKey] = useState<string>("likedBistros");
 
-  const updateStateOpenBistros = (data: OpenBistro) => {
+  const updateStateOpenBistros = (data: WeekInfo) => {
     const returnList: BistroData[] = [];
     storedBistros.forEach((bistro) => {
       const lunchOfTheWeekOffer = bistro.lunchOfTheWeekOffer?.find(

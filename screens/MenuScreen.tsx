@@ -1,7 +1,6 @@
 import { CompositeScreenProps } from "@react-navigation/native";
 import * as React from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
 import MenuInfoBox from "../components/MenuInfoBox";
 import MenuSheet from "../components/MenuSheet";
@@ -18,7 +17,7 @@ export default function MenuScreen({ navigation, route }: Props) {
   const id = route.params.id.toString();
   const { storedBistros } = useContext(BistroContext);
   const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
-  
+
   useEffect(() => {
     if (!selectedBistro) navigation.navigate("NotFound");
   });
@@ -31,8 +30,12 @@ export default function MenuScreen({ navigation, route }: Props) {
         style={styles.background}
         source={require("../images/sandwalls-plats.jpg")}
       >
-        <MenuSheet bistro={selectedBistro} />
-        <MenuInfoBox bistro={selectedBistro} />
+        <MenuSheet
+          bistro={selectedBistro}
+          weekday={route.params.weekday}
+          weekNumber={route.params.weekNumber}
+        />
+        <MenuInfoBox bistro={selectedBistro} navigation={navigation}/>
       </ImageBackground>
     </View>
   );

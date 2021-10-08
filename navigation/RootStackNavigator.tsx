@@ -4,6 +4,7 @@ import {
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 import * as React from "react";
+import { useTheme } from "react-native-paper";
 import MenuScreen from "../screens/MenuScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import TabBistroMapNavigator, { TabParamList } from "./TabBistroMapNavigator";
@@ -33,7 +34,7 @@ export interface RootStackParamList extends ParamListBase {
   Menu: {
     title: string;
     id: string;
-    weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "";
+    weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
     weekNumber: number;
   };
   NotFound: undefined;
@@ -47,18 +48,31 @@ export type RootStackScreenProps<
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootStackNavigator() {
+  const { colors } = useTheme();
+
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Root" component={TabBistroMapNavigator} />
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: colors.text,
+        headerTitleAlign: "center",
+        headerStyle: { backgroundColor: "#723A45" },
+        headerBackTitleVisible: false
+      }}
+    >
+      <Stack.Screen
+        name="Root"
+        component={TabBistroMapNavigator}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="Menu"
         component={MenuScreen}
-        options={({ route }) => ({ title: route.params.title })}
+        options={{ title: "Meny" }}
       />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
-        options={{ title: "Oops!" }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

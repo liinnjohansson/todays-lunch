@@ -1,23 +1,31 @@
 import { FontAwesome } from "@expo/vector-icons";
+import { CompositeNavigationProp } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Paragraph } from "react-native-paper";
 import { BistroData } from "../data/bistroData";
+import { RootStackParamList } from "../navigation/RootStackNavigator";
 import { PhoneDialer } from "./PhoneDialer";
 
 interface Props {
   bistro: BistroData;
+  navigation: CompositeNavigationProp<
+    NativeStackNavigationProp<RootStackParamList, "Menu">,
+    NativeStackNavigationProp<RootStackParamList, string>
+  >;
 }
 
-export default function MenuInfoBox({ bistro }: Props) {
-  const map = () => console.log("Navigera till kartan"); //Radera när navigationen fungerar
+export default function MenuInfoBox({ bistro, navigation }: Props) {
   return (
     <View style={styles.container}>
       <Card style={styles.box}>
         <Card.Actions>
           {/* TODO: Behöver kunna navigera till kartan, istället för logg. */}
-          <TouchableOpacity onPress={map}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Root", { screen: "Map" })}
+          >
             <View style={styles.distanceContainer}>
               <FontAwesome
                 name="map-marker"
@@ -26,8 +34,7 @@ export default function MenuInfoBox({ bistro }: Props) {
                 style={styles.icon}
               />
               {/* TODO: Behöver kunna hämta antalet minuter och avstånd från kartan */}
-              <Paragraph style={[styles.text, styles.time]}>15min </Paragraph>
-              <Paragraph style={styles.text}>(2,2km)</Paragraph>
+              <Paragraph style={[styles.text, styles.time]}>Gå till karta </Paragraph>
             </View>
           </TouchableOpacity>
         </Card.Actions>
