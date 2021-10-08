@@ -1,33 +1,53 @@
 # todays-lunch
 
 ### beskrivning av projektet
+Applikation skapad för att visa dagens luncher i Borås 
 
 ### info om hur projektet byggs och körs
-
+För att bygga programmet kör: npm install
+För att köra programmet kör: npm start
 ### RN-komponenter
-
-- .....
+- Platform
+- Text
+- ImageBackground
+- ScrollView
+- TouchableOpacity
+- Animated
+- Dimensions
+- StyleSheet
+- Flatlist
 
 ### Expo komponenter
+- Linking
+- Location
+- MapView
+- SafeAreaContext
+- SplashScreen
+- StatusBar
+- Constants
 
-- ....
+### Externa moduler
+- RN Paper
+- RN Navigation
+
+ ## Prototyp 
 
 ## Uppfyllda krav:
 
 Krav för godkänt:
 
-1.
-2.
-3.
-4.
-5.
-6.
+1. JA
+2. JA
+3. JA
+4. JA
+5. JA
+6. JA
 
 Krav för väl godkänt:
 
-1.
-2.
-3.
+1. JA
+2. JA
+3. JA
 4. JA
 
 # Krav för inlämningen:
@@ -51,7 +71,7 @@ Krav för väl godkänt:
 4. Prototyper för applikation tas fram innan den implementeras. Bilder på prototypen
    skall finnas i projektet vid inlämning.
 
-## Installations komandom + länk till installation
+## Installations kommandom + länk till installation
 
 - Cross-platform Material Design for React Native
   npm install react-native-paper
