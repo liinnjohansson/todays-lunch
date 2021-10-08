@@ -41,7 +41,9 @@ För att köra appen i webben kör: **expo start --web**
 - [React Native Paper](https://reactnativepaper.com/)
 - [React Native Navigation](https://reactnavigation.org/)
 
- ## Prototyp 
+### Prototyper
+
+![prototyp](https://user-images.githubusercontent.com/71378960/136589873-ff44c7af-3fb8-46dc-a683-a7c96e17d8ee.png)
 
 ## Uppfyllda krav:
 
@@ -81,17 +83,3 @@ Krav för väl godkänt:
 3. Ytterligare en valfri extern modul används i projektet.
 4. Prototyper för applikation tas fram innan den implementeras. Bilder på prototypen
    skall finnas i projektet vid inlämning.
-
-## Installationskommandom + länk till installation
-
-- Cross-platform Material Design for React Native
-  npm install react-native-paper
-  https://callstack.github.io/react-native-paper/getting-started.html
-
-- Veckonummer
-  npm i current-week-number
-  https://www.npmjs.com/package/current-week-number
-
-- Generera unik id string
-  npm i react-native-uuid
-  https://www.npmjs.com/package/react-native-uuid
