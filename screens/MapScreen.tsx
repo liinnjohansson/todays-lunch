@@ -8,14 +8,14 @@ import MapInfoBox from "../components/MapInfoBox";
 import { BistroContext } from "../contexts/BistroContext";
 import { useContext, useState } from "react";
 import { BistroData } from "../data/bistroData";
-import { MapMode } from "../components/Map";
+import { TransportResult } from "../components/Map";
 
 type Props = CompositeScreenProps<TabScreenProps<"Map">, RootStackScreenProps>;
 
 export default function MapScreen({ navigation, route }: Props) {
   const [id, setId] = useState<string>("");
   const [mode, setMode] = useState<TransportMode>("WALKING");
-  const [mapMode, setMapMode] = useState<MapMode>();
+  const [transportResult, setTransportResult] = useState<TransportResult>();
   const { storedBistros } = useContext(BistroContext);
   const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
 
@@ -24,14 +24,14 @@ export default function MapScreen({ navigation, route }: Props) {
       <View>
         <Map
           onChangeBistro={(bistro: BistroData) => setId(bistro.id)}
-          onChangeMode={setMapMode}
+          onChangeTransport={setTransportResult}
           transportMode={mode}
         />
       </View>
       {selectedBistro && (
         <MapInfoBox
           bistro={selectedBistro}
-          mapTransport={mapMode}
+          mapTransport={transportResult}
           defaultTransport={mode}
           onChangeTransport={setMode}
         />
