@@ -1,7 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Paragraph, Title } from "react-native-paper";
 import { BistroData } from "../data/bistroData";
 import LikeButton from "./LikeButton";
@@ -10,42 +9,64 @@ import { MapMode, TransportMode } from "./Map";
 interface Props {
   bistro: BistroData;
   mapTransport: MapMode | undefined;
+  defaultTransport: TransportMode;
   onChangeTransport: (mode: TransportMode) => void;
 }
 
-export default function MapInfoBox({ bistro, onChangeTransport, mapTransport }: Props) {
-  const close = () => console.log("stäng"); //TODO: Koppla
-  const transport = (mode: TransportMode) => {
+export default function MapInfoBox({
+  bistro,
+  onChangeTransport,
+  mapTransport,
+  defaultTransport,
+}: Props) {
+  const pressedTransport = (mode: TransportMode) => {
     onChangeTransport(mode);
+    setTransport(mode);
   };
+  const [transport, setTransport] = useState<TransportMode>(defaultTransport);
   return (
     <View style={styles.container}>
       <Card style={styles.box}>
         <Card.Actions style={styles.action}>
-          {/* TODO: Vald transport blir svart, andra grå när klickad + updt. transport tid */}
           <MaterialIcons
             name="directions-car"
             size={26}
             color="#000"
-            onPress={() => transport('DRIVING')}
+            onPress={() => pressedTransport("DRIVING")}
+            style={[
+              styles.icone,
+              transport === "DRIVING" ? styles.iconePressed : null,
+            ]}
           />
           <MaterialIcons
             name="directions-train"
             size={26}
             color="#000"
-            onPress={() => transport('TRANSIT')}
+            onPress={() => pressedTransport("TRANSIT")}
+            style={[
+              styles.icone,
+              transport === "TRANSIT" ? styles.iconePressed : null,
+            ]}
           />
           <MaterialIcons
             name="directions-walk"
             size={26}
             color="#000"
-            onPress={() => transport('WALKING')}
+            onPress={() => pressedTransport("WALKING")}
+            style={[
+              styles.icone,
+              transport === "WALKING" ? styles.iconePressed : null,
+            ]}
           />
           <MaterialIcons
             name="directions-bike"
             size={26}
             color="#000"
-            onPress={() => transport('BICYCLING')}
+            onPress={() => pressedTransport("BICYCLING")}
+            style={[
+              styles.icone,
+              transport === "BICYCLING" ? styles.iconePressed : null,
+            ]}
           />
         </Card.Actions>
         <Card.Content style={styles.content}>
@@ -55,16 +76,23 @@ export default function MapInfoBox({ bistro, onChangeTransport, mapTransport }: 
               <LikeButton bistro={bistro} />
             </View>
             <View>
-            <Paragraph style={styles.text}>{bistro.address.streetAddress}</Paragraph>
+              <Paragraph style={styles.text}>
+                {bistro.address.streetAddress}
+              </Paragraph>
             </View>
             <View style={styles.distance}>
-              {mapTransport && <Paragraph style={[styles.text, styles.time]}>{mapTransport.duration.toFixed()} min </Paragraph>}
-              {mapTransport && <Paragraph style={styles.text}>({mapTransport.distance.toFixed(2)} km)</Paragraph>}
+              {mapTransport && (
+                <Paragraph style={[styles.text, styles.time]}>
+                  {mapTransport.duration.toFixed()} min{" "}
+                </Paragraph>
+              )}
+              {mapTransport && (
+                <Paragraph style={styles.text}>
+                  ({mapTransport.distance.toFixed(2)} km)
+                </Paragraph>
+              )}
             </View>
           </View>
-          {/* <TouchableOpacity onPress={close} style={styles.contentChild}>
-            <MaterialIcons name="close" size={30} color="#fff" />
-          </TouchableOpacity> */}
         </Card.Content>
       </Card>
     </View>
@@ -107,6 +135,14 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   time: {
+    fontWeight: "bold",
+  },
+  icone: {
+    color: "gray",
+    fontWeight: "normal",
+  },
+  iconePressed: {
+    color: "black",
     fontWeight: "bold",
   },
 });

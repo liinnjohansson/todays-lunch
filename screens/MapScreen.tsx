@@ -15,7 +15,7 @@ type Props = CompositeScreenProps<TabScreenProps<"Map">, RootStackScreenProps>;
 
 export default function MapScreen({ navigation, route }: Props) {
   const [id, setId] = useState<string>("");
-  const [mode, setMode] = useState<TransportMode>("WALKING"); // ska sättas av MapInfoBox
+  const [mode, setMode] = useState<TransportMode>("WALKING");
   const [mapMode, setMapMode] = useState<MapMode>();
   const { storedBistros } = useContext(BistroContext);
   const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
@@ -33,6 +33,7 @@ export default function MapScreen({ navigation, route }: Props) {
         <MapInfoBox
           bistro={selectedBistro}
           mapTransport={mapMode}
+          defaultTransport={mode}
           onChangeTransport={setMode}
         />
       )}
