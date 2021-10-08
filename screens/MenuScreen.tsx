@@ -1,10 +1,9 @@
 import { CompositeScreenProps } from "@react-navigation/native";
 import * as React from "react";
 import { useContext, useEffect } from "react";
-import { ImageBackground, StyleSheet } from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import MenuInfoBox from "../components/MenuInfoBox";
 import MenuSheet from "../components/MenuSheet";
-import { View } from "../components/Themed";
 import { BistroContext } from "../contexts/BistroContext";
 import { RootStackScreenProps } from "../navigation/RootStackNavigator";
 
@@ -35,7 +34,7 @@ export default function MenuScreen({ navigation, route }: Props) {
           weekday={route.params.weekday}
           weekNumber={route.params.weekNumber}
         />
-        <MenuInfoBox bistro={selectedBistro} navigation={navigation}/>
+        <MenuInfoBox bistro={selectedBistro} navigation={navigation} />
       </ImageBackground>
     </View>
   );

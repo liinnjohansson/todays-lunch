@@ -5,6 +5,7 @@ import {
 } from "@react-navigation/native-stack";
 import * as React from "react";
 import { useTheme } from "react-native-paper";
+import { Weekday } from "../contexts/BistroContext";
 import MenuScreen from "../screens/MenuScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import TabBistroMapNavigator, { TabParamList } from "./TabBistroMapNavigator";
@@ -15,32 +16,17 @@ declare global {
   }
 }
 
-// export type RootStackParamList = {
-//   Root: NavigatorScreenParams<TabParamList> | undefined;
-//   Menu: {
-//     title: string;
-//     id: string;
-//     weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "";
-//     weekNumber: number;
-//   };
-//   NotFound: undefined;
-// };
-
-//skapad för andra skärmar som vill veta vad
-// export type RootStackScreenProps = NativeStackScreenProps<RootStackParamList>;
-
 export interface RootStackParamList extends ParamListBase {
   Root: NavigatorScreenParams<TabParamList> | undefined;
   Menu: {
     title: string;
     id: string;
-    weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
+    weekday: Weekday;
     weekNumber: number;
   };
   NotFound: undefined;
 }
 
-// Type declared fot other screens to know the type of RootStackParamList
 export type RootStackScreenProps<
   Screen extends keyof RootStackParamList = string
 > = NativeStackScreenProps<RootStackParamList, Screen>;
@@ -53,10 +39,10 @@ export default function RootStackNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTintColor: colors.text,
+        headerTintColor: "#fff",
         headerTitleAlign: "center",
         headerStyle: { backgroundColor: "#723A45" },
-        headerBackTitleVisible: false
+        headerBackTitleVisible: false,
       }}
     >
       <Stack.Screen

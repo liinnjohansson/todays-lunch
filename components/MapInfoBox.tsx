@@ -4,11 +4,11 @@ import { StyleSheet, View } from "react-native";
 import { Card, Paragraph, Title } from "react-native-paper";
 import { BistroData } from "../data/bistroData";
 import LikeButton from "./LikeButton";
-import { MapMode, TransportMode } from "./Map";
+import { TransportResult, TransportMode } from "./Map";
 
 interface Props {
   bistro: BistroData;
-  mapTransport: MapMode | undefined;
+  mapTransport: TransportResult | undefined;
   defaultTransport: TransportMode;
   onChangeTransport: (mode: TransportMode) => void;
 }

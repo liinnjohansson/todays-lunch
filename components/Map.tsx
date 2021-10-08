@@ -10,17 +10,17 @@ import MapViewDirections from "react-native-maps-directions";
 import { BistroData } from "../data/bistroData";
 
 export type TransportMode = "DRIVING" | "BICYCLING" | "WALKING" | "TRANSIT";
-export interface MapMode {
+export interface TransportResult {
   distance: number;
   duration: number;
 }
 interface Props {
   onChangeBistro: (bistro: BistroData) => void;
-  onChangeMode: (mode: MapMode) => void;
+  onChangeTransport: (mode: TransportResult) => void;
   transportMode: TransportMode;
 }
 
-const Map = ({ onChangeBistro, onChangeMode, transportMode }: Props) => {
+const Map = ({ onChangeBistro, onChangeTransport, transportMode }: Props) => {
   const [selectedId, setSelectedId] = useState<string>();
   const { storedBistros } = useContext(BistroContext);
   const marker = require("../images/icons/marker.png");
@@ -57,11 +57,11 @@ const Map = ({ onChangeBistro, onChangeMode, transportMode }: Props) => {
         strokeColor="#F8607E"
         mode={transportMode}
         onReady={(result) => {
-          let mode: MapMode = {
+          let mode: TransportResult = {
             distance: result.distance,
             duration: result.duration,
           };
-          onChangeMode(mode);
+          onChangeTransport(mode);
         }}
       />
       <Marker

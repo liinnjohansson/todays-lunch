@@ -22,7 +22,6 @@ export default function MenuInfoBox({ bistro, navigation }: Props) {
     <View style={styles.container}>
       <Card style={styles.box}>
         <Card.Actions>
-          {/* TODO: Behöver kunna navigera till kartan, istället för logg. */}
           <TouchableOpacity
             onPress={() => navigation.navigate("Root", { screen: "Map" })}
           >
@@ -33,8 +32,9 @@ export default function MenuInfoBox({ bistro, navigation }: Props) {
                 color="#fff"
                 style={styles.icon}
               />
-              {/* TODO: Behöver kunna hämta antalet minuter och avstånd från kartan */}
-              <Paragraph style={[styles.text, styles.time]}>Gå till karta </Paragraph>
+              <Paragraph style={[styles.text, styles.time]}>
+                Gå till karta{" "}
+              </Paragraph>
             </View>
           </TouchableOpacity>
         </Card.Actions>
