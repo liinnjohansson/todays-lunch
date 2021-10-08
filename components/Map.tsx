@@ -30,14 +30,6 @@ const Map = ({ onChangeBistro, onChangeMode, transportMode }: Props) => {
   const [lat, setLat] = useState<number>();
   const [long, setLong] = useState<number>();
 
-  const pressedMarker = (bistro: BistroData) => {
-    onChangeBistro(bistro);
-  };
-
-  const transportResult = (mode: MapMode) => {
-    onChangeMode(mode);
-  };
-
   return (
     <MapView
       provider={PROVIDER_GOOGLE}
@@ -95,7 +87,7 @@ const Map = ({ onChangeBistro, onChangeMode, transportMode }: Props) => {
               setSelectedId(bistro.id),
                 setLat(bistro.address.latitude),
                 setLong(bistro.address.longitude);
-              pressedMarker(bistro);
+              onChangeBistro(bistro);
             }
           }}
         >

@@ -20,23 +20,12 @@ export default function MapScreen({ navigation, route }: Props) {
   const { storedBistros } = useContext(BistroContext);
   const selectedBistro = storedBistros.find((bistro) => bistro.id === id);
 
-  const changeBistro = (bistro: BistroData) => {
-    setId(bistro.id);
-  };
-  const changeMode = (transportMode: TransportMode) => {
-    setMode(transportMode);
-  };
-
-  const changeTimeResult = (result: MapMode) => {
-    setMapMode(result);
-  };
-
   return (
     <View style={styles.container}>
       <View>
         <Map
-          onChangeBistro={changeBistro}
-          onChangeMode={changeTimeResult}
+          onChangeBistro={(bistro: BistroData) => setId(bistro.id)}
+          onChangeMode={setMapMode}
           transportMode={mode}
         />
       </View>
@@ -44,7 +33,7 @@ export default function MapScreen({ navigation, route }: Props) {
         <MapInfoBox
           bistro={selectedBistro}
           mapTransport={mapMode}
-          onChangeTransport={changeMode}
+          onChangeTransport={setMode}
         />
       )}
     </View>
