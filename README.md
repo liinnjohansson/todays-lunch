@@ -1,34 +1,45 @@
 # todays-lunch
 
-### beskrivning av projektet
+### Beskrivning av projektet
 Applikation skapad för att visa dagens luncher i Borås 
 
-### info om hur projektet byggs och körs
-För att bygga programmet kör: npm install
-För att köra programmet kör: npm start
-### RN-komponenter
-- Platform
-- Text
-- ImageBackground
-- ScrollView
-- TouchableOpacity
-- Animated
-- Dimensions
-- StyleSheet
-- Flatlist
+### Script
+För att bygga appen kör: **npm install**
 
-### Expo komponenter
-- Linking
-- Location
-- MapView
-- SafeAreaContext
-- SplashScreen
-- StatusBar
-- Constants
+För att köra appen kör: **npm start**
 
-### Externa moduler
-- RN Paper
-- RN Navigation
+För att köra appen i en android-emulator kör: **expo start --android**
+
+För att köra appen i en iOS-emulator kör: **expo start --ios**
+
+För att köra appen i webben kör: **expo start --web**
+
+### Komponenter som används i projektet
+
+#### React Native-komponenter
+- [Platform](https://reactnative.dev/docs/platform)
+- [Text](https://docs.expo.dev/versions/v42.0.0/react-native/text/)
+- [ImageBackground](https://docs.expo.dev/versions/v42.0.0/react-native/imagebackground/)
+- [ScrollView](https://docs.expo.dev/versions/v42.0.0/react-native/scrollview/)
+- [TouchableOpacity](https://docs.expo.dev/versions/v42.0.0/react-native/touchableopacity/)
+- [Animated](https://docs.expo.dev/versions/v42.0.0/react-native/animated/)
+- [Dimensions](https://docs.expo.dev/versions/v42.0.0/react-native/dimensions/)
+- [StyleSheet](https://docs.expo.dev/versions/v42.0.0/react-native/stylesheet/)
+- [Flatlist](https://docs.expo.dev/versions/v42.0.0/react-native/flatlist/)
+
+#### Expo-komponenter
+- [Linking](https://docs.expo.dev/versions/v42.0.0/sdk/linking/)
+- [Location](https://docs.expo.dev/versions/v42.0.0/sdk/location/)
+- [MapView](https://docs.expo.dev/versions/v42.0.0/sdk/map-view/)
+- [SafeAreaContext](https://docs.expo.dev/versions/v42.0.0/sdk/safe-area-context/)
+- [SplashScreen](https://docs.expo.dev/versions/v42.0.0/sdk/splash-screen/)
+- [StatusBar](https://docs.expo.dev/versions/v42.0.0/react-native/statusbar/)
+- [Constants](https://docs.expo.dev/versions/v42.0.0/sdk/constants/)
+- [SecureStore](https://docs.expo.dev/versions/v42.0.0/sdk/securestore/)
+
+#### Externa moduler
+- [React Native Paper](https://reactnativepaper.com/)
+- [React Native Navigation](https://reactnavigation.org/)
 
  ## Prototyp 
 
@@ -71,11 +82,12 @@ Krav för väl godkänt:
 4. Prototyper för applikation tas fram innan den implementeras. Bilder på prototypen
    skall finnas i projektet vid inlämning.
 
-## Installations kommandom + länk till installation
+## Installationskommandom + länk till installation
 
 - Cross-platform Material Design for React Native
   npm install react-native-paper
   https://callstack.github.io/react-native-paper/getting-started.html
+
 - Veckonummer
   npm i current-week-number
   https://www.npmjs.com/package/current-week-number
