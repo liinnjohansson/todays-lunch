@@ -15,20 +15,6 @@ declare global {
   }
 }
 
-// export type RootStackParamList = {
-//   Root: NavigatorScreenParams<TabParamList> | undefined;
-//   Menu: {
-//     title: string;
-//     id: string;
-//     weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "";
-//     weekNumber: number;
-//   };
-//   NotFound: undefined;
-// };
-
-//skapad för andra skärmar som vill veta vad
-// export type RootStackScreenProps = NativeStackScreenProps<RootStackParamList>;
-
 export interface RootStackParamList extends ParamListBase {
   Root: NavigatorScreenParams<TabParamList> | undefined;
   Menu: {
@@ -40,7 +26,6 @@ export interface RootStackParamList extends ParamListBase {
   NotFound: undefined;
 }
 
-// Type declared fot other screens to know the type of RootStackParamList
 export type RootStackScreenProps<
   Screen extends keyof RootStackParamList = string
 > = NativeStackScreenProps<RootStackParamList, Screen>;
@@ -56,7 +41,7 @@ export default function RootStackNavigator() {
         headerTintColor: colors.text,
         headerTitleAlign: "center",
         headerStyle: { backgroundColor: "#723A45" },
-        headerBackTitleVisible: false
+        headerBackTitleVisible: false,
       }}
     >
       <Stack.Screen

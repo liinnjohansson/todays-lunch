@@ -1,19 +1,20 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Weekday } from "../contexts/BistroContext";
 import { BistroData } from "../data/bistroData";
 
 interface Props {
   bistro: BistroData;
-  weekday: "monday" | "tuesday" | "wednesday" | "thursday" | "friday";
+  weekday: Weekday;
   weekNumber: number;
 }
 
 export default function MenuSheet({ bistro, weekday, weekNumber }: Props) {
   const title = bistro.title;
   let dishes: string[] | undefined;
-  let lunchStart: String | undefined;
-  let lunchEnd: String | undefined;
-  let priceFrom: Number | undefined;
+  let lunchStart: string | undefined;
+  let lunchEnd: string | undefined;
+  let priceFrom: number | undefined;
 
   const lunchOfTheWeekOffer = bistro.lunchOfTheWeekOffer?.find(
     (lunch) => lunch.weekNumber == weekNumber
