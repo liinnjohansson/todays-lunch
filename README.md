@@ -45,6 +45,25 @@ För att köra appen i webben kör: **expo start --web**
 
 ![prototyp](https://user-images.githubusercontent.com/71378960/136589873-ff44c7af-3fb8-46dc-a683-a7c96e17d8ee.png)
 
+### Utvecklingsmöjligheter och issues
+
+#### Utveckling
+- [Lägga till tema för navigationen och react native paper för att kunna ge en bra användarupplevelse i både light mode och dark mode.](https://github.com/liinnjohansson/todays-lunch/issues/66)
+- [Navigationen ger inte önskvärt resultat när man går från meny till karta och vill gå tillbaka. Då hamnar användaren på startsidan istället för menyn.](https://github.com/liinnjohansson/todays-lunch/issues/55)
+- [Weekday slider visar måndag by default, men hade varit önskvärt om den hade visat den aktuella dagen.](https://github.com/liinnjohansson/todays-lunch/issues/83)
+- [Navigation till kartan från menyn är möjlig, men hade varit bättre om man fick se den valda restaurangen markerad direkt.](https://github.com/liinnjohansson/todays-lunch/issues/84)
+- [Inforutan i menyn har texten "Gå till karta". Vi vill ha information om distansen och tiden (promenadavstånd) till vald restaurang istället.](https://github.com/liinnjohansson/todays-lunch/issues/85)
+- [Möjlighet att kunna visa betyg för en restaurang.](https://github.com/liinnjohansson/todays-lunch/issues/86)
+- [Kartan visar olika markers beroende på om en restaurang är gillad eller inte.](https://github.com/liinnjohansson/todays-lunch/issues/87)
+- [Kartan visar endast de restauranger som är öppna på vald dag.](https://github.com/liinnjohansson/todays-lunch/issues/88)
+- [Weekday slider finns på kartan.](https://github.com/liinnjohansson/todays-lunch/issues/89)
+- [Weekday slider finns på menyn.](https://github.com/liinnjohansson/todays-lunch/issues/90)
+
+#### Buggar och varningar
+- [Bugg i datafilen för bistros](https://github.com/liinnjohansson/todays-lunch/issues/56)
+- [Varning från MapViewDirections](https://github.com/liinnjohansson/todays-lunch/issues/82)
+- [Varning pga Splashscreen](https://github.com/liinnjohansson/todays-lunch/issues/69)
+
 ## Uppfyllda krav:
 
 Krav för godkänt:
@@ -63,7 +82,7 @@ Krav för väl godkänt:
 3. JA
 4. JA
 
-# Krav för inlämningen:
+## Krav för inlämningen:
 
 Krav för godkänt:
 
