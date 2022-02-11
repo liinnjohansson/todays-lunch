@@ -26,7 +26,7 @@ const Map = ({ onChangeBistro, onChangeTransport, transportMode }: Props) => {
   const marker = require("../images/icons/marker.png");
   const selectedMarkerImage = require("../images/icons/pressed-bistro-marker.png");
   const { userLocation } = useContext(MapContext);
-  const GOOGLE_MAPS_APIKEY = "AIzaSyBvSXOW7pC6kk7InV59oBFOCQ8WZiBUTz0";
+  const GOOGLE_MAPS_APIKEY = "AIzaSyCMFxThM3SNn-HX5YxsCF-wr5VuDBWTtgw";
   const [lat, setLat] = useState<number>();
   const [long, setLong] = useState<number>();
 
